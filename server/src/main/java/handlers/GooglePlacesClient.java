@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 
 public class GooglePlacesClient {
 
-  private static final String API_KEY = "AIzaSyD9CVq2ghzKOixMiMF4qjbksTnlwYHaGjM";
+  private static final String API_KEY = "";
 
   private final HttpClient client;
 
