@@ -5,11 +5,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import io.github.cdimascio.dotenv.Dotenv;
 
 
 public class GooglePlacesClient {
 
-  private static final String API_KEY = "";
+  static Dotenv dotenv = Dotenv.load();
+  static String apiKey = dotenv.get("PLACES_API_KEY");
+
+  private static final String API_KEY = apiKey;
 
   private final HttpClient client;
 
