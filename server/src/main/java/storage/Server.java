@@ -1,4 +1,4 @@
-package server;
+package storage;
 
 import com.sun.net.httpserver.HttpServer;
 import handlers.PlacesHandler;

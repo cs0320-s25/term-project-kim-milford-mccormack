@@ -2,6 +2,11 @@ package handlers;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -13,6 +18,7 @@ import java.util.Map;
 public class PlacesHandler implements HttpHandler {
 
   private final GooglePlacesClient client;
+  private final Gson gson = new Gson();
 
   public PlacesHandler() {
     this.client = new GooglePlacesClient();
@@ -21,7 +27,7 @@ public class PlacesHandler implements HttpHandler {
   @Override
   public void handle(HttpExchange exchange) throws IOException {
     if (!"GET".equals(exchange.getRequestMethod())) {
-      exchange.sendResponseHeaders(405, -1); // Method Not Allowed
+      exchange.sendResponseHeaders(405, -1);
       return;
     }
 
@@ -29,26 +35,27 @@ public class PlacesHandler implements HttpHandler {
     String query = requestURI.getQuery();
     Map<String, String> queryParams = parseQuery(query);
 
-    // defaults to providence with keyword cafe, can be edited to default to user's actual location later
     double lat = Double.parseDouble(queryParams.getOrDefault("lat", "41.8240"));
     double lng = Double.parseDouble(queryParams.getOrDefault("lng", "-71.4128"));
-    int radius = Integer.parseInt(queryParams.getOrDefault("radius", "1500"));
+    int radius = Integer.parseInt(queryParams.getOrDefault("radius", "800"));
     String keyword = queryParams.getOrDefault("keyword", "cafe");
 
     try {
-      String json = client.searchNearbyAsJson(lat, lng, radius, keyword);
+      String rawNearbyJson = client.searchNearbyAsJson(lat, lng, radius, keyword);
+      String enrichedJson = enrichWithPlaceDetails(rawNearbyJson);
+
       exchange.getResponseHeaders().add("Content-Type", "application/json");
-      exchange.sendResponseHeaders(200, json.getBytes().length);
-      OutputStream os = exchange.getResponseBody();
-      os.write(json.getBytes());
-      os.close();
+      exchange.sendResponseHeaders(200, enrichedJson.getBytes().length);
+      try (OutputStream os = exchange.getResponseBody()) {
+        os.write(enrichedJson.getBytes());
+      }
     } catch (Exception e) {
       String error = "{\"error\":\"" + e.getMessage() + "\"}";
       exchange.getResponseHeaders().add("Content-Type", "application/json");
       exchange.sendResponseHeaders(500, error.length());
-      OutputStream os = exchange.getResponseBody();
-      os.write(error.getBytes());
-      os.close();
+      try (OutputStream os = exchange.getResponseBody()) {
+        os.write(error.getBytes());
+      }
     }
   }
 
@@ -65,5 +72,56 @@ public class PlacesHandler implements HttpHandler {
       }
     }
     return params;
+  }
+
+  private String enrichWithPlaceDetails(String rawNearbyJson) throws IOException, InterruptedException {
+    JsonObject root = JsonParser.parseString(rawNearbyJson).getAsJsonObject();
+    JsonArray results = root.getAsJsonArray("results");
+    JsonArray enrichedResults = new JsonArray();
+
+    for (int i = 0; i < results.size(); i++) {
+      JsonObject place = results.get(i).getAsJsonObject();
+      String placeId = place.get("place_id").getAsString();
+
+      String detailsJson = client.getPlaceDetailsAsJson(placeId);
+      JsonObject detailsRoot = JsonParser.parseString(detailsJson).getAsJsonObject();
+      JsonObject details = detailsRoot.getAsJsonObject("result");
+
+      JsonObject enrichedPlace = new JsonObject();
+
+      enrichedPlace.addProperty("name", details.get("name").getAsString());
+
+      if (details.has("vicinity")) {
+        enrichedPlace.addProperty("address", details.get("vicinity").getAsString());
+      }
+
+      if (details.has("geometry")) {
+        enrichedPlace.add("location", details.getAsJsonObject("geometry").getAsJsonObject("location").deepCopy());
+      }
+
+      if (details.has("rating")) {
+        enrichedPlace.addProperty("rating", details.get("rating").getAsDouble());
+      } else {
+        enrichedPlace.addProperty("rating", -1.0);
+      }
+
+      if (details.has("opening_hours") && details.getAsJsonObject("opening_hours").has("open_now")) {
+        enrichedPlace.addProperty("open_now", details.getAsJsonObject("opening_hours").get("open_now").getAsBoolean());
+      } else {
+        enrichedPlace.addProperty("open_now", false);
+      }
+
+      if (details.has("editorial_summary") && details.getAsJsonObject("editorial_summary").has("overview")) {
+        enrichedPlace.addProperty("description", details.getAsJsonObject("editorial_summary").get("overview").getAsString());
+      } else {
+        enrichedPlace.addProperty("description", "No description available.");
+      }
+
+      enrichedResults.add(enrichedPlace);
+    }
+
+    JsonObject output = new JsonObject();
+    output.add("results", enrichedResults);
+    return gson.toJson(output);
   }
 }

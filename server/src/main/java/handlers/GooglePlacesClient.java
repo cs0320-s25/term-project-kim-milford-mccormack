@@ -32,4 +32,19 @@ public class GooglePlacesClient {
     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
     return response.body();
   }
+
+  public String getPlaceDetailsAsJson(String placeId) throws IOException, InterruptedException {
+    String uri = String.format(
+        "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,vicinity,geometry,opening_hours,rating,editorial_summary&key=%s",
+        placeId, API_KEY
+    );
+
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create(uri))
+        .GET()
+        .build();
+
+    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    return response.body();
+  }
 }
