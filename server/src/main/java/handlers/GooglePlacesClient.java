@@ -24,6 +24,7 @@ public class GooglePlacesClient {
         lat, lng, radius, keyword, API_KEY
     );
 
+
     HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create(uri))
         .GET()
