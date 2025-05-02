@@ -29,7 +29,8 @@ public class PlacesHandler implements HttpHandler {
     String query = requestURI.getQuery();
     Map<String, String> queryParams = parseQuery(query);
 
-    // defaults to providence with keyword cafe, can be edited to default to user's actual location later
+    // defaults to providence with keyword cafe, can be edited to default to user's actual location
+    // later
     double lat = Double.parseDouble(queryParams.getOrDefault("lat", "41.8240"));
     double lng = Double.parseDouble(queryParams.getOrDefault("lng", "-71.4128"));
     int radius = Integer.parseInt(queryParams.getOrDefault("radius", "1500"));

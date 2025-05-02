@@ -1,5 +1,3 @@
 package storage;
 
-public class FirebaseUtils {
-
-}
+public class FirebaseUtils {}
