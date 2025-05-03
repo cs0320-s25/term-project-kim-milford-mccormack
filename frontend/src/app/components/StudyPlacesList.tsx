@@ -1,7 +1,7 @@
 'use client'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline'
-import { StudyPlace } from '../types'
+import { StudyPlace } from '../../../types'
 import Image from 'next/image'
 
 const MOCK_PLACES: StudyPlace[] = Array(10).fill(null).map((_, i) => ({

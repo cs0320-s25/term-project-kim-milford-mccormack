@@ -1,5 +1,4 @@
-// GoogleMapComponent.tsx
-'use client'; // Make sure this is a client component if you're using Next.js App Router
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 

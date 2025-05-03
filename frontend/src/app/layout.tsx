@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import {Inter} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-inter"
+    weight: ["400", "500", "700"],
+    subsets: ["latin"],
+    variable: "--font-inter"
 });
 
 export const metadata: Metadata = {
-  title: "Lo-Fi",
-  description: "Study Places Finder",
+    title: "Lo-Fi",
+    description: "Study Places Finder",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} font-sans text-white antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         {children}
       </body>

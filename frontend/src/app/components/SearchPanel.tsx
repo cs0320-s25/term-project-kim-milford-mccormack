@@ -1,7 +1,11 @@
+'use client';
+
+import SearchBar from "@/app/components/SearchBar";
+
 const SearchPanel = () => {
     return (
         <div className="h-full w-full">
-            <h1 className="text-white">Search Panel</h1>
+            <SearchBar/>
         </div>
     )
 }
