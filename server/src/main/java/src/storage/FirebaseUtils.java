@@ -1,3 +1,3 @@
-package storage;
+package src.storage;
 
 public class FirebaseUtils {}

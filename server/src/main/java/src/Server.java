@@ -1,7 +1,7 @@
-package server;
+package src;
 
 import com.sun.net.httpserver.HttpServer;
-import handlers.PlacesHandler;
+import src.handlers.PlacesHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 

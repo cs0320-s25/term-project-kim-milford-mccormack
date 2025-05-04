@@ -1,4 +1,4 @@
-package handlers;
+package src.handlers;
 
 public class Place {
   public String name;
