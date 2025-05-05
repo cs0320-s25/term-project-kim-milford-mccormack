@@ -37,7 +37,7 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, center, zoom }) 
     loadGoogleMaps();
   }, [apiKey, center, zoom]);
 
-  return <div ref={mapRef} style={{ width: '100%', height: '100%' }} />;
+  return <div ref={mapRef} className={"w-full h-full"} />;
 };
 
 export default GoogleMapComponent;

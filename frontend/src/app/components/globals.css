@@ -1,0 +1,35 @@
+@import "../../../node_modules/tailwindcss";
+
+:root {
+  --background: #f8f8f8;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.bg-default {
+  background-color: var(--background);
+}
+
+.text-black {
+  color: #1F1F1F;
+}
+
+.text-gray {
+  color: #5E5E5E;
+}
+
+.text-reddddd {
+  color: #ff0000;
+}
+
+.icon-black {
+  color: #171717;
+}
+
+.icon-gray {
+  color: #5E5E5E;
+}

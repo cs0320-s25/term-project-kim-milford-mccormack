@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import Map from './components/Map';
-import SearchPanel from './components/SearchPanel';
+import SearchPanel from '@/app/components/panel/SearchPanel';
 
 export default function Home() {
   const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
@@ -13,12 +15,12 @@ export default function Home() {
   const mapZoom = 18;
 
   return (
-      <div style={{ display: 'flex', height: '100vh' }}>
+      <div className="flex h-screen">
 
-        <div style={{ width: '30%', paddingLeft: '20px' }}>
+        <div className={"w-1/3"}>
           <SearchPanel />
         </div>
-        <div style={{ width: '70%' }}>
+        <div className={"w-2/3"}>
           <Map apiKey={googleMapsApiKey} center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
