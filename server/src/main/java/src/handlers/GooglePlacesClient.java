@@ -1,4 +1,4 @@
-package handlers;
+package src.handlers;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;

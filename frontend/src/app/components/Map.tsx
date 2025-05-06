@@ -1,5 +1,4 @@
-// GoogleMapComponent.tsx
-'use client'; // Make sure this is a client component if you're using Next.js App Router
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 
@@ -38,7 +37,7 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, center, zoom }) 
     loadGoogleMaps();
   }, [apiKey, center, zoom]);
 
-  return <div ref={mapRef} style={{ width: '100%', height: '100%' }} />;
+  return <div ref={mapRef} className={"w-full h-full"} />;
 };
 
 export default GoogleMapComponent;
