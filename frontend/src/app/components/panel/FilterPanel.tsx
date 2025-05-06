@@ -3,6 +3,7 @@ import {ArrowLeftIcon} from '@heroicons/react/24/outline'
 import {Button, ButtonGroup, ToggleButton, ToggleButtonGroup} from "@mui/material";
 import React, {useState} from "react";
 import {CheckIcon} from "@heroicons/react/16/solid";
+import {places} from "@/lib/constants"
 
 const ratings = ['1.0', '2.0', '3.0', '4.0', '5.0'];
 
@@ -14,6 +15,8 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
     const [price, setPrice] = useState('');
     const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
     const [hours, setHours] = useState('');
+    const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
+
 
     const handleClear = () => {
         setPrice('');
@@ -41,7 +44,6 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
         );
     };
 
-
     const handleHoursChange = (
         event: React.MouseEvent<HTMLElement>,
         newHours: string | null
@@ -49,6 +51,17 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
         if (newHours != null) {
             setHours(newHours);
         }
+    }
+
+    const handlePlaceChange = (
+        event: React.MouseEvent<HTMLElement>,
+        newPlaces: string
+    ) => {
+        setSelectedPlaces((prevSelected) =>
+            prevSelected.includes(newPlaces) ?
+                prevSelected.filter((r) => r !== newPlaces)
+                : [...prevSelected, newPlaces]
+        );
     }
 
     return (
@@ -121,8 +134,9 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
                 </div>
             </div>
 
+            {/*Hours*/}
             <div className={"flex flex-col justify-between gap-3"}>
-                <p>Price</p>
+                <p>Hours</p>
                 <ToggleButtonGroup
                     color="primary"
                     value={hours}
@@ -135,6 +149,45 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
                     <ToggleButton value="open-now" sx={{textTransform: 'none'}}>Open now</ToggleButton>
                     <ToggleButton value="25-hours" sx={{textTransform: 'none'}}>Open 24-hours</ToggleButton>
                 </ToggleButtonGroup>
+            </div>
+
+
+            {/*Places*/}
+            <div className="flex flex-col gap-3">
+                <p>Places</p>
+                <div className="flex flex-wrap gap-2">
+                    {places.map((place) => (
+                        <ToggleButton
+                            key={place}
+                            value={place}
+                            selected={selectedPlaces.includes(place)}
+                            onChange={handlePlaceChange}
+                            sx={{
+                                borderRadius: '999px',
+                                px: 2,
+                                py: 0.5,
+                                textTransform: 'capitalize',
+                                border: '1px solid',
+                                borderColor: selectedPlaces.includes(place) ? 'primary.main' : 'grey.400',
+                                color: selectedPlaces.includes(place) ? 'primary.main' : 'text.primary',
+                                backgroundColor: 'transparent',
+                                '&.Mui-selected': {
+                                    backgroundColor: 'transparent',
+                                    color: 'primary.main',
+                                    borderColor: 'primary.main',
+                                },
+                                '&.Mui-selected:hover': {
+                                    backgroundColor: 'transparent',
+                                }
+                            }}
+                        >
+                            {selectedPlaces.includes(place) && (
+                                <CheckIcon className="h-5 w-5 icon-black p-0"/>
+                            )}
+                            {place}
+                        </ToggleButton>
+                    ))}
+                </div>
             </div>
         </div>
     )
