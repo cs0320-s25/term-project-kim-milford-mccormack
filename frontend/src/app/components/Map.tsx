@@ -10,10 +10,11 @@ interface GoogleMapProps {
 
 const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, center, zoom }) => {
   const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<google.maps.Map | null>(null); // track if map is initialized
 
   useEffect(() => {
     const loadGoogleMaps = () => {
-      if (!window.google) {
+      if (typeof window.google === 'undefined') {
         const script = document.createElement('script');
         script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
         script.async = true;
@@ -26,18 +27,28 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, center, zoom }) 
     };
 
     const initMap = () => {
-      if (mapRef.current && window.google) {
-        new window.google.maps.Map(mapRef.current, {
-          center: center,
-          zoom: zoom,
-        });
-      }
+      // return if map is initialized, prevent from re-rendering every time
+      if (!mapRef.current || mapInstanceRef.current || !window.google) return;
+
+      // Initialize the map only once
+      mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
+        center,
+        zoom,
+      });
     };
 
     loadGoogleMaps();
-  }, [apiKey, center, zoom]);
+  }, [apiKey]);
 
-  return <div ref={mapRef} className={"w-full h-full"} />;
+  // Optional: update map center/zoom on prop change without recreating the map
+  useEffect(() => {
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.setCenter(center);
+      mapInstanceRef.current.setZoom(zoom);
+    }
+  }, [center, zoom]);
+
+  return <div ref={mapRef} className="w-full h-full" />;
 };
 
 export default GoogleMapComponent;

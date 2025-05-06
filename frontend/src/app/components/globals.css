@@ -14,16 +14,16 @@ body {
   background-color: var(--background);
 }
 
+.bg-gray {
+  background-color: #EDEDED;
+}
+
 .text-black {
   color: #1F1F1F;
 }
 
 .text-gray {
   color: #5E5E5E;
-}
-
-.text-reddddd {
-  color: #ff0000;
 }
 
 .icon-black {
