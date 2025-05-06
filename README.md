@@ -10,3 +10,5 @@ todo
   - saved places?
 - way to opt into automatic location finder (another google api) so the user won't have to set a specific location/bounding box for searching
 - ranking based on weather (also depends on automatic location finder)
+- clerk
+- firebase
