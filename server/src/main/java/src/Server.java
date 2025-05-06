@@ -1,10 +1,9 @@
-package storage;
+package src;
 
 import com.sun.net.httpserver.HttpServer;
-import handlers.PlacesHandler;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import src.handlers.PlacesHandler;
 
 public class Server {
   public static void main(String[] args) throws IOException {

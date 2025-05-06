@@ -1,13 +1,11 @@
-// src/main/java/handlers/PlacesHandler.java
-package handlers;
+package src.handlers;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -68,7 +66,8 @@ public class PlacesHandler implements HttpHandler {
     for (String param : query.split("&")) {
       String[] kv = param.split("=");
       if (kv.length == 2) {
-        params.put(URLDecoder.decode(kv[0], StandardCharsets.UTF_8),
+        params.put(
+            URLDecoder.decode(kv[0], StandardCharsets.UTF_8),
             URLDecoder.decode(kv[1], StandardCharsets.UTF_8));
       }
     }
@@ -76,7 +75,8 @@ public class PlacesHandler implements HttpHandler {
   }
 
   // unchanged—still used by /places endpoint
-  private String enrichWithPlaceDetails(String rawNearbyJson) throws IOException, InterruptedException {
+  private String enrichWithPlaceDetails(String rawNearbyJson)
+      throws IOException, InterruptedException {
     JsonObject root = JsonParser.parseString(rawNearbyJson).getAsJsonObject();
     JsonArray results = root.getAsJsonArray("results");
     JsonArray enrichedResults = new JsonArray();
@@ -95,21 +95,20 @@ public class PlacesHandler implements HttpHandler {
         enrichedPlace.addProperty("address", details.get("vicinity").getAsString());
       }
       if (details.has("geometry")) {
-        enrichedPlace.add("location", details
-            .getAsJsonObject("geometry")
-            .getAsJsonObject("location")
-            .deepCopy());
+        enrichedPlace.add(
+            "location", details.getAsJsonObject("geometry").getAsJsonObject("location").deepCopy());
       }
-      enrichedPlace.addProperty("rating",
-          details.has("rating") ? details.get("rating").getAsDouble() : -1.0);
-      enrichedPlace.addProperty("open_now",
-          details.has("opening_hours") &&
-              details.getAsJsonObject("opening_hours").has("open_now")
+      enrichedPlace.addProperty(
+          "rating", details.has("rating") ? details.get("rating").getAsDouble() : -1.0);
+      enrichedPlace.addProperty(
+          "open_now",
+          details.has("opening_hours") && details.getAsJsonObject("opening_hours").has("open_now")
               ? details.getAsJsonObject("opening_hours").get("open_now").getAsBoolean()
               : false);
-      enrichedPlace.addProperty("description",
-          details.has("editorial_summary") &&
-              details.getAsJsonObject("editorial_summary").has("overview")
+      enrichedPlace.addProperty(
+          "description",
+          details.has("editorial_summary")
+                  && details.getAsJsonObject("editorial_summary").has("overview")
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
 

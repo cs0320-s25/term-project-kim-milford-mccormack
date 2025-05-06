@@ -1,16 +1,15 @@
-package handlers;
+package src.handlers;
 
+import com.google.gson.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.google.gson.*;
-import models.PreferencesRequest;
-import models.Preference;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import models.Preference;
+import models.PreferencesRequest;
 
 public class RankingHandler implements HttpHandler {
   private final GooglePlacesClient client = new GooglePlacesClient();
@@ -30,10 +29,8 @@ public class RankingHandler implements HttpHandler {
     try {
       // 2) Fetch nearby results (no keyword filter)
       String rawNearby = client.searchNearbyAsJson(req.lat, req.lng, req.radius, null);
-      JsonArray nearby = JsonParser
-          .parseString(rawNearby)
-          .getAsJsonObject()
-          .getAsJsonArray("results");
+      JsonArray nearby =
+          JsonParser.parseString(rawNearby).getAsJsonObject().getAsJsonArray("results");
 
       List<JsonObject> scored = new ArrayList<>();
 
@@ -44,21 +41,14 @@ public class RankingHandler implements HttpHandler {
 
         // pull full details
         String detailsJson = client.getPlaceDetailsAsJson(placeId);
-        JsonObject details = JsonParser
-            .parseString(detailsJson)
-            .getAsJsonObject()
-            .getAsJsonObject("result");
+        JsonObject details =
+            JsonParser.parseString(detailsJson).getAsJsonObject().getAsJsonObject("result");
 
         JsonObject out = new JsonObject();
         out.addProperty("name", details.get("name").getAsString());
-        out.add("location", details
-            .getAsJsonObject("geometry")
-            .getAsJsonObject("location")
-            .deepCopy()
-        );
-        double rating = details.has("rating")
-            ? details.get("rating").getAsDouble()
-            : -1.0;
+        out.add(
+            "location", details.getAsJsonObject("geometry").getAsJsonObject("location").deepCopy());
+        double rating = details.has("rating") ? details.get("rating").getAsDouble() : -1.0;
         out.addProperty("rating", rating);
 
         // extract description
@@ -85,12 +75,13 @@ public class RankingHandler implements HttpHandler {
       }
 
       // 4) Sort by score desc, then rating desc
-      scored.sort((a, b) -> {
-        int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
-        if (sA != sB) return Integer.compare(sB, sA);
-        double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
-        return Double.compare(rB, rA);
-      });
+      scored.sort(
+          (a, b) -> {
+            int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
+            if (sA != sB) return Integer.compare(sB, sA);
+            double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
+            return Double.compare(rB, rA);
+          });
 
       // 5) Build response
       JsonArray outArr = new JsonArray();
@@ -121,9 +112,7 @@ public class RankingHandler implements HttpHandler {
     return in.readAllBytes();
   }
 
-  /**
-   * Test helper—scores & sorts an enriched JSON string.
-   */
+  /** Test helper—scores & sorts an enriched JSON string. */
   protected String rankEnriched(String enrichedJson, List<Preference> prefs) {
     JsonObject root = JsonParser.parseString(enrichedJson).getAsJsonObject();
     JsonArray input = root.getAsJsonArray("results");
@@ -131,9 +120,8 @@ public class RankingHandler implements HttpHandler {
 
     for (JsonElement el : input) {
       JsonObject place = el.getAsJsonObject();
-      String desc = place.has("description")
-          ? place.get("description").getAsString().toLowerCase()
-          : "";
+      String desc =
+          place.has("description") ? place.get("description").getAsString().toLowerCase() : "";
       int score = 0;
       for (Preference p : prefs) {
         if (desc.contains(p.keyword.toLowerCase())) {
@@ -145,12 +133,13 @@ public class RankingHandler implements HttpHandler {
       scored.add(copy);
     }
 
-    scored.sort((a, b) -> {
-      int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
-      if (sA != sB) return Integer.compare(sB, sA);
-      double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
-      return Double.compare(rB, rA);
-    });
+    scored.sort(
+        (a, b) -> {
+          int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
+          if (sA != sB) return Integer.compare(sB, sA);
+          double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
+          return Double.compare(rB, rA);
+        });
 
     JsonArray outArr = new JsonArray();
     scored.forEach(outArr::add);

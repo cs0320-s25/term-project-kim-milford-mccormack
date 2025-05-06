@@ -1,16 +1,14 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
-import handlers.*;
 import com.google.gson.*;
-import models.Preference;
-import org.junit.jupiter.api.Test;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import models.Preference;
+import org.junit.jupiter.api.Test;
+import src.handlers.*;
 
 public class RankingTest {
 
@@ -32,16 +30,12 @@ public class RankingTest {
     prefs.add(p);
 
     RankingHandler handler = new RankingHandler();
-    Method m = RankingHandler.class.getDeclaredMethod(
-        "rankEnriched", String.class, List.class
-    );
+    Method m = RankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
     String resultJson = (String) m.invoke(handler, enrichedJson, prefs);
 
-    JsonArray results = JsonParser
-        .parseString(resultJson)
-        .getAsJsonObject()
-        .getAsJsonArray("results");
+    JsonArray results =
+        JsonParser.parseString(resultJson).getAsJsonObject().getAsJsonArray("results");
 
     assertTrue(results.size() >= 2, "Should rank at least two results");
 
@@ -72,16 +66,12 @@ public class RankingTest {
     prefs.add(p2);
 
     RankingHandler handler = new RankingHandler();
-    Method m = RankingHandler.class.getDeclaredMethod(
-        "rankEnriched", String.class, List.class
-    );
+    Method m = RankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
     String resultJson = (String) m.invoke(handler, enrichedJson, prefs);
 
-    JsonArray results = JsonParser
-        .parseString(resultJson)
-        .getAsJsonObject()
-        .getAsJsonArray("results");
+    JsonArray results =
+        JsonParser.parseString(resultJson).getAsJsonObject().getAsJsonArray("results");
 
     assertTrue(results.size() >= 2, "Should rank at least two results");
 
@@ -99,7 +89,6 @@ public class RankingTest {
   @Test
   public void testParkRankingWithKeyword() throws Exception {
     String enrichedJson = loadTestData("src/test/TestingData/places(park).json");
-
 
     List<Preference> prefs = new ArrayList<>();
     Preference p1 = new Preference();
@@ -119,16 +108,12 @@ public class RankingTest {
     prefs.add(p3);
     prefs.add(p4);
     RankingHandler handler = new RankingHandler();
-    Method m = RankingHandler.class.getDeclaredMethod(
-        "rankEnriched", String.class, List.class
-    );
+    Method m = RankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
     String resultJson = (String) m.invoke(handler, enrichedJson, prefs);
 
-    JsonArray results = JsonParser
-        .parseString(resultJson)
-        .getAsJsonObject()
-        .getAsJsonArray("results");
+    JsonArray results =
+        JsonParser.parseString(resultJson).getAsJsonObject().getAsJsonArray("results");
 
     assertTrue(results.size() >= 4, "Should rank at least two results");
 
@@ -137,7 +122,7 @@ public class RankingTest {
     assertEquals("Burnside Park", first.get("name").getAsString());
     assertEquals(3, first.get("score").getAsInt());
 
-    JsonObject last = results.get(results.size()-1).getAsJsonObject();
+    JsonObject last = results.get(results.size() - 1).getAsJsonObject();
     // Among all breakfast matches, "The Classic Cafe" has the next highest rating
     assertEquals("Main Green", last.get("name").getAsString());
     assertEquals(-1, last.get("score").getAsInt());
