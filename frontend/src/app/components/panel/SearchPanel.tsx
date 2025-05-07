@@ -4,7 +4,7 @@ import React, {useState, useMemo, useEffect} from "react";
 import SearchBar from "@/app/components/panel/ui-components/SearchBar";
 import FilterPanel from "@/app/components/panel/FilterPanel";
 import { motion, AnimatePresence } from "framer-motion";
-import { places } from "@/lib/constants";
+import {placesCategories} from "@/lib/constants";
 import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { StarIcon } from '@heroicons/react/20/solid';
@@ -21,11 +21,21 @@ const phrases = [
   "Ace your exams from these spots 🧃🔥"
 ];
 
+type Place = {
+  name: string;
+  address: string;
+  location: {lat: number, lng: number};
+  rating: number;
+  open_now: boolean;
+  description: string;
+}
+
 type Props = {
   onCardClick?: (content: string) => void;
+  places: Place[];
 };
 
-const SearchPanel = ({ onCardClick }: Props) => {
+const SearchPanel = ({ onCardClick, places }: Props) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
@@ -38,7 +48,7 @@ const SearchPanel = ({ onCardClick }: Props) => {
   }
 
   useEffect(() => {
-    const shuffled = [...places].sort(() => 0.5 - Math.random());
+    const shuffled = [...placesCategories].sort(() => 0.5 - Math.random());
     setRandomFivePlaces(shuffled.slice(0, 5));
   }, []);
 
