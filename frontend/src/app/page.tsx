@@ -11,8 +11,7 @@ export default function Home() {
         throw new Error("NEXT_PUBLIC_PLACES_API_KEY is not defined");
     }
 
-    const mapCenter = { lat: 41.826664, lng: -71.402374 };
-    const mapZoom = 18;
+    const mapZoom = 16;
 
     // Popup state
     const [showPopup, setShowPopup] = useState(false);
@@ -41,7 +40,7 @@ export default function Home() {
 
             {/* Map */}
             <div className="w-2/3">
-                <Map apiKey={googleMapsApiKey} center={mapCenter} zoom={mapZoom} />
+                <Map apiKey={googleMapsApiKey} zoom={mapZoom} />
             </div>
 
             {/* Popup floating on map */}
