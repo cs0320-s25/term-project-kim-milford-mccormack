@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.31.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@heroicons/react": "^2.2.0",
     "@mui/material": "^7.0.2",
     "@vis.gl/react-google-maps": "^1.5.2",
+    "firebase": "^11.6.1",
     "framer-motion": "^12.9.7",
     "next": "15.3.1",
     "postcss": "^8.5.3",
