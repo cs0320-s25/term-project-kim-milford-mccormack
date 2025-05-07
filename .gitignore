@@ -17,10 +17,11 @@ node_modules/
 
 
 # Environment Variables
+resources/
 .env
 .env.*
 !.env.example
-
+firebase_config.json
 
 # Logs & Debugging
 npm-debug.log*

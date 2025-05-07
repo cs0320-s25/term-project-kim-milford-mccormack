@@ -1,17 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface GoogleMapProps {
   apiKey: string;
-  center: { lat: number; lng: number };
   zoom: number;
 }
 
-const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, center, zoom }) => {
+const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<google.maps.Map | null>(null); // track if map is initialized
+  const mapInstanceRef = useRef<google.maps.Map | null>(null);
+  const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
 
+  // Load Google Maps API
   useEffect(() => {
     const loadGoogleMaps = () => {
       if (typeof window.google === 'undefined') {
@@ -27,26 +28,45 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, center, zoom }) 
     };
 
     const initMap = () => {
-      // return if map is initialized, prevent from re-rendering every time
-      if (!mapRef.current || mapInstanceRef.current || !window.google) return;
+      if (!mapRef.current || mapInstanceRef.current || !window.google || !userCenter) return;
 
-      // Initialize the map only once
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
-        center,
+        center: userCenter,
         zoom,
+        fullscreenControl: false,
+        mapTypeControl: false,
+        streetViewControl: false
+      });
+
+      // Optional: Add marker at user location
+      new window.google.maps.Marker({
+        position: userCenter,
+        map: mapInstanceRef.current,
+        title: "You are here"
       });
     };
 
     loadGoogleMaps();
-  }, [apiKey]);
+  }, [apiKey, userCenter]);
 
-  // Optional: update map center/zoom on prop change without recreating the map
+  // Get user's current location
   useEffect(() => {
-    if (mapInstanceRef.current) {
-      mapInstanceRef.current.setCenter(center);
-      mapInstanceRef.current.setZoom(zoom);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+          position => {
+            setUserCenter({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            });
+          },
+          error => {
+            console.error('Error getting location:', error);
+          }
+      );
+    } else {
+      console.error('Geolocation not supported');
     }
-  }, [center, zoom]);
+  }, []);
 
   return <div ref={mapRef} className="w-full h-full" />;
 };

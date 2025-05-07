@@ -1,5 +1,6 @@
 'use client'
 import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
+import {useState} from "react";
 
 interface SearchBarProps {
     onSearch?: () => void;
@@ -7,13 +8,19 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ onSearch, onFilter }: SearchBarProps) {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const [input, setInput] = useState<string>('');
+
+    const fetchData = (value: string) => {
+
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && onSearch) {
       onSearch();
     }
-  };
+    };
 
-  return (
+    return (
       <div className="flex gap-2 px-4 py-3">
           {/*search input*/}
           <div className="grow items-center bg-gray-100 rounded-lg ">
@@ -23,6 +30,8 @@ export default function SearchBar({ onSearch, onFilter }: SearchBarProps) {
                 type="text"
                 placeholder="Search Places"
                 className="w-full px-3 py-2 bg-transparent outline-none"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
             />
           </div>
@@ -36,5 +45,5 @@ export default function SearchBar({ onSearch, onFilter }: SearchBarProps) {
           <AdjustmentsHorizontalIcon className="h-5 w-5 icon-gray"/>
         </button>
       </div>
-  );
+    );
 }
