@@ -4,6 +4,8 @@ import { SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
 import Map from './components/Map';
 import SearchPanel from '@/app/components/panel/SearchPanel';
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { UserButton } from '@clerk/nextjs';
 
 export default function Home() {
   const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
@@ -28,6 +30,11 @@ export default function Home() {
                   });
                 }}
             />
+          </div>
+
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-4">
+            <Link href="/profile" className="inline-block px-4 py-1  font-bold text-1xl bg-gray-500 text-white  rounded hover:bg-gray-700 transition">Profile</Link>
+            <UserButton />
           </div>
 
           <div className="w-2/3">
