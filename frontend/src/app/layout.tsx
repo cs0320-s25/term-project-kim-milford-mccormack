@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./components/globals.css";
+import { ClerkProvider } from '@clerk/nextjs';
+import { ReactNode } from 'react';
 import ThemeProviderWrapper from "./components/ThemeProviderWrapper";
 
 const inter = Inter({
@@ -18,6 +20,7 @@ export default function RootLayout({children,}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
+        <ClerkProvider>
         <html lang="en">
         <body className={`${inter.variable} antialiased`}>
         <ThemeProviderWrapper>
@@ -25,5 +28,6 @@ export default function RootLayout({children,}: Readonly<{
         </ThemeProviderWrapper>
         </body>
         </html>
+        </ClerkProvider>
     );
 }
