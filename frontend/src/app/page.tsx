@@ -38,8 +38,7 @@ export default function Home() {
           </div>
 
           <div className="w-2/3">
-            <Map apiKey={googleMapsApiKey} zoom={16} />
-          </div>
+            <Map apiKey={googleMapsApiKey} />          </div>
 
           {showPopup && popupContent && (
               <div className="absolute top-10 left-1/3 ml-6 w-64 p-4 bg-white rounded-lg shadow-lg z-20">

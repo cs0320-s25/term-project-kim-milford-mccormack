@@ -12,7 +12,7 @@ interface GoogleMapProps {
 const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter, setUserCenter }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
-  //const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
+  // const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
 
   // Load Google Maps API
   useEffect(() => {
