@@ -1,5 +1,5 @@
 // studyPlaces.js
-export const places = [
+export const placesCategories = [
     '📚 Library',
     '☕ Cafe',
     '🌳 Park',

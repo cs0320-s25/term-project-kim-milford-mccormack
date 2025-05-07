@@ -1,16 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, {Dispatch, useEffect, useRef, useState} from 'react';
 
 interface GoogleMapProps {
   apiKey: string;
   zoom: number;
+  userCenter: {lat: number; lng: number};
+  setUserCenter?: Dispatch<React.SetStateAction<{ lat: number, lng: number }>>;
 }
 
-const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom }) => {
+const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter, setUserCenter }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
-  const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
+  // const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
 
   // Load Google Maps API
   useEffect(() => {
@@ -54,10 +56,12 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom }) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
           position => {
-            setUserCenter({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            });
+            if (setUserCenter) {
+              setUserCenter({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              });
+            }
           },
           error => {
             console.error('Error getting location:', error);

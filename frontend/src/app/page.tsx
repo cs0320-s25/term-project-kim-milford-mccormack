@@ -1,11 +1,61 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Map from './components/Map';
 import SearchPanel from '@/app/components/panel/SearchPanel';
 
 export default function Home() {
     const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
+    const [places, setPlaces] = useState([]);
+    const [userCenter, setUserCenter] = useState<{lat: number, lng: number}>({lat: 0, lng: 0});
+    const [radius, setRadius] = useState(1000);
+    const [keyword, setKeywords] = useState('');
+
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    setUserCenter({lat: position.coords.latitude, lng: position.coords.longitude});
+                },
+                error => {
+                    console.error('Error getting location:', error);
+                }
+            );
+        } else {
+            console.error("Geolocation not supported");
+        }
+    }, []);
+
+
+    useEffect(() => {
+        if (!userCenter) return;
+
+        const fetchPlaces = async() => {
+            const params = new URLSearchParams({
+                lat: userCenter.lat.toString(),
+                lng: userCenter.lng.toString(),
+                radius: radius.toString(),
+            });
+
+            if (keyword) {
+                params.append('keyword', keyword);
+            }
+
+            try {
+                const res = await fetch('/api/places?' + params.toString())
+                const data = await res.json();
+                setPlaces(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchPlaces();
+    }, [userCenter, radius, keyword]);
+
+
+
 
     if (!googleMapsApiKey) {
         throw new Error("NEXT_PUBLIC_PLACES_API_KEY is not defined");
@@ -35,12 +85,13 @@ export default function Home() {
                             return content;
                         });
                     }}
+                    places={places}
                 />
             </div>
 
             {/* Map */}
             <div className="w-2/3">
-                <Map apiKey={googleMapsApiKey} zoom={mapZoom} />
+                <Map apiKey={googleMapsApiKey} zoom={mapZoom} userCenter={userCenter} setUserCenter={setUserCenter}/>
             </div>
 
             {/* Popup floating on map */}
