@@ -3,14 +3,14 @@
 import React, {useEffect, useState} from 'react';
 import Map from './components/Map';
 import SearchPanel from '@/app/components/panel/SearchPanel';
+import {func} from "prop-types";
 
 export default function Home() {
-    const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
+    // const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
     const [places, setPlaces] = useState([]);
     const [userCenter, setUserCenter] = useState<{lat: number, lng: number}>({lat: 0, lng: 0});
     const [radius, setRadius] = useState(1000);
-    const [keyword, setKeywords] = useState('');
-
+    const [keyword, setKeyword] = useState('');
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -38,6 +38,7 @@ export default function Home() {
                 radius: radius.toString(),
             });
 
+
             if (keyword) {
                 params.append('keyword', keyword);
             }
@@ -46,6 +47,7 @@ export default function Home() {
                 const res = await fetch('/api/places?' + params.toString())
                 const data = await res.json();
                 setPlaces(data);
+                console.log(data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -54,18 +56,19 @@ export default function Home() {
         fetchPlaces();
     }, [userCenter, radius, keyword]);
 
-
-
-
-    if (!googleMapsApiKey) {
-        throw new Error("NEXT_PUBLIC_PLACES_API_KEY is not defined");
-    }
+    // if (!googleMapsApiKey) {
+    //     throw new Error("NEXT_PUBLIC_PLACES_API_KEY is not defined");
+    // }
 
     const mapZoom = 16;
 
     // Popup state
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState<string | null>(null);
+
+    function onKeywordChange(value: string) {
+        setKeyword(value);
+    }
 
     return (
         <div className="flex h-screen relative">
@@ -85,13 +88,16 @@ export default function Home() {
                             return content;
                         });
                     }}
-                    places={places}
+                    onKeywordChange={onKeywordChange}
                 />
             </div>
 
             {/* Map */}
             <div className="w-2/3">
-                <Map apiKey={googleMapsApiKey} zoom={mapZoom} userCenter={userCenter} setUserCenter={setUserCenter}/>
+                {/*<Map*/}
+                {/*    apiKey={googleMapsApiKey}*/}
+                {/*    zoom={mapZoom}*/}
+                {/*    userCenter={userCenter} />*/}
             </div>
 
             {/* Popup floating on map */}

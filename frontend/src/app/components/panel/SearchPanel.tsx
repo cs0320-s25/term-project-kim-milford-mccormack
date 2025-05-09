@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useMemo, useEffect} from "react";
+import React, {useState, useMemo, useEffect, Dispatch, SetStateAction} from "react";
 import SearchBar from "@/app/components/panel/ui-components/SearchBar";
 import FilterPanel from "@/app/components/panel/FilterPanel";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,12 +30,13 @@ type Place = {
   description: string;
 }
 
-type Props = {
+type SearchPanelProps = {
   onCardClick?: (content: string) => void;
-  places: Place[];
+  // places: Place[];
+  onKeywordChange: (value: string) => void;
 };
 
-const SearchPanel = ({ onCardClick, places }: Props) => {
+const SearchPanel = ({ onCardClick, onKeywordChange }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
@@ -51,11 +52,6 @@ const SearchPanel = ({ onCardClick, places }: Props) => {
     const shuffled = [...placesCategories].sort(() => 0.5 - Math.random());
     setRandomFivePlaces(shuffled.slice(0, 5));
   }, []);
-
-  const handleSearch = () => {
-    const random = phrases[Math.floor(Math.random() * phrases.length)];
-    setMessage(random);
-  };
 
   const filterSearch = () => {
     setShowFilterPanel(true);
@@ -84,7 +80,10 @@ const SearchPanel = ({ onCardClick, places }: Props) => {
                   transition={{duration: 0.2}}
                   className="flex flex-col gap-3 bg-default"
               >
-                <SearchBar onSearch={handleSearch} onFilter={filterSearch}/>
+                <SearchBar 
+                    onFilter={filterSearch}
+                    onKeywordChange={onKeywordChange}
+                />
                 {message && (
                     <div className="text-lg font-semibold text-black px-4">
                       {message}

@@ -3,7 +3,7 @@ import {ArrowLeftIcon} from '@heroicons/react/24/outline'
 import {Button, ButtonGroup, ToggleButton, ToggleButtonGroup} from "@mui/material";
 import React, {useState} from "react";
 import {CheckIcon} from "@heroicons/react/16/solid";
-import {places} from "@/lib/constants"
+import {placesCategories} from "@/lib/constants"
 
 const ratings = ['1.0', '2.0', '3.0', '4.0', '5.0'];
 
