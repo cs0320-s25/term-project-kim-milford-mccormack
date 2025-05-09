@@ -6,10 +6,9 @@ interface GoogleMapProps {
   apiKey: string;
   zoom: number;
   userCenter: {lat: number; lng: number};
-  setUserCenter?: Dispatch<React.SetStateAction<{ lat: number, lng: number }>>;
 }
 
-const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter, setUserCenter }) => {
+const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
   // const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
@@ -22,6 +21,7 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter
         script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
         script.async = true;
         script.defer = true;
+        script.setAttribute('loading', 'async');
         script.onload = initMap;
         document.head.appendChild(script);
       } else {
@@ -52,25 +52,25 @@ const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter
   }, [apiKey, userCenter]);
 
   // Get user's current location
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-          position => {
-            if (setUserCenter) {
-              setUserCenter({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              });
-            }
-          },
-          error => {
-            console.error('Error getting location:', error);
-          }
-      );
-    } else {
-      console.error('Geolocation not supported');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //         position => {
+  //           if (setUserCenter) {
+  //             setUserCenter({
+  //               lat: position.coords.latitude,
+  //               lng: position.coords.longitude
+  //             });
+  //           }
+  //         },
+  //         error => {
+  //           console.error('Error getting location:', error);
+  //         }
+  //     );
+  //   } else {
+  //     console.error('Geolocation not supported');
+  //   }
+  // }, []);
 
   return <div ref={mapRef} className="w-full h-full" />;
 };
