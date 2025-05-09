@@ -19,7 +19,7 @@ public class MockPlacesHandler implements HttpHandler {
     }
 
     // Load the mock data using a relative path from the working directory
-    String filePath = "server/data/mockData.json";
+    String filePath = "server/data/places_cafe.json";
     String jsonResponse;
 
     try {
