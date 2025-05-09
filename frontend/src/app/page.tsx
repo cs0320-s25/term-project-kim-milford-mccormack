@@ -1,9 +1,12 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
+import { SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
 import Map from './components/Map';
 import SearchPanel from '@/app/components/panel/SearchPanel';
 import {func} from "prop-types";
+import {UserButton} from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Home() {
     // const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
@@ -73,6 +76,7 @@ export default function Home() {
     return (
         <div className="flex h-screen relative">
             {/* Panel */}
+            <SignedIn>
             <div className="w-1/3 z-10">
                 <SearchPanel
                     onCardClick={(content) => {
@@ -100,6 +104,11 @@ export default function Home() {
                 {/*    userCenter={userCenter} />*/}
             </div>
 
+            <div className="absolute top-4 right-4 z-30 flex items-center gap-4">
+                <Link href="/profile" className="inline-block px-4 py-1  font-bold text-1xl bg-gray-500 text-white  rounded hover:bg-gray-700 transition">Profile</Link>
+                <UserButton />
+            </div>
+
             {/* Popup floating on map */}
             {showPopup && popupContent && (
                 <div className="absolute top-10 left-1/3 ml-6 w-64 p-4 bg-white rounded-lg shadow-lg z-20">
@@ -107,6 +116,7 @@ export default function Home() {
                     <p className="text-sm text-gray-600">{popupContent}</p>
                 </div>
             )}
+            </SignedIn>
         </div>
     );
 }
