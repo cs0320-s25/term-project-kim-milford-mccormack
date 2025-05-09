@@ -14,7 +14,6 @@ export default function ProfilePage() {
   const [lightAndAiry, setLightAndAiry] = useState(false);
   const [academic, setAcademic] = useState(false);
   const [industrial, setIndustrial] = useState(false);
-
   const [optOutList, setOptOutList] = useState([
     'Super Awesome Cafe',
     'Very Good Park (no Kevin)'

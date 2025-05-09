@@ -1,0 +1,444 @@
+{
+  "results": [
+    {
+      "name": "The Graduate Hotel Lobby",
+      "address": "11 Dorrance Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8250,
+        "lng": -71.4095
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Stylish hotel lobby offering a comfortable space for meetings and casual work sessions."
+    },
+    {
+      "name": "Kin Southern Table + Bar",
+      "address": "71 Washington Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8238,
+        "lng": -71.4112
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Comfort food restaurant with a welcoming atmosphere, suitable for informal meetings and work sessions."
+    },
+    {
+      "name": "Bayberry Garden",
+      "address": "225 Dyer Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8190,
+        "lng": -71.4030
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Modern restaurant with ample seating and a relaxed environment, ideal for working over a meal."
+    },
+    {
+      "name": "Dune Brothers Seafood",
+      "address": "239 Dyer Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8185,
+        "lng": -71.4025
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Casual seafood spot with outdoor seating, providing a pleasant environment for work or study."
+    },
+    {
+      "name": "PVDonuts",
+      "address": "79 Ives Street, Providence, RI 02906",
+      "location": {
+        "lat": 41.8230,
+        "lng": -71.3970
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "Popular donut shop with indoor seating, offering a sweet spot for casual work sessions."
+    },
+    {
+      "name": "The Beatrice Hotel Lobby",
+      "address": "90 Westminster Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8242,
+        "lng": -71.4090
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Modern boutique hotel lobby providing a quiet and stylish space for meetings and work."
+    },
+    {
+      "name": "RISD Museum Café",
+      "address": "20 North Main Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8275,
+        "lng": -71.4050
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Café within the RISD Museum, offering a serene environment for study and reflection."
+    },
+    {
+      "name": "The Coffee Exchange",
+      "address": "207 Wickenden Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8235,
+        "lng": -71.3975
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Community-focused café with ample seating, perfect for working or studying."
+    },
+    {
+      "name": "White Electric Coffee",
+      "address": "711 Westminster Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8205,
+        "lng": -71.4170
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Cozy café with a laid-back atmosphere, suitable for casual work sessions."
+    },
+    {
+      "name": "Blue State Coffee",
+      "address": "300 Thayer Street, Providence, RI 02906",
+      "location": {
+        "lat": 41.8270,
+        "lng": -71.4000
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Popular café near Brown University, offering a conducive environment for studying."
+    },
+    {
+      "name": "Riffraff Bookstore and Bar",
+      "address": "60 Valley Street, Providence, RI 02909",
+      "location": {
+        "lat": 41.8236,
+        "lng": -71.4370
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Independent bookstore with a cozy bar, offering a quiet atmosphere for reading and studying."
+    },
+    {
+      "name": "The Nitro Bar",
+      "address": "100 Dorrance Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8252,
+        "lng": -71.4098
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Trendy café known for its nitro cold brew, providing ample seating for work and study sessions."
+    },
+    {
+      "name": "India Point Park",
+      "address": "India Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8175,
+        "lng": -71.3920
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Waterfront park with scenic views, walking paths, and open spaces ideal for outdoor studying."
+    },
+    {
+      "name": "John Carter Brown Library",
+      "address": "94 George Street, Providence, RI 02906",
+      "location": {
+        "lat": 41.8265,
+        "lng": -71.4025
+      },
+      "rating": 4.8,
+      "open_now": false,
+      "description": "Research library at Brown University specializing in the history of the Americas, offering quiet study areas."
+    },
+    {
+      "name": "Knight Memorial Library",
+      "address": "275 Elmwood Avenue, Providence, RI 02907",
+      "location": {
+        "lat": 41.8038,
+        "lng": -71.4172
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Public library providing a vast collection of books, study areas, and community programs."
+    },
+    {
+      "name": "CIC Providence",
+      "address": "225 Dyer Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8190,
+        "lng": -71.4030
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "Flexible shared and private office solutions in the heart of the Innovation and Design District."
+    },
+    {
+      "name": "The Dean Hotel Lobby",
+      "address": "122 Fountain Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8245,
+        "lng": -71.4132
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Chic hotel lobby offering a comfortable space for meetings and casual work sessions."
+    },
+    {
+      "name": "Plant City",
+      "address": "334 South Water Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8170,
+        "lng": -71.4005
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Plant-based food hall with multiple eateries, a café, and communal seating areas."
+    },
+    {
+      "name": "Providence Athenæum",
+      "address": "251 Benefit Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8280,
+        "lng": -71.4030
+      },
+      "rating": 4.9,
+      "open_now": true,
+      "description": "Historic library offering a quiet atmosphere for reading and study."
+    },
+    {
+      "name": "Waterplace Park",
+      "address": "Memorial Boulevard, Providence, RI 02903",
+      "location": {
+        "lat": 41.8270,
+        "lng": -71.4100
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Scenic urban park with a riverwalk, amphitheater, and seasonal events."
+    },
+    {
+      "name": "Providence Public Library",
+      "address": "150 Empire Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8236,
+        "lng": -71.4151
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "Historic library offering extensive resources, study areas, and community events."
+    },
+    {
+      "name": "Sprout CoWorking",
+      "address": "166 Valley Street, Providence, RI 02909",
+      "location": {
+        "lat": 41.8215,
+        "lng": -71.4370
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "Flexible coworking space with meeting rooms and event venues."
+    },
+    {
+      "name": "Regus - Westminster Square",
+      "address": "10 Dorrance Street, Suite 700, Providence, RI 02903",
+      "location": {
+        "lat": 41.8250,
+        "lng": -71.4090
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Professional coworking space offering dedicated desks and hot desks."
+    },
+    {
+      "name": "Knight Memorial Library",
+      "address": "275 Elmwood Avenue, Providence, RI 02907",
+      "location": {
+        "lat": 41.8038,
+        "lng": -71.4172
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Public library with a vast collection of books and study areas."
+    },
+    {
+      "name": "Burnside Park",
+      "address": "40 Kennedy Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8255,
+        "lng": -71.4110
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Urban park offering green spaces and seating areas for outdoor work or relaxation."
+    },
+    {
+      "name": "Cafe Choklad",
+      "address": "2 Thomas Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8270,
+        "lng": -71.4055
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Cozy café serving coffee and pastries, ideal for casual work sessions."
+    },
+    {
+      "name": "L'Artisan Café & Bakery",
+      "address": "15 Point Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8170,
+        "lng": -71.4030
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Gourmet café offering artisanal pastries and a comfortable atmosphere."
+    },
+    {
+      "name": "John Hay Library",
+      "address": "20 Prospect Street, Providence, RI 02912",
+      "location": {
+        "lat": 41.8260,
+        "lng": -71.4035
+      },
+      "rating": 4.8,
+      "open_now": false,
+      "description": "Brown University's special collections library, providing quiet study spaces."
+    },
+    {
+      "name": "University Hall - Brown University",
+      "address": "1 Prospect Street, Providence, RI 02912",
+      "location": {
+        "lat": 41.8265,
+        "lng": -71.4030
+      },
+      "rating": 4.7,
+      "open_now": false,
+      "description": "Historic building housing administrative offices and classrooms."
+    },
+    {
+      "name": "Slavin Center - Providence College",
+      "address": "1 Cunningham Square, Providence, RI 02918",
+      "location": {
+        "lat": 41.8440,
+        "lng": -71.4370
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Student center with lounges, meeting rooms, and dining options."
+    },
+    {
+      "name": "Phillips Memorial Library - Providence College",
+      "address": "1 Cunningham Square, Providence, RI 02918",
+      "location": {
+        "lat": 41.8435,
+        "lng": -71.4365
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "Main library offering extensive resources and quiet study areas."
+    },
+    {
+      "name": "Plant City",
+      "address": "334 South Water Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8170,
+        "lng": -71.4005
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Plant-based food hall with multiple eateries and communal seating areas."
+    },
+    {
+      "name": "The Shop",
+      "address": "460 Wickenden Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8230,
+        "lng": -71.3975
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Minimalist café offering specialty coffee and a relaxed environment."
+    },
+    {
+      "name": "India Point Park",
+      "address": "India Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8175,
+        "lng": -71.3920
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Waterfront park with scenic views, walking paths, and open spaces ideal for outdoor studying."
+    },
+    {
+      "name": "John Carter Brown Library",
+      "address": "94 George Street, Providence, RI 02906",
+      "location": {
+        "lat": 41.8265,
+        "lng": -71.4025
+      },
+      "rating": 4.8,
+      "open_now": false,
+      "description": "Research library at Brown University specializing in the history of the Americas, offering quiet study areas."
+    },
+    {
+      "name": "Cafe Nuovo",
+      "address": "1 Citizens Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8270,
+        "lng": -71.4080
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Elegant café with river views, offering a sophisticated environment for meetings or work."
+    },
+    {
+      "name": "Meeting Street Cafe",
+      "address": "220 Meeting Street, Providence, RI 02906",
+      "location": {
+        "lat": 41.8280,
+        "lng": -71.4010
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Casual café serving homestyle meals, suitable for relaxed work sessions."
+    },
+    {
+      "name": "Michael S. Van Leesten Memorial Bridge",
+      "address": "Providence River, Providence, RI 02903",
+      "location": {
+        "lat": 41.8230,
+        "lng": -71.4035
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Pedestrian bridge offering scenic views and seating areas, ideal for outdoor work or relaxation."
+    },
+    {
+      "name": "Grant's Block",
+      "address": "260 Westminster Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8235,
+        "lng": -71.4120
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Public space hosting events and providing seating areas for casual gatherings or work."
+    },
+    {
+      "name": "Kennedy Plaza",
+      "address": "Kennedy Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8255,
+        "lng": -71.4115
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Central transit hub with adjacent public spaces suitable for meetings or outdoor work."
+    }
+  ]
+}
