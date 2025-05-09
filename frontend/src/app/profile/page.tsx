@@ -16,12 +16,12 @@ export default function ProfilePage() {
   const [industrial, setIndustrial] = useState(false);
 
   const [optOutList, setOptOutList] = useState([
-    'Loud Coffee Shop',
-    'Basement Library'
+    'Super Awesome Cafe',
+    'Very Good Park (no Kevin)'
   ]);
   const [favoriteList, setFavoriteList] = useState([
-    'Sunny Courtyard',
-    'Quiet Lounge'
+    'Evil Kevins House',
+    'Suspicious Library (Kevin is there)'
   ]);
   const [showPopup, setShowPopup] = useState(false);
   const [lastRemoved, setLastRemoved] = useState<{
