@@ -7,20 +7,25 @@ import Link from 'next/link';
 export default function ProfilePage() {
   const { user } = useUser();
 
-  const [noiseLevel, setNoiseLevel] = useState('no preference');
-  const [indoorOutdoor, setIndoorOutdoor] = useState('no preference');
-  const [cozy, setCozy] = useState(false);
-  const [modern, setModern] = useState(false);
-  const [lightAndAiry, setLightAndAiry] = useState(false);
-  const [academic, setAcademic] = useState(false);
-  const [industrial, setIndustrial] = useState(false);
+  const [quiet, setNoiseLevel] = useState(3);
+  const [indoorOutdoor, setIndoorOutdoor] = useState(3);
+  const [cozy, setCozy] = useState(3);
+  const [modern, setModern] = useState(3);
+  const [lightAndAiry, setLightAndAiry] = useState(3);
+  const [academic, setAcademic] = useState(3);
+  const [industrial, setIndustrial] = useState(3);
+  const [cowork, setCowork] = useState(3);
+  const [busy, setBusy] = useState(3);
+  const [hasFood, setHasFood] = useState(3);
+  const [hasDrinks, setHasDrinks] = useState(3);
   const [optOutList, setOptOutList] = useState([
-    'Super Awesome Cafe',
-    'Very Good Park (no Kevin)'
+    'Example 1 hardcode',
+    'Example 2 hardcode',
+      'Kevin'
   ]);
   const [favoriteList, setFavoriteList] = useState([
-    'Evil Kevins House',
-    'Suspicious Library (Kevin is there)'
+    'Example 1 hardcode',
+    'Example 2 hardcode'
   ]);
   const [showPopup, setShowPopup] = useState(false);
   const [lastRemoved, setLastRemoved] = useState<{
@@ -50,93 +55,45 @@ export default function ProfilePage() {
             </p>
           </div>
 
-          {/* Preferences Section */}
-          <div className="mt-6">
-            <p className="text-2xl font-bold mb-4">General Preferences</p>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block font-medium">Noise Level</label>
-                <select
-                    className="border p-2 rounded w-full"
-                    value={noiseLevel}
-                    onChange={(e) => setNoiseLevel(e.target.value)}
-                >
-                  <option value="no preference">No preference</option>
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-medium">Indoors or Outdoors</label>
-                <select
-                    className="border p-2 rounded w-full"
-                    value={indoorOutdoor}
-                    onChange={(e) => setIndoorOutdoor(e.target.value)}
-                >
-                  <option value="no preference">No preference</option>
-                  <option value="indoor">Indoor</option>
-                  <option value="outdoor">Outdoor</option>
-                  <option value="either">Either</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
           {/* Vibes */}
           <div className="mt-6">
-            <p className="text-2xl font-bold mb-4">Vibes</p>
+            <p className="text-2xl font-bold mb-4">Set your preferences here!</p>
 
-            <div className="space-y-2">
-              <div>
-                <input
-                    type="checkbox"
-                    checked={cozy}
-                    onChange={() => setCozy(!cozy)}
-                    className="mr-2"
-                />
-                Cozy
-              </div>
-              <div>
-                <input
-                    type="checkbox"
-                    checked={modern}
-                    onChange={() => setModern(!modern)}
-                    className="mr-2"
-                />
-                Modern
-              </div>
-              <div>
-                <input
-                    type="checkbox"
-                    checked={lightAndAiry}
-                    onChange={() => setLightAndAiry(!lightAndAiry)}
-                    className="mr-2"
-                />
-                Light and airy
-              </div>
-              <div>
-                <input
-                    type="checkbox"
-                    checked={academic}
-                    onChange={() => setAcademic(!academic)}
-                    className="mr-2"
-                />
-                Academic
-              </div>
-              <div>
-                <input
-                    type="checkbox"
-                    checked={industrial}
-                    onChange={() => setIndustrial(!industrial)}
-                    className="mr-2"
-                />
-                Industrial
-              </div>
+            <div className="space-y-6">
+              {[
+                { label: 'Quiet', state: quiet, setter: setNoiseLevel },
+                { label: 'Outdoors', state: indoorOutdoor, setter: setIndoorOutdoor },
+                { label: 'Cozy', state: cozy, setter: setCozy },
+                { label: 'Busy', state: busy, setter: setBusy },
+                { label: 'Modern', state: modern, setter: setModern },
+                { label: 'Light and airy', state: lightAndAiry, setter: setLightAndAiry },
+                { label: 'Academic', state: academic, setter: setAcademic },
+                { label: 'Industrial', state: industrial, setter: setIndustrial },
+                { label: 'Coworking environment', state: cowork, setter: setCowork },
+                { label: 'Has food', state: hasFood, setter: setHasFood },
+                { label: 'Has drinks', state: hasDrinks, setter: setHasDrinks },
+              ].map(({ label, state, setter }) => (
+                  <div key={label}>
+                    <label className="block font-medium mb-1">{label}</label>
+                    <input
+                        type="range"
+                        min={1}
+                        max={5}
+                        step={1}
+                        value={state}
+                        onChange={(e) => setter(Number(e.target.value))}
+                        className="w-full accent-gray-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>Absolutely not</span>
+                      <span>Neutral</span>
+                      <span>Yes please!</span>
+                    </div>
+                  </div>
+              ))}
             </div>
           </div>
+
 
           {/* Action Buttons */}
           <div className="flex flex-col items-center gap-2 mt-6">
@@ -150,7 +107,7 @@ export default function ProfilePage() {
 
             <button
                 onClick={() => {
-                  // perform search
+                  // takes user back to the map page -> asks them to select a keyword(s), or simply search with their preferences.
                 }}
                 className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-700 transition"
             >
@@ -159,13 +116,18 @@ export default function ProfilePage() {
 
             <button
                 onClick={() => {
-                  setNoiseLevel('no preference');
-                  setIndoorOutdoor('no preference');
-                  setCozy(false);
-                  setLightAndAiry(false);
-                  setModern(false);
-                  setAcademic(false);
-                  setIndustrial(false);
+                  setNoiseLevel(3);
+                  setIndoorOutdoor(3);
+                  setCozy(3);
+                  setLightAndAiry(3);
+                  setModern(3);
+                  setAcademic(3);
+                  setIndustrial(3);
+                  setBusy(3);
+                  setCowork(3)
+                  setHasDrinks(3);
+                  setHasFood(3)
+
                 }}
                 className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700 transition"
             >
