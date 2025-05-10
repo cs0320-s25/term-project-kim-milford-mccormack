@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function Home() {
     // const googleMapsApiKey = process.env.NEXT_PUBLIC_PLACES_API_KEY;
     const [places, setPlaces] = useState([]);
-    const [userCenter, setUserCenter] = useState<{lat: number, lng: number}>({lat: 0, lng: 0});
+    const [userCenter, setUserCenter] = useState<{ lat: number, lng: number }>({lat: 0, lng: 0});
     const [radius, setRadius] = useState(1000);
     const [keyword, setKeyword] = useState('');
 
@@ -34,7 +34,7 @@ export default function Home() {
     useEffect(() => {
         if (!userCenter) return;
 
-        const fetchPlaces = async() => {
+        const fetchPlaces = async () => {
             const params = new URLSearchParams({
                 lat: userCenter.lat.toString(),
                 lng: userCenter.lng.toString(),
@@ -74,49 +74,65 @@ export default function Home() {
     }
 
     return (
-        <div className="flex h-screen relative">
-            {/* Panel */}
+        <>
             <SignedIn>
-            <div className="w-1/3 z-10">
-                <SearchPanel
-                    onCardClick={(content) => {
-                        setPopupContent((prevContent) => {
-                            // If already shown and same content, close it
-                            if (showPopup && prevContent === content) {
-                                setShowPopup(false);
-                                return null;
-                            }
+                <div className="flex h-screen relative">
+                    {/* Panel */}
+                    <div className="w-1/3 z-10">
+                        <SearchPanel
+                            onCardClick={(content) => {
+                                setPopupContent((prevContent) => {
+                                    // If already shown and same content, close it
+                                    if (showPopup && prevContent === content) {
+                                        setShowPopup(false);
+                                        return null;
+                                    }
 
-                            // Otherwise show new content
-                            setShowPopup(true);
-                            return content;
-                        });
-                    }}
-                    onKeywordChange={onKeywordChange}
-                />
-            </div>
+                                    // Otherwise show new content
+                                    setShowPopup(true);
+                                    return content;
+                                });
+                            }}
+                            onKeywordChange={onKeywordChange}
+                        />
+                    </div>
 
-            {/* Map */}
-            <div className="w-2/3">
-                {/*<Map*/}
-                {/*    apiKey={googleMapsApiKey}*/}
-                {/*    zoom={mapZoom}*/}
-                {/*    userCenter={userCenter} />*/}
-            </div>
+                    {/* Map */}
+                    <div className="w-2/3">
+                        {/* <Map
+            apiKey={googleMapsApiKey}
+            zoom={mapZoom}
+            userCenter={userCenter}
+          /> */}
+                    </div>
 
-            <div className="absolute top-4 right-4 z-30 flex items-center gap-4">
-                <Link href="/profile" className="inline-block px-4 py-1  font-bold text-1xl bg-gray-500 text-white  rounded hover:bg-gray-700 transition">Profile</Link>
-                <UserButton />
-            </div>
+                    {/* Top-right buttons */}
+                    <div className="absolute top-4 right-4 z-30 flex items-center gap-4">
+                        <Link
+                            href="/profile"
+                            className="inline-block px-4 py-1 font-bold text-1xl bg-gray-500 text-white rounded hover:bg-gray-700 transition"
+                        >
+                            Profile
+                        </Link>
+                        <UserButton/>
+                    </div>
 
-            {/* Popup floating on map */}
-            {showPopup && popupContent && (
-                <div className="absolute top-10 left-1/3 ml-6 w-64 p-4 bg-white rounded-lg shadow-lg z-20">
-                    <h3 className="font-semibold text-black">Details</h3>
-                    <p className="text-sm text-gray-600">{popupContent}</p>
+                    {/* Popup floating on map */}
+                    {showPopup && popupContent && (
+                        <div
+                            className="absolute top-10 left-1/3 ml-6 w-64 p-4 bg-white rounded-lg shadow-lg z-20">
+                            <h3 className="font-semibold text-black">Details</h3>
+                            <p className="text-sm text-gray-600">{popupContent}</p>
+                        </div>
+                    )}
                 </div>
-            )}
             </SignedIn>
-        </div>
+
+            <SignedOut>
+                <div className="h-screen w-screen flex justify-center items-center">
+                    <SignIn routing="hash"/>
+                </div>
+            </SignedOut>
+        </>
     );
 }

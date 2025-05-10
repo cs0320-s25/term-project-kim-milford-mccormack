@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./components/globals.css";
-import { ClerkProvider } from '@clerk/nextjs';
+import {ClerkProvider, SignedIn} from '@clerk/nextjs';
 import { ReactNode } from 'react';
 import ThemeProviderWrapper from "./components/ThemeProviderWrapper";
 
