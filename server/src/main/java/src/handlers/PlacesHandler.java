@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -120,7 +119,7 @@ public class PlacesHandler implements HttpHandler {
       enrichedPlace.addProperty(
           "description",
           details.has("editorial_summary")
-              && details.getAsJsonObject("editorial_summary").has("overview")
+                  && details.getAsJsonObject("editorial_summary").has("overview")
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
 

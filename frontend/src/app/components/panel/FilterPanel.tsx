@@ -156,7 +156,7 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
             <div className="flex flex-col gap-3">
                 <p>Places</p>
                 <div className="flex flex-wrap gap-2">
-                    {places.map((place) => (
+                    {placesCategories.map((place) => (
                         <ToggleButton
                             key={place}
                             value={place}

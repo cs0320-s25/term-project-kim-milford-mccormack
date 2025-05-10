@@ -10,7 +10,6 @@ interface SearchBarProps {
 
 export default function SearchBar({ onFilter, onKeywordChange }: SearchBarProps) {
     const [input, setInput] = useState<string>(''); // set text input
-    console.log('search bar');
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {

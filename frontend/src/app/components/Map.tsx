@@ -1,78 +1,71 @@
-'use client';
+import React, { useEffect, useRef, useState } from 'react';
+import mapboxgl from 'mapbox-gl';
 
-import React, {Dispatch, useEffect, useRef, useState} from 'react';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-interface GoogleMapProps {
-  apiKey: string;
-  zoom: number;
-  userCenter: {lat: number; lng: number};
-}
-
-const GoogleMapComponent: React.FC<GoogleMapProps> = ({ apiKey, zoom, userCenter }) => {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<google.maps.Map | null>(null);
-  // const [userCenter, setUserCenter] = useState<{ lat: number; lng: number } | null>(null);
-
-  // Load Google Maps API
-  useEffect(() => {
-    const loadGoogleMaps = () => {
-      if (typeof window.google === 'undefined') {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-        script.async = true;
-        script.defer = true;
-        script.setAttribute('loading', 'async');
-        script.onload = initMap;
-        document.head.appendChild(script);
-      } else {
-        initMap();
-      }
-    };
-
-    const initMap = () => {
-      if (!mapRef.current || mapInstanceRef.current || !window.google || !userCenter) return;
-
-      mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
-        center: userCenter,
-        zoom,
-        fullscreenControl: false,
-        mapTypeControl: false,
-        streetViewControl: false
-      });
-
-      // Optional: Add marker at user location
-      new window.google.maps.Marker({
-        position: userCenter,
-        map: mapInstanceRef.current,
-        title: "You are here"
-      });
-    };
-
-    loadGoogleMaps();
-  }, [apiKey, userCenter]);
-
-  // Get user's current location
-  // useEffect(() => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //         position => {
-  //           if (setUserCenter) {
-  //             setUserCenter({
-  //               lat: position.coords.latitude,
-  //               lng: position.coords.longitude
-  //             });
-  //           }
-  //         },
-  //         error => {
-  //           console.error('Error getting location:', error);
-  //         }
-  //     );
-  //   } else {
-  //     console.error('Geolocation not supported');
-  //   }
-  // }, []);
-
-  return <div ref={mapRef} className="w-full h-full" />;
+const MapboxExample = () => {
+    const mapContainerRef = useRef<HTMLDivElement | null>(null);
+    const map = useRef<mapboxgl.Map | null>(null);
+    
+    // State to track if we are on the client (to prevent SSR hydration issues)
+    const [isClient, setIsClient] = useState(false);
+    
+    useEffect(() => {
+        // Ensure the Mapbox code runs only on the client
+        setIsClient(true);
+    }, []);
+    
+    useEffect(() => {
+        if (!isClient) return;
+        if (map.current) return;
+        if (!mapContainerRef.current) return;
+        
+        mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_GL_ACCESS_TOKEN;
+        
+        // Initialize the map
+        map.current = new mapboxgl.Map({
+            container: mapContainerRef.current,
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [-24, 42], // Default center if geolocation fails
+            zoom: 1,
+        });
+        
+        // Add geolocate control to the map
+        const geolocateControl = new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true,
+            },
+            trackUserLocation: true,
+            showUserHeading: true,
+        });
+        
+        // Add the control to the map
+        map.current.addControl(geolocateControl, 'bottom-right');
+        
+        map.current.on('load', () => {
+            if (!map.current) return;
+            
+            geolocateControl.trigger();
+            
+            map.current.flyTo({
+                center: map.current.getCenter(),
+                duration: 3800, //map recenter animation
+                zoom: 15,
+                essential: true, // Ensures animation isn't skipped
+            });
+        });
+        
+        return () => {
+            if (!map.current) return;
+            map.current.remove();
+        };
+    }, [isClient]);
+    
+    if (!isClient) {
+        return <div id="map" style={{ height: '100%' }}></div>; // Render a placeholder until client-side is ready
+    }
+    
+    return <div id="map" ref={mapContainerRef} style={{ height: '100%' }}></div>;
 };
 
-export default GoogleMapComponent;
+export default MapboxExample;
