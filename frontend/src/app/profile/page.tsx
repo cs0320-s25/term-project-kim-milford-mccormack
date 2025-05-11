@@ -18,6 +18,7 @@ export default function ProfilePage() {
   const [busy, setBusy] = useState(3);
   const [hasFood, setHasFood] = useState(3);
   const [hasDrinks, setHasDrinks] = useState(3);
+  const [searchRadius, setSearchRadius] = useState(500);
   const [optOutList, setOptOutList] = useState([
     'Example 1 hardcode',
     'Example 2 hardcode',
@@ -91,7 +92,34 @@ export default function ProfilePage() {
                     </div>
                   </div>
               ))}
+
+            <div className="space-y-6">
+              {[
+                { label: 'Search radius', state: searchRadius, setter: setSearchRadius },
+              ].map(({ label, state, setter }) => (
+                  <div key={label}>
+                    <label className="block font-medium mb-1">{label}</label>
+                    <input
+                        type="range"
+                        min={1}
+                        max={3}
+                        step={1}
+                        value={state}
+                        onChange={(e) => setter(Number(e.target.value))}
+                        className="w-full accent-gray-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>250m</span>
+                      <span>500m</span>
+                      <span>1km</span>
+                    </div>
+                  </div>
+              ))}
             </div>
+
+            </div>
+
+
           </div>
 
 
@@ -126,8 +154,8 @@ export default function ProfilePage() {
                   setBusy(3);
                   setCowork(3)
                   setHasDrinks(3);
-                  setHasFood(3)
-
+                  setHasFood(3);
+                  setSearchRadius(500);
                 }}
                 className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700 transition"
             >
