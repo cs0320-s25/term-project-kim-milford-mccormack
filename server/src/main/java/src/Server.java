@@ -9,8 +9,8 @@ public class Server {
   public static void main(String[] args) throws IOException {
     int port = 8080;
     HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-    
-    //server.createContext("/places", new PlacesHandler());
+
+    // server.createContext("/places", new PlacesHandler());
 
     // mock data handler for below sample URL
     // http://localhost:8080/places?lat=41.8286671&lng=-71.4086326&radius=1000&keyword=cafe
