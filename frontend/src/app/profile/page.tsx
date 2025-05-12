@@ -344,7 +344,7 @@ export default function ProfilePage() {
 
         <SignedOut>
           <div className="text-center mt-20">
-            <p>You must sign in to view your profile and access your preferences.</p>
+            <p>You must sign in to view your profile and access your preferences. Reload the page or restart the frontend/server.</p>
           </div>
         </SignedOut>
       </div>
