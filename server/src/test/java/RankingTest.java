@@ -20,7 +20,7 @@ public class RankingTest {
 
   @Test
   public void testRankingWithBreakfastKeyword() throws Exception {
-    String enrichedJson = loadTestData("src/test/TestingData/places.json");
+    String enrichedJson = loadTestData("src/test/TestingData/places_cafe(radius=1000).json");
 
     // Single preference: "breakfast" +2
     List<Preference> prefs = new ArrayList<>();

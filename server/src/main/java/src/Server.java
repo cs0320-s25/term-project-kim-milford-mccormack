@@ -3,7 +3,7 @@ package src;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import src.handlers.MockPlacesHandler;
+import src.handlers.*;
 
 public class Server {
   public static void main(String[] args) throws IOException {
@@ -15,6 +15,8 @@ public class Server {
     // mock data handler for below sample URL
     // http://localhost:8080/places?lat=41.8286671&lng=-71.4086326&radius=1000&keyword=cafe
     server.createContext("/places", new MockPlacesHandler());
+    server.createContext("/mock-ranking", new MockRankingHandler());
+
 
     server.setExecutor(null);
     server.start();
