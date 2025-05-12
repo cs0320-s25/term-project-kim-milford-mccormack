@@ -129,9 +129,6 @@ const Map = ({setUserLocation, renderMarker, places} : mapProps) => {
                     .addTo(map.current)
 
                 markersRef.current.push(marker)
-                console.log(marker._lngLat);
-
-                console.log(index);
             } else {
                 const marker = new mapboxgl.Marker()
                     .setLngLat([place.location.lng, place.location.lat])

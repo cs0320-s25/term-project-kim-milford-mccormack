@@ -27,11 +27,17 @@ export default function Home() {
     const [radius, setRadius] = useState(500);
     const [keyword, setKeyword] = useState('');
     const [renderMarker, setRenderMarker] = useState(false);
+    // Popup state
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupContent, setPopupContent] = useState<string | null>(null);
+    const [popupId, setPopupId] = useState<string | null>(null);
+    
+    console.log(popupId)
     
     const setUserLocation = (lng: number, lat: number) => {
         setUserCenter({lng, lat});
     }
-
+    
     useEffect(() => {
         if (!userCenter) return;
 
@@ -67,9 +73,7 @@ export default function Home() {
     //     console.log(places);
     // }, [places]);
 
-    // Popup state
-    const [showPopup, setShowPopup] = useState(false);
-    const [popupContent, setPopupContent] = useState<string | null>(null);
+
 
     function onKeywordChange(value: string) {
         setKeyword(value);
@@ -82,19 +86,8 @@ export default function Home() {
                     {/* Panel */}
                     <div className="w-1/3 z-10">
                         <SearchPanel
-                            onCardClick={(content) => {
-                                setPopupContent((prevContent) => {
-                                    // If already shown and same content, close it
-                                    if (showPopup && prevContent === content) {
-                                        setShowPopup(false);
-                                        return null;
-                                    }
-
-                                    // Otherwise show new content
-                                    setShowPopup(true);
-                                    return content;
-                                });
-                            }}
+                            setShowPopup={setShowPopup}
+                            setPopupId={setPopupId}
                             onKeywordChange={onKeywordChange}
                             places={places}
                             renderMarker={renderMarker}
@@ -126,11 +119,15 @@ export default function Home() {
                 </div>
 
                 {/* Popup floating on map */}
-                {showPopup && popupContent && (
+                {showPopup && popupId && (
                     <div
                         className="absolute top-10 left-1/3 ml-6 w-64 p-4 bg-default rounded-lg shadow-lg z-20">
                         <h3 className="font-semibold text-primary">Details</h3>
-                        <p className="text-sm text-secondary">{popupContent}</p>
+                        <p className="text-sm text-secondary">{places?.results.map((place) => (
+                            (place.name + place.address) == popupId
+                                ? <span key={place.name}>{place.description}</span>
+                                : null
+                        ))}</p>
                     </div>
                 )}
                 </div>

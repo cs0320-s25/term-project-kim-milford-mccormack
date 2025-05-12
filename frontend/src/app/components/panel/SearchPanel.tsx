@@ -9,6 +9,7 @@ import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { StarIcon } from '@heroicons/react/20/solid';
 import { StarIcon as StarOutlineIcon} from '@heroicons/react/24/outline';
+import PopupContent from "@/app/components/panel/ui-components/PopupContent";
 
 const phrases = [
   "Top study spots coming right up 📚✨",
@@ -74,25 +75,38 @@ type ResType = {
 }
 
 type SearchPanelProps = {
-  onCardClick?: (content: string) => void;
+  setShowPopup: Dispatch<SetStateAction<boolean>>;
+  setPopupId: Dispatch<SetStateAction<string | null>>;
   onKeywordChange: (value: string) => void;
   places: ResType | undefined;
   renderMarker: boolean;
   setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
 };
 
-const SearchPanel = ({ onCardClick, onKeywordChange, places, renderMarker, setRenderMarker }: SearchPanelProps) => {
+const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, renderMarker, setRenderMarker }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
   const [randomFivePlaces, setRandomFivePlaces] = useState<string[]>([]);
-  const [selected, setSelected] = useState(false);
-
-  const toggleSelection = () => {
-    setSelected(!selected);
-    onCardClick?.('Extra information goes here.')
+  const [selected, setSelected] = useState<string | null>(null);
+  // const [showPopup, setShowPopup] = useState(false);
+  // const [popupId, setPopupId] = useState<string | null>(null);
+  
+  const togglePopup = (cardId: string) => {
+    if (selected == null) {
+      setShowPopup(false);
+    }
+    
+    if (selected == cardId) {
+      setShowPopup(true);
+      setPopupId(cardId);
+    } else {
+      setSelected(cardId);
+      setShowPopup(true);
+      setPopupId(cardId);
+    }
   }
-
+  
   useEffect(() => {
     const shuffled = [...placesCategories].sort(() => 0.5 - Math.random());
     setRandomFivePlaces(shuffled.slice(0, 5));
@@ -113,6 +127,8 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, renderMarker, setRe
     );
   };
 
+  
+  
   return (
       <div className="flex flex-col h-full w-full overflow-auto bg-default">
         <AnimatePresence mode="sync">
@@ -179,17 +195,17 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, renderMarker, setRe
                     {places?.results.map((place, index) => (
                       <div key={place.name + place.address} className="relative w-full max-w-md">
                         <div
-                            onClick={toggleSelection}
+                            onClick={() => togglePopup(place.name + place.address)}
                             className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 border-b border-grey ${
                                 renderMarker
                                     ? index < 3
-                                        ? selected
+                                        ? selected == (place.name + place.address)
                                             ? 'bg-orange-main'
                                             : 'bg-orange-light'
-                                        : selected
+                                        : selected == (place.name + place.address)
                                             ? 'bg-secondary'
                                             : 'bg-default'
-                                    : selected
+                                    : selected == (place.name + place.address)
                                         ? 'bg-secondary'
                                         : 'bg-default'
                             }`}
