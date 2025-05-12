@@ -15,7 +15,7 @@ public class Server {
     // mock data handler for below sample URL
     // http://localhost:8080/places?lat=41.8286671&lng=-71.4086326&radius=1000&keyword=cafe
     server.createContext("/places", new MockPlacesHandler());
-    server.createContext("/mock-ranking", new MockRankingHandler());
+//    server.createContext("/mock-ranking", new MockRankingHandler());
 
     server.setExecutor(null);
     server.start();

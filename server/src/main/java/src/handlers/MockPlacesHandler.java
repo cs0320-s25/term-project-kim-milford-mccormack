@@ -7,8 +7,11 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import models.Preference;
 
 public class MockPlacesHandler implements HttpHandler {
 
@@ -38,32 +41,36 @@ public class MockPlacesHandler implements HttpHandler {
     if (keyword != null && !keyword.isEmpty()) {
       // Modify file path based on the keyword, for example (this part can be customized based on
       // your logic)
+
       filePath = "server/src/test/TestingData/places_" + keyword + "(radius=" + radius + ").json";
+
       System.out.println(filePath);
     }
-
-    String jsonResponse;
-
-    try {
-      // Read the mock data from the file
-      byte[] bytes = Files.readAllBytes(Paths.get(filePath));
-      jsonResponse = new String(bytes, StandardCharsets.UTF_8);
-    } catch (IOException e) {
-      String errorMsg = "{\"error\":\"Could not read mock data from " + filePath + ".\"}";
-      exchange.sendResponseHeaders(500, errorMsg.length());
-      OutputStream os = exchange.getResponseBody();
-      os.write(errorMsg.getBytes(StandardCharsets.UTF_8));
-      os.close();
-      return;
+    String enrichedJson = Files.readString(Paths.get(filePath), StandardCharsets.UTF_8);
+    List<Preference> prefs = new ArrayList<>();
+    if (keyword != null && !keyword.isBlank()) {
+      String decoded = URLDecoder.decode(keyword, StandardCharsets.UTF_8);
+      for (String kw : decoded.split("\\s+")) {
+        if (!kw.isBlank()) {
+          Preference p = new Preference();
+          p.keyword = kw;
+          p.weight  = 5;
+          prefs.add(p);
+        }
+      }
     }
+
+    MockRankingHandler rankingHandler = new MockRankingHandler(filePath, keyword);
+    String rankedJson = rankingHandler.rankEnriched(enrichedJson, prefs);
+    byte[] resp = rankedJson.getBytes(StandardCharsets.UTF_8);
+
 
     // Send the JSON response
     exchange.getResponseHeaders().set("Content-Type", "application/json");
-    exchange.sendResponseHeaders(200, jsonResponse.getBytes(StandardCharsets.UTF_8).length);
-
-    OutputStream os = exchange.getResponseBody();
-    os.write(jsonResponse.getBytes(StandardCharsets.UTF_8));
-    os.close();
+    exchange.sendResponseHeaders(200, resp.length);
+    try (OutputStream os = exchange.getResponseBody()) {
+      os.write(resp);
+    }
   }
 
   // Utility method to parse query parameters
