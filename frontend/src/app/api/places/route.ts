@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     if (keyword) queryParams.append('keyword', keyword);
 
     const apiUrl = `http://localhost:8080/places?${queryParams}`;
-
+    
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();

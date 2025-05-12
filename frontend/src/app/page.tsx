@@ -58,9 +58,9 @@ export default function Home() {
         fetchPlaces();
     }, [userCenter, radius, keyword]);
     
-    // useEffect(() => {
-    //     console.log(places);
-    // }, [places]);
+    useEffect(() => {
+        console.log(places);
+    }, [places]);
 
     // Popup state
     const [showPopup, setShowPopup] = useState(false);
