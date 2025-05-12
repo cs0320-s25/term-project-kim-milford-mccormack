@@ -77,10 +77,11 @@ type SearchPanelProps = {
   onCardClick?: (content: string) => void;
   onKeywordChange: (value: string) => void;
   places: ResType | undefined;
+  renderMarker: boolean;
   setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
 };
 
-const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: SearchPanelProps) => {
+const SearchPanel = ({ onCardClick, onKeywordChange, places, renderMarker, setRenderMarker }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
@@ -113,7 +114,7 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: 
   };
 
   return (
-      <div className="flex flex-col gap-4 h-full w-full overflow-auto bg-default">
+      <div className="flex flex-col h-full w-full overflow-auto bg-default">
         <AnimatePresence mode="sync">
           {!showFilterPanel ? (
               <motion.div
@@ -136,7 +137,7 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: 
                 )}
 
                 {/* recommendation */}
-                <div className="flex flex-col gap-3 px-4">
+                <div className="flex flex-col gap-3 p-4">
                   <p className="font-semibold">Places</p>
                   <div className="flex flex-wrap gap-2">
                     {randomFivePlaces.map((place) => (
@@ -173,43 +174,55 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: 
                   </div>
                 </div>
                 
+                <div className={"flex flex-col"}>
                 {/*Card*/}
-                {places?.results.map((place) => (
-                  <div key={place.name + place.address} className="relative w-full max-w-md">
-                    <div
-                        onClick={toggleSelection}
-                        className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 ${
-                            selected ? 'bg-secondary' : 'bg-default'
-                        }`}
-                    >
-                      {/* Image Placeholder */}
-                      <div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>
-                      
-                      {/* Content */}
-                      <div className="flex flex-col justify-between">
-                        <div>
-                          <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                    {places?.results.map((place, index) => (
+                      <div key={place.name + place.address} className="relative w-full max-w-md">
+                        <div
+                            onClick={toggleSelection}
+                            className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 border-b border-grey ${
+                                renderMarker
+                                    ? index < 3
+                                        ? selected
+                                            ? 'bg-orange-main'
+                                            : 'bg-orange-light'
+                                        : selected
+                                            ? 'bg-secondary'
+                                            : 'bg-default'
+                                    : selected
+                                        ? 'bg-secondary'
+                                        : 'bg-default'
+                            }`}
+                        >
+                          {/* Image Placeholder */}
+                          {/*<div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>*/}
                           
-                          <div className="flex items-center gap-1 mt-1">
-                            <p className="text-sm">{place.rating}</p>
-                            <StarRating rating={place.rating} />
-                            <p className="text-sm text-secondary">(36)</p>
+                          {/* Content */}
+                          <div className="flex flex-col justify-between">
+                            <div>
+                              <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                              
+                              <div className="flex items-center gap-1 mt-1">
+                                <p className="text-sm">{place.rating}</p>
+                                <StarRating rating={place.rating} />
+                                <p className="text-sm text-secondary">(36)</p>
+                              </div>
+                              
+                              <p className="text-sm mt-1 text-secondary">
+                                {place.address}
+                              </p>
+                            </div>
+                            
+                            <div className="flex items-center gap-2 text-sm mt-2">
+                              <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
+                              <span>·</span>
+                              <span>Closes 10PM</span>
+                            </div>
                           </div>
-                          
-                          <p className="text-sm mt-1 text-secondary">
-                            {place.address}
-                          </p>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-sm mt-2">
-                          <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
-                          <span>·</span>
-                          <span>Closes 10PM</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-              ))}
+                  ))}
+                </div>
               </motion.div>
           ) : (
               <motion.div
