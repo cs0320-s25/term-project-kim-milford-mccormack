@@ -11,15 +11,19 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import models.Preference;
+import models.PreferencesRequest;
 
 public class PlacesHandler implements HttpHandler {
 
   private final GooglePlacesClient client;
   private final Gson gson = new Gson();
+  private final RankingHandler ranking = new RankingHandler();
 
   public PlacesHandler() {
     this.client = new GooglePlacesClient();
@@ -32,35 +36,55 @@ public class PlacesHandler implements HttpHandler {
       return;
     }
 
-    URI requestURI = exchange.getRequestURI();
-    String query = requestURI.getQuery();
-    Map<String, String> queryParams = parseQuery(query);
-
-    double lat = Double.parseDouble(queryParams.getOrDefault("lat", "41.8240"));
-    double lng = Double.parseDouble(queryParams.getOrDefault("lng", "-71.4128"));
-    int radius = Integer.parseInt(queryParams.getOrDefault("radius", "5"));
-    String keyword = queryParams.getOrDefault("keyword", "cafe");
+    // 1) Parse query params: lat, lng, radius (default 500), keyword
+    URI uri = exchange.getRequestURI();
+    Map<String,String> qp = parseQuery(uri.getRawQuery());
+    double lat    = Double.parseDouble(qp.getOrDefault("lat",    "41.8240"));
+    double lng    = Double.parseDouble(qp.getOrDefault("lng",    "-71.4128"));
+    int    radius = Integer.parseInt  (qp.getOrDefault("radius", "500"));    // ← default 500m :contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}
+    String keyword= qp.getOrDefault("keyword", "");
 
     try {
-      String rawNearbyJson = client.searchNearbyAsJson(lat, lng, radius, keyword);
-      String enrichedJson = enrichWithPlaceDetails(rawNearbyJson);
+      // 2) ONE CALL: Nearby Search (filter by keyword if provided)
+      String rawNearby = client.searchNearbyAsJson(lat, lng, radius, keyword);
 
-      exchange.getResponseHeaders().add("Content-Type", "application/json");
-      byte[] out = enrichedJson.getBytes(StandardCharsets.UTF_8);
-      exchange.sendResponseHeaders(200, out.length);
+      // 3) Enrich + de-duplicate + add extra fields
+      String enrichedJson = enrichWithPlaceDetails(rawNearby);
+
+      // 4) Build PreferencesRequest from keyword (weight=5)
+      PreferencesRequest req = new PreferencesRequest();
+      req.preferences = new ArrayList<>();
+      if (!keyword.isBlank()) {
+        String decoded = URLDecoder.decode(keyword, StandardCharsets.UTF_8);
+        for (String kw : decoded.split("\\s+")) {
+          Preference p = new Preference();
+          p.keyword = kw;
+          p.weight  = 5;
+          req.preferences.add(p);
+        }
+      }
+
+      // 5) Delegate scoring & sorting (no more API calls)
+      String rankedJson = ranking.rankEnriched(enrichedJson, req.preferences);
+
+      // 6) Send response
+      byte[] resp = rankedJson.getBytes(StandardCharsets.UTF_8);
+      exchange.getResponseHeaders().set("Content-Type", "application/json");
+      exchange.sendResponseHeaders(200, resp.length);
       try (OutputStream os = exchange.getResponseBody()) {
-        os.write(out);
+        os.write(resp);
       }
     } catch (Exception e) {
-      String error = "{\"error\":\"" + e.getMessage() + "\"}";
-      byte[] out = error.getBytes(StandardCharsets.UTF_8);
-      exchange.getResponseHeaders().add("Content-Type", "application/json");
-      exchange.sendResponseHeaders(500, out.length);
+      String err = "{\"error\":\"" + e.getMessage() + "\"}";
+      byte[] errBytes = err.getBytes(StandardCharsets.UTF_8);
+      exchange.getResponseHeaders().set("Content-Type", "application/json");
+      exchange.sendResponseHeaders(500, errBytes.length);
       try (OutputStream os = exchange.getResponseBody()) {
-        os.write(out);
+        os.write(errBytes);
       }
     }
   }
+
 
   private Map<String, String> parseQuery(String query) throws IOException {
     Map<String, String> params = new HashMap<>();
