@@ -1,35 +1,120 @@
 @import "../../../node_modules/tailwindcss";
 
 :root {
-  --background: #f8f8f8;
-  --foreground: #171717;
+  /* Backgrounds */
+  --background: #F0F0F0;
+  --paper: #FFFFFF;
+
+  /* Text colors */
+  --text-primary: #191919;
+  --text-secondary: #6C7178;
+
+  /* Primary palette */
+  --primary-main: #204EC8;
+  --primary-light: #2E52B2;
+  --primary-dark: #163787;
+
+  /* Secondary palette */
+  --secondary-main: #FB7021;
+  --secondary-light: #FF8E4F;
+  --secondary-dark: #E25903;
+
+  /* Success palette */
+  --success-main: #3EAC2C;
+  --success-light: #6CC25E;
+  --success-dark: #1D880F;
+  --success-contrast: #F0F0F0;
+
+  /* Grey palette */
+  --grey-200: #D1D5DC;
+  --grey-400: #B5BAC2;
+  --grey-600: #6C7178;
+
+  /* Neutral palette */
+  --neutral-main: #B5BAC2;
+  --neutral-contrast: #6C7178;
 }
 
+/* Base styles */
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
+/* Utility classes */
 .bg-default {
   background-color: var(--background);
 }
 
-.bg-gray {
-  background-color: #EDEDED;
+.bg-secondary {
+  background-color: var(--grey-400);
 }
 
-.text-black {
-  color: #1F1F1F;
+.bg-dark {
+  background-color: var(--grey-600);
 }
 
-.text-gray {
-  color: #5E5E5E;
+.bg-paper {
+  background-color: var(--paper);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-neutral {
+  color: var(--neutral-main);
 }
 
 .icon-black {
-  color: #171717;
+  color: var(--text-primary);
 }
 
-.icon-gray {
-  color: #5E5E5E;
+.icon-grey {
+  color: var(--neutral-main);
+}
+
+.icon-grey-400 {
+  color: var(--grey-400);
+}
+
+.icon-grey-600 {
+  color: var(--neutral-contrast);
+}
+
+.icon-orange-main {
+  color: var(--secondary-main);
+}
+
+.icon-orange-light {
+  color: var(--secondary-light);
+}
+
+.icon-orange-dark {
+  color: var(--secondary-dark);
+}
+
+/* Success colors */
+.bg-success {
+  background-color: var(--success-main);
+}
+
+.bg-success-light {
+  background-color: var(--success-light);
+}
+
+.bg-success-dark {
+  background-color: var(--success-dark);
+}
+
+.text-success {
+  color: var(--success-main);
+}
+
+.text-success-contrast {
+  color: var(--success-contrast);
 }

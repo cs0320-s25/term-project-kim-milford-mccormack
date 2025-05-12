@@ -8,20 +8,59 @@ import {placesCategories} from "@/lib/constants";
 import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { StarIcon } from '@heroicons/react/20/solid';
-
+import { StarIcon as StarOutlineIcon} from '@heroicons/react/24/outline';
 
 const phrases = [
   "Top study spots coming right up 📚✨",
   "Found your perfect place to focus 🎯📖",
   "Study-ready spots picked just for you 🧠💡",
-  "Here’s where your brain will bloom 🌸📘",
+  "Here's where your brain will bloom 🌸📘",
   "Quiet corners and good vibes ahead 😌☕",
   "Your cozy study spot awaits you 🛋️📓",
-  "Books out! Here’s your study haven 📝🌈",
+  "Books out! Here's your study haven 📝🌈",
   "Ace your exams from these spots 🧃🔥"
 ];
 
-type Place = {
+const StarRating = ({ rating }: { rating: number }) => {
+  // Round to nearest half star
+  const roundedRating = Math.round(rating * 2) / 2; // This rounds the rating to the nearest 0.5
+  
+  const fullStars = Math.floor(roundedRating); // Full stars (integer part)
+  const hasHalfStar = roundedRating % 1 >= 0.5; // Check if there's a half star
+  const emptyStars = 5 - Math.ceil(roundedRating); // Empty stars to complete the 5 stars
+  
+  return (
+      <div className="flex items-center gap-1">
+        {/* Full stars */}
+        {[...Array(fullStars)].map((_, index) => (
+            <StarIcon key={`full-${index}`} className="h-5 w-5 star-yellow" />
+        ))}
+        
+        {/* Half star */}
+        {hasHalfStar && (
+            <div className="relative w-5 h-5">
+              {/* Base: Gray star */}
+              <StarIcon className="h-5 w-5 icon-grey-400 absolute left-0 top-0" />
+              
+              {/* Overlay: Yellow left half */}
+              <div
+                  className="absolute left-0 top-0 overflow-hidden"
+                  style={{ width: '50%' }}
+              >
+                <StarIcon className="h-5 w-5 star-yellow" />
+              </div>
+            </div>
+        )}
+        
+        {/* Empty stars */}
+        {[...Array(emptyStars)].map((_, index) => (
+            <StarIcon key={`empty-${index}`} className="h-5 w-5 icon-grey-400" />
+        ))}
+      </div>
+  );
+};
+
+type PlacesType = {
   name: string;
   address: string;
   location: {lat: number, lng: number};
@@ -30,13 +69,17 @@ type Place = {
   description: string;
 }
 
+type ResType = {
+  results: PlacesType[];
+}
+
 type SearchPanelProps = {
   onCardClick?: (content: string) => void;
-  // places: Place[];
   onKeywordChange: (value: string) => void;
+  places: ResType | undefined;
 };
 
-const SearchPanel = ({ onCardClick, onKeywordChange }: SearchPanelProps) => {
+const SearchPanel = ({ onCardClick, onKeywordChange, places }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
@@ -80,12 +123,12 @@ const SearchPanel = ({ onCardClick, onKeywordChange }: SearchPanelProps) => {
                   transition={{duration: 0.2}}
                   className="flex flex-col gap-3 bg-default"
               >
-                <SearchBar 
+                <SearchBar
                     onFilter={filterSearch}
                     onKeywordChange={onKeywordChange}
                 />
                 {message && (
-                    <div className="text-lg font-semibold text-black px-4">
+                    <div className="text-lg font-semibold text-primary px-4">
                       {message}
                     </div>
                 )}
@@ -127,44 +170,44 @@ const SearchPanel = ({ onCardClick, onKeywordChange }: SearchPanelProps) => {
                     ))}
                   </div>
                 </div>
-
+                
                 {/*Card*/}
-                <div className="relative w-full max-w-md">
-                  <div
-                      onClick={toggleSelection}
-                      className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 ${
-                          selected ? 'bg-gray' : 'bg-default'
-                      }`}
-                  >
-                    {/* Image Placeholder */}
-                    <div className="w-20 h-20 rounded-md bg-gray-300 flex-shrink-0"/>
-
-                    {/* Content */}
-                    <div className="flex flex-col justify-between">
-                      <div>
-                        <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>Cafe Name</h2>
-
-                        <div className="flex items-center gap-1 mt-1">
-                          <p className="text-sm">4.0</p>
-                          {[...Array(5)].map((_, i) => (
-                              <StarIcon key={i} className="h-4 w-4 text-yellow-400"/>
-                          ))}
-                          <p className="text-sm text-gray-500">(36)</p>
+                {places?.results.map((place) => (
+                  <div key={place.name + place.address} className="relative w-full max-w-md">
+                    <div
+                        onClick={toggleSelection}
+                        className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 ${
+                            selected ? 'bg-secondary' : 'bg-default'
+                        }`}
+                    >
+                      {/* Image Placeholder */}
+                      <div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>
+                      
+                      {/* Content */}
+                      <div className="flex flex-col justify-between">
+                        <div>
+                          <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                          
+                          <div className="flex items-center gap-1 mt-1">
+                            <p className="text-sm">{place.rating}</p>
+                            <StarRating rating={place.rating} />
+                            <p className="text-sm text-secondary">(36)</p>
+                          </div>
+                          
+                          <p className="text-sm mt-1 text-secondary">
+                            {place.address}
+                          </p>
                         </div>
-
-                        <p className="text-sm mt-1 text-gray-600 dark:text-gray-300">
-                          Cafe / Restaurant · 1190 N Main St, Providence
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-2 text-sm mt-2">
-                        <span className="text-green-600 font-medium">Open</span>
-                        <span>·</span>
-                        <span>Closes 10PM</span>
+                        
+                        <div className="flex items-center gap-2 text-sm mt-2">
+                          <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
+                          <span>·</span>
+                          <span>Closes 10PM</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+              ))}
               </motion.div>
           ) : (
               <motion.div

@@ -5,17 +5,17 @@ const theme = createTheme({
         mode: 'light', // You can switch to 'dark' if needed
 
         primary: {
-            main: '#183D9E',      // Night 700 (vibrant)
+            main: '#204EC8',      // Night 700 (vibrant)
             light: '#2E52B2',     // Night 600
-            dark: '#122C6A',      // Deeper variant
-            contrastText: '#FFFFFF'
+            dark: '#163787',      // Deeper variant
+            contrastText: '#F0F0F0'
         },
 
         secondary: {
-            main: '#F7411B',      // Sunset 500
-            light: '#FF6B3D',     // Sunset 400 (approx.)
-            dark: '#C53000',      // Deeper shade if needed
-            contrastText: '#FFFFFF'
+            main: '#FB7021',      // Sunset 500
+            light: '#FF8E4F',     // Sunset 400 (approx.)
+            dark: '#E25903',      // Deeper shade if needed
+            contrastText: '#F0F0F0'
         },
 
         background: {
@@ -25,13 +25,27 @@ const theme = createTheme({
 
         text: {
             primary: '#191919',    // Black Hole
-            secondary: '#5E5E5E',  // G
+            secondary: '#99a1af',  // G
+        },
+        
+        grey: {
+            200: '#D0D0D0',
+            400: '#B0B0B0',
+            600: '#6F6F6F',
+        },
+        
+        success: {
+            main: '#3EAC2C',
+            light: '#6CC25E',
+            dark: '#1D880F',
+            contrastText: '#F0F0F0'
+            
         },
 
         // Optional neutral/custom
         neutral: {
-            main: '#2F2F2F',
-            contrastText: '#F0F0F0',
+            main: '#99a1af',
+            contrastText: '#5E5E5E',
         },
     },
     typography: {
