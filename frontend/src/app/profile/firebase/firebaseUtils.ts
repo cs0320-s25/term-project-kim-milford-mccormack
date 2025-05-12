@@ -1,8 +1,6 @@
-// firebase.ts
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"; // Import Firestore
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBvaFNyX3e3VoIEyCt1RJJ7STZI0kuuLVg",
   authDomain: "term-project-4683d.firebaseapp.com",

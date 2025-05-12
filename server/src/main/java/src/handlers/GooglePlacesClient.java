@@ -42,7 +42,7 @@ public class GooglePlacesClient {
 
     String uri =
         String.format(
-            "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,vicinity,geometry,opening_hours,rating,editorial_summary&key=%s",
+            "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,vicinity,geometry,opening_hours,rating,editorial_summary,price_level,user_ratings_total&key=%s",
             placeId, API_KEY);
 
     HttpRequest request = HttpRequest.newBuilder().uri(URI.create(uri)).GET().build();

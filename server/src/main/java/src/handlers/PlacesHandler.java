@@ -38,8 +38,8 @@ public class PlacesHandler implements HttpHandler {
 
     double lat = Double.parseDouble(queryParams.getOrDefault("lat", "41.8240"));
     double lng = Double.parseDouble(queryParams.getOrDefault("lng", "-71.4128"));
-    int radius = Integer.parseInt(queryParams.getOrDefault("radius", "800"));
-    String keyword = queryParams.getOrDefault("keyword", "park");
+    int radius = Integer.parseInt(queryParams.getOrDefault("radius", "5"));
+    String keyword = queryParams.getOrDefault("keyword", "cafe");
 
     try {
       String rawNearbyJson = client.searchNearbyAsJson(lat, lng, radius, keyword);
@@ -98,6 +98,13 @@ public class PlacesHandler implements HttpHandler {
       JsonObject enrichedPlace = new JsonObject();
       enrichedPlace.addProperty("name", details.get("name").getAsString());
 
+
+      if (details.has("price_level")) {
+        enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
+      } else {
+        enrichedPlace.addProperty("price_level", "price level unavailable");
+      }
+
       if (details.has("vicinity")) {
         enrichedPlace.addProperty("address", details.get("vicinity").getAsString());
       }
@@ -122,6 +129,10 @@ public class PlacesHandler implements HttpHandler {
                   && details.getAsJsonObject("editorial_summary").has("overview")
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
+
+      //enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
+      enrichedPlace.addProperty("total_ratings", details.get("user_ratings_total").getAsInt());
+
 
       enrichedResults.add(enrichedPlace);
     }
