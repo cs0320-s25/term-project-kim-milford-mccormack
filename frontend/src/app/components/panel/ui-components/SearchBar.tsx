@@ -22,7 +22,7 @@ export default function SearchBar({ onFilter, onKeywordChange }: SearchBarProps)
           {/*search input*/}
           <div className="grow items-center bg-gray-100 rounded-lg ">
           <div className="flex items-center">
-            <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 ml-3"/>
+            <MagnifyingGlassIcon className="h-5 w-5 icon-gray ml-3"/>
             <input
                 type="text"
                 placeholder="Search Places"
@@ -39,7 +39,7 @@ export default function SearchBar({ onFilter, onKeywordChange }: SearchBarProps)
             className="p-2 hover:bg-gray-200 rounded-lg mr-1"
             onClick={onFilter}
         >
-          <AdjustmentsHorizontalIcon className="h-5 w-5 icon-gray"/>
+          <AdjustmentsHorizontalIcon className="h-5 w-5 icon-gray-dark"/>
         </button>
       </div>
     );

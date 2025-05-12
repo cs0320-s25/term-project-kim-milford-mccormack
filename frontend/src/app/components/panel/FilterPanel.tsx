@@ -68,7 +68,7 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
         <div className="flex flex-col gap-4 px-4 py-3">
             <div className="flex justify-between">
                 <Button variant="text" sx={{minWidth: 'auto'}} onClick={() => setShowFilterPanel(false)}>
-                    <ArrowLeftIcon className="h-5 w-5 icon-black p-0"/>
+                    <ArrowLeftIcon className="h-5 w-5 icon-gray-600 p-0"/>
                 </Button>
                 <Button variant="text" onClick={handleClear}>Clear</Button>
             </div>
@@ -126,7 +126,7 @@ export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
                                 <CheckIcon className="h-5 w-5 icon-black p-0"/>
                             )}
                             <span className="flex items-center gap-1">
-                                <span className="text-[#FF6B3D]">★</span>
+                                <span className="icon-orange-main">★</span>
                                 {rating}
                             </span>
                         </ToggleButton>
