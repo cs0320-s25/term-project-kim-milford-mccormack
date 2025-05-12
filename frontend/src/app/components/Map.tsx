@@ -120,14 +120,22 @@ const Map = ({setUserLocation, renderMarker, places} : mapProps) => {
     
     //render marker
     if (renderMarker) {
-        places?.results.forEach(place => {
+        places?.results.forEach((place, index) => {
             if (!map.current) return;
             
-            const marker = new mapboxgl.Marker()
-                .setLngLat([place.location.lng, place.location.lat])
-                .addTo(map.current)
-            
-            markersRef.current.push(marker)
+            if (index < 3) {
+                const marker = new mapboxgl.Marker({color: '#FB7021'})
+                    .setLngLat([place.location.lng, place.location.lat])
+                    .addTo(map.current)
+
+                markersRef.current.push(marker)
+            } else {
+                const marker = new mapboxgl.Marker()
+                    .setLngLat([place.location.lng, place.location.lat])
+                    .addTo(map.current)
+                
+                markersRef.current.push(marker)
+            }
         })
     }
 }, [mapLoad, renderMarker, places])

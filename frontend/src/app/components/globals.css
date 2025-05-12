@@ -67,7 +67,7 @@ body {
 }
 
 .bg-orange-light {
-  background-color: var(--secondary-light);
+  background-color: #ffccaf;
 }
 
 .bg-orange-dark {
@@ -112,6 +112,10 @@ body {
 
 .icon-orange-dark {
   color: var(--secondary-dark);
+}
+
+.border-grey {
+  border-color: var(--grey-200);
 }
 
 /* Success colors */

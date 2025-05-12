@@ -9,6 +9,7 @@ import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { StarIcon } from '@heroicons/react/20/solid';
 import { StarIcon as StarOutlineIcon} from '@heroicons/react/24/outline';
+import PopupContent from "@/app/components/panel/ui-components/PopupContent";
 
 const phrases = [
   "Top study spots coming right up 📚✨",
@@ -74,24 +75,38 @@ type ResType = {
 }
 
 type SearchPanelProps = {
-  onCardClick?: (content: string) => void;
+  setShowPopup: Dispatch<SetStateAction<boolean>>;
+  setPopupId: Dispatch<SetStateAction<string | null>>;
   onKeywordChange: (value: string) => void;
   places: ResType | undefined;
+  renderMarker: boolean;
   setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
 };
 
-const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: SearchPanelProps) => {
+const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, renderMarker, setRenderMarker }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
   const [randomFivePlaces, setRandomFivePlaces] = useState<string[]>([]);
-  const [selected, setSelected] = useState(false);
-
-  const toggleSelection = () => {
-    setSelected(!selected);
-    onCardClick?.('Extra information goes here.')
+  const [selected, setSelected] = useState<string | null>(null);
+  // const [showPopup, setShowPopup] = useState(false);
+  // const [popupId, setPopupId] = useState<string | null>(null);
+  
+  const togglePopup = (cardId: string) => {
+    if (selected == null) {
+      setShowPopup(false);
+    }
+    
+    if (selected == cardId) {
+      setShowPopup(true);
+      setPopupId(cardId);
+    } else {
+      setSelected(cardId);
+      setShowPopup(true);
+      setPopupId(cardId);
+    }
   }
-
+  
   useEffect(() => {
     const shuffled = [...placesCategories].sort(() => 0.5 - Math.random());
     setRandomFivePlaces(shuffled.slice(0, 5));
@@ -112,8 +127,10 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: 
     );
   };
 
+  
+  
   return (
-      <div className="flex flex-col gap-4 h-full w-full overflow-auto bg-default">
+      <div className="flex flex-col h-full w-full overflow-auto bg-default">
         <AnimatePresence mode="sync">
           {!showFilterPanel ? (
               <motion.div
@@ -136,7 +153,7 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: 
                 )}
 
                 {/* recommendation */}
-                <div className="flex flex-col gap-3 px-4">
+                <div className="flex flex-col gap-3 p-4">
                   <p className="font-semibold">Places</p>
                   <div className="flex flex-wrap gap-2">
                     {randomFivePlaces.map((place) => (
@@ -173,43 +190,55 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: 
                   </div>
                 </div>
                 
+                <div className={"flex flex-col"}>
                 {/*Card*/}
-                {places?.results.map((place) => (
-                  <div key={place.name + place.address} className="relative w-full max-w-md">
-                    <div
-                        onClick={toggleSelection}
-                        className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 ${
-                            selected ? 'bg-secondary' : 'bg-default'
-                        }`}
-                    >
-                      {/* Image Placeholder */}
-                      <div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>
-                      
-                      {/* Content */}
-                      <div className="flex flex-col justify-between">
-                        <div>
-                          <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                    {places?.results.map((place, index) => (
+                      <div key={place.name + place.address} className="relative w-full max-w-md">
+                        <div
+                            onClick={() => togglePopup(place.name + place.address)}
+                            className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 border-b border-grey ${
+                                renderMarker
+                                    ? index < 3
+                                        ? selected == (place.name + place.address)
+                                            ? 'bg-orange-main'
+                                            : 'bg-orange-light'
+                                        : selected == (place.name + place.address)
+                                            ? 'bg-secondary'
+                                            : 'bg-default'
+                                    : selected == (place.name + place.address)
+                                        ? 'bg-secondary'
+                                        : 'bg-default'
+                            }`}
+                        >
+                          {/* Image Placeholder */}
+                          {/*<div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>*/}
                           
-                          <div className="flex items-center gap-1 mt-1">
-                            <p className="text-sm">{place.rating}</p>
-                            <StarRating rating={place.rating} />
-                            <p className="text-sm text-secondary">(36)</p>
+                          {/* Content */}
+                          <div className="flex flex-col justify-between">
+                            <div>
+                              <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                              
+                              <div className="flex items-center gap-1 mt-1">
+                                <p className="text-sm">{place.rating}</p>
+                                <StarRating rating={place.rating} />
+                                <p className="text-sm text-secondary">(36)</p>
+                              </div>
+                              
+                              <p className="text-sm mt-1 text-secondary">
+                                {place.address}
+                              </p>
+                            </div>
+                            
+                            <div className="flex items-center gap-2 text-sm mt-2">
+                              <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
+                              <span>·</span>
+                              <span>Closes 10PM</span>
+                            </div>
                           </div>
-                          
-                          <p className="text-sm mt-1 text-secondary">
-                            {place.address}
-                          </p>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-sm mt-2">
-                          <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
-                          <span>·</span>
-                          <span>Closes 10PM</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-              ))}
+                  ))}
+                </div>
               </motion.div>
           ) : (
               <motion.div
