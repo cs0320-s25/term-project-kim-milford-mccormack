@@ -1,12 +1,16 @@
 'use client';
 
 import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Link from 'next/link';
+import {doc, setDoc, getDoc, updateDoc} from 'firebase/firestore';
+import { db } from './firebase/firebaseUtils';
+
+
 
 export default function ProfilePage() {
   const { user } = useUser();
-
+  const [loading, setLoading] = useState(true);
   const [quiet, setNoiseLevel] = useState(3);
   const [indoorOutdoor, setIndoorOutdoor] = useState(3);
   const [cozy, setCozy] = useState(3);
@@ -18,7 +22,13 @@ export default function ProfilePage() {
   const [busy, setBusy] = useState(3);
   const [hasFood, setHasFood] = useState(3);
   const [hasDrinks, setHasDrinks] = useState(3);
-  const [searchRadius, setSearchRadius] = useState(500);
+  const [searchRadiusLevel, setSearchRadiusLevel] = useState(1);
+  const radiusMap = {
+    1: '0.5km',
+    2: '1km',
+    3: '1.5km',
+    4: '2km'
+  };
   const [optOutList, setOptOutList] = useState([
     'Example 1 hardcode',
     'Example 2 hardcode',
@@ -33,6 +43,99 @@ export default function ProfilePage() {
     type: 'favorite' | 'optOut';
     location: string;
   } | null>(null);
+
+  const removeItem = async (listType: string, item: string) => {
+    // Remove from list
+    if (listType === 'favorite') {
+      setFavoriteList(favoriteList.filter(fav => fav !== item));
+    } else {
+      setOptOutList(optOutList.filter(optOut => optOut !== item));
+    }
+    await saveUserPreferences();
+  };
+
+
+  const saveUserPreferences = async () => {
+    if (!user) return;
+    const userDocRef = doc(db, 'users', user.id);
+    await updateDoc(userDocRef, {
+      quiet,
+      indoorOutdoor,
+      cozy,
+      modern,
+      lightAndAiry,
+      academic,
+      industrial,
+      cowork,
+      busy,
+      hasFood,
+      hasDrinks,
+      searchRadiusLevel,
+      favoriteList,
+      optOutList,
+    });
+    const docRef = doc(db, 'users', user.id);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data();
+    console.log('Loaded data:', data);
+  };
+
+
+  useEffect(() => {
+    if (!user) return;
+
+    const loadData = async () => {
+      const docRef = doc(db, 'users', user.id);
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          console.log('Loaded data:', data); // Check the loaded data
+
+          // Apply the defaults if any values are missing or null
+          setNoiseLevel(data.quiet ?? 3);
+          setIndoorOutdoor(data.indoorOutdoor ?? 3);
+          setCozy(data.cozy ?? 3);
+          setModern(data.modern ?? 3);
+          setLightAndAiry(data.lightAndAiry ?? 3);
+          setAcademic(data.academic ?? 3);
+          setIndustrial(data.industrial ?? 3);
+          setCowork(data.cowork ?? 3);
+          setBusy(data.busy ?? 3);
+          setHasFood(data.hasFood ?? 3);
+          setHasDrinks(data.hasDrinks ?? 3);
+          setSearchRadiusLevel(data.searchRadiusLevel ?? 1);
+          setFavoriteList(data.favoriteList ?? ['hardcode ex']);
+          setOptOutList(data.optOutList ?? ['hardcode ex']);
+        } else {
+          // Handle the case where no data exists
+          console.log('No preferences found for this user. Using default values.');
+
+          // Apply default values in case no data is found
+          setNoiseLevel(3);
+          setIndoorOutdoor(3);
+          setCozy(3);
+          setModern(3);
+          setLightAndAiry(3);
+          setAcademic(3);
+          setIndustrial(3);
+          setCowork(3);
+          setBusy(3);
+          setHasFood(3);
+          setHasDrinks(3);
+          setSearchRadiusLevel(1);
+          setFavoriteList([]);
+          setOptOutList([]);
+        }
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
+    };
+
+    loadData();
+  }, [user]);
+
+
 
   return (
       <div className="p-8 max-w-xl mx-auto relative">
@@ -93,32 +196,28 @@ export default function ProfilePage() {
                   </div>
               ))}
 
-            <div className="space-y-6">
-              {[
-                { label: 'Search radius', state: searchRadius, setter: setSearchRadius },
-              ].map(({ label, state, setter }) => (
-                  <div key={label}>
-                    <label className="block font-medium mb-1">{label}</label>
-                    <input
-                        type="range"
-                        min={1}
-                        max={3}
-                        step={1}
-                        value={state}
-                        onChange={(e) => setter(Number(e.target.value))}
-                        className="w-full accent-gray-500"
-                    />
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
-                      <span>250m</span>
-                      <span>500m</span>
-                      <span>1km</span>
-                    </div>
+              <div className="space-y-6">
+                <div>
+                  <label className="block font-medium mb-1">Search radius</label>
+                  <input
+                      type="range"
+                      min={1}
+                      max={4}
+                      step={1}
+                      value={searchRadiusLevel}
+                      onChange={(e) => setSearchRadiusLevel(Number(e.target.value))}
+                      className="w-full accent-pink-500"
+                  />
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>.5km</span>
+                    <span>1km</span>
+                    <span>1.5km</span>
+                    <span>2km</span>
                   </div>
-              ))}
-            </div>
 
+                </div>
             </div>
-
+            </div>
 
           </div>
 
@@ -133,14 +232,7 @@ export default function ProfilePage() {
               View Favorited / Opted-Out Locations
             </button>
 
-            <button
-                onClick={() => {
-                  // takes user back to the map page -> asks them to select a keyword(s), or simply search with their preferences.
-                }}
-                className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-700 transition"
-            >
-              Set My Preferences and Search!
-            </button>
+
 
             <button
                 onClick={() => {
@@ -155,11 +247,21 @@ export default function ProfilePage() {
                   setCowork(3)
                   setHasDrinks(3);
                   setHasFood(3);
-                  setSearchRadius(500);
+                  setSearchRadiusLevel(1);
                 }}
                 className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700 transition"
             >
-              Reset My Preferences
+              Reset My Preferences to Default
+            </button>
+
+            <button
+                onClick={async () => {
+                  await saveUserPreferences();
+                  // maybe redirect or notify
+                }}
+                className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-700 transition"
+            >
+              Set My Preferences!
             </button>
 
 
@@ -184,51 +286,29 @@ export default function ProfilePage() {
 
                   <h2 className="text-2xl font-bold mb-4">Your Lists</h2>
 
-                  <div className="mb-4">
-                    <h3 className="font-semibold">Favorites:</h3>
-                    {favoriteList.length === 0 ? (
-                        <p className="text-sm text-gray-500">No favorites yet.</p>
+                  <div>
+                    <h3 className="text-lg font-bold mb-2">Favorites</h3>
+                    {favoriteList.length > 0 ? (
+                        favoriteList.map(item => (
+                            <div key={item} className="flex justify-between items-center mb-1">
+                              <span>{item}</span>
+                              <button onClick={() => removeItem('favorite', item)} className="text-red-500">Remove</button>
+                            </div>
+                        ))
                     ) : (
-                        <ul className="list-disc pl-5">
-                          {favoriteList.map((loc, idx) => (
-                              <li key={idx} className="flex justify-between items-center">
-                                {loc}
-                                <button
-                                    onClick={() => {
-                                      setLastRemoved({ type: 'favorite', location: loc });
-                                      setFavoriteList(favoriteList.filter((_, i) => i !== idx));
-                                    }}
-                                    className="text-red-500 hover:text-red-700 text-sm"
-                                >
-                                  Remove
-                                </button>
-                              </li>
-                          ))}
-                        </ul>
+                        <p className="text-sm text-gray-500 italic">No favorites added.</p>
                     )}
-                  </div>
 
-                  <div className="mb-4">
-                    <h3 className="font-semibold">Opted-Out:</h3>
-                    {optOutList.length === 0 ? (
-                        <p className="text-sm text-gray-500">No opt-outs yet.</p>
+                    <h3 className="text-lg font-bold mt-4 mb-2">Opt-Out List</h3>
+                    {optOutList.length > 0 ? (
+                        optOutList.map(item => (
+                            <div key={item} className="flex justify-between items-center mb-1">
+                              <span>{item}</span>
+                              <button onClick={() => removeItem('optOut', item)} className="text-red-500">Remove</button>
+                            </div>
+                        ))
                     ) : (
-                        <ul className="list-disc pl-5">
-                          {optOutList.map((loc, idx) => (
-                              <li key={idx} className="flex justify-between items-center">
-                                {loc}
-                                <button
-                                    onClick={() => {
-                                      setLastRemoved({ type: 'optOut', location: loc });
-                                      setOptOutList(optOutList.filter((_, i) => i !== idx));
-                                    }}
-                                    className="text-red-500 hover:text-red-700 text-sm"
-                                >
-                                  Remove
-                                </button>
-                              </li>
-                          ))}
-                        </ul>
+                        <p className="text-sm text-gray-500 italic">No locations opted out.</p>
                     )}
                   </div>
 
@@ -243,8 +323,10 @@ export default function ProfilePage() {
                             onClick={() => {
                               if (lastRemoved.type === 'favorite') {
                                 setFavoriteList([...favoriteList, lastRemoved.location]);
+                                setOptOutList(optOutList.filter(loc => loc !== lastRemoved.location));
                               } else {
                                 setOptOutList([...optOutList, lastRemoved.location]);
+                                setFavoriteList(favoriteList.filter(loc => loc !== lastRemoved.location));
                               }
                               setLastRemoved(null);
                             }}
@@ -254,6 +336,7 @@ export default function ProfilePage() {
                         </button>
                       </div>
                   )}
+
                 </div>
               </div>
           )}
