@@ -17,7 +17,6 @@ public class Server {
     server.createContext("/places", new MockPlacesHandler());
     server.createContext("/mock-ranking", new MockRankingHandler());
 
-
     server.setExecutor(null);
     server.start();
     System.out.println("Server started on http://localhost:" + port + "/places");

@@ -1,11 +1,8 @@
 package src.handlers;
 
+import com.google.gson.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.google.gson.*;
-import models.Preference;
-import models.PreferencesRequest;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import models.Preference;
+import models.PreferencesRequest;
 
 public class MockRankingHandler implements HttpHandler {
   private final Gson gson = new Gson();
@@ -56,19 +55,16 @@ public class MockRankingHandler implements HttpHandler {
     }
   }
 
-  /**
-   * Same scoring/sorting helper as in RankingHandler.
-   */
+  /** Same scoring/sorting helper as in RankingHandler. */
   protected String rankEnriched(String enrichedJson, List<Preference> prefs) {
     JsonObject root = JsonParser.parseString(enrichedJson).getAsJsonObject();
-    JsonArray  input = root.getAsJsonArray("results");
+    JsonArray input = root.getAsJsonArray("results");
     List<JsonObject> scored = new ArrayList<>();
 
     for (JsonElement el : input) {
       JsonObject place = el.getAsJsonObject();
-      String desc = place.has("description")
-          ? place.get("description").getAsString().toLowerCase()
-          : "";
+      String desc =
+          place.has("description") ? place.get("description").getAsString().toLowerCase() : "";
       int score = 0;
       for (Preference p : prefs) {
         if (desc.contains(p.keyword.toLowerCase())) {
@@ -80,12 +76,13 @@ public class MockRankingHandler implements HttpHandler {
       scored.add(copy);
     }
 
-    scored.sort((a, b) -> {
-      int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
-      if (sA != sB) return Integer.compare(sB, sA);
-      double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
-      return Double.compare(rB, rA);
-    });
+    scored.sort(
+        (a, b) -> {
+          int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
+          if (sA != sB) return Integer.compare(sB, sA);
+          double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
+          return Double.compare(rB, rA);
+        });
 
     JsonArray outArr = new JsonArray();
     scored.forEach(outArr::add);
@@ -98,8 +95,8 @@ public class MockRankingHandler implements HttpHandler {
     return in.readAllBytes();
   }
 
-  private Map<String,String> parseQuery(String qs) {
-    Map<String,String> m = new HashMap<>();
+  private Map<String, String> parseQuery(String qs) {
+    Map<String, String> m = new HashMap<>();
     if (qs == null || qs.isEmpty()) return m;
     for (String pair : qs.split("&")) {
       String[] kv = pair.split("=", 2);
@@ -108,7 +105,8 @@ public class MockRankingHandler implements HttpHandler {
           String k = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);
           String v = URLDecoder.decode(kv[1], StandardCharsets.UTF_8);
           m.put(k, v);
-        } catch (IllegalArgumentException ignored) {}
+        } catch (IllegalArgumentException ignored) {
+        }
       }
     }
     return m;

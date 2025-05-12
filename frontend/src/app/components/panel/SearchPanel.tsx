@@ -33,7 +33,7 @@ const StarRating = ({ rating }: { rating: number }) => {
       <div className="flex items-center gap-1">
         {/* Full stars */}
         {[...Array(fullStars)].map((_, index) => (
-            <StarIcon key={`full-${index}`} className="h-5 w-5 star-yellow" />
+            <StarIcon key={`full-${index}`} className="h-5 w-5 icon-orange-main" />
         ))}
         
         {/* Half star */}
@@ -47,7 +47,7 @@ const StarRating = ({ rating }: { rating: number }) => {
                   className="absolute left-0 top-0 overflow-hidden"
                   style={{ width: '50%' }}
               >
-                <StarIcon className="h-5 w-5 star-yellow" />
+                <StarIcon className="h-5 w-5 icon-orange-main" />
               </div>
             </div>
         )}
@@ -77,9 +77,10 @@ type SearchPanelProps = {
   onCardClick?: (content: string) => void;
   onKeywordChange: (value: string) => void;
   places: ResType | undefined;
+  setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
 };
 
-const SearchPanel = ({ onCardClick, onKeywordChange, places }: SearchPanelProps) => {
+const SearchPanel = ({ onCardClick, onKeywordChange, places, setRenderMarker }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
@@ -126,6 +127,7 @@ const SearchPanel = ({ onCardClick, onKeywordChange, places }: SearchPanelProps)
                 <SearchBar
                     onFilter={filterSearch}
                     onKeywordChange={onKeywordChange}
+                    setRenderMarker={setRenderMarker}
                 />
                 {message && (
                     <div className="text-lg font-semibold text-primary px-4">

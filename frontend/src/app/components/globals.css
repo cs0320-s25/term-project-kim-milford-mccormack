@@ -58,6 +58,22 @@ body {
   background-color: var(--paper);
 }
 
+.bg-orange-main {
+  background-color: var(--secondary-main);
+}
+
+.bg-orange-main:hover {
+  background-color: var(--secondary-dark);
+}
+
+.bg-orange-light {
+  background-color: var(--secondary-light);
+}
+
+.bg-orange-dark {
+  background-color: var(--secondary-dark);
+}
+
 .text-primary {
   color: var(--text-primary);
 }

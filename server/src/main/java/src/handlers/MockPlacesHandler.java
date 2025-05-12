@@ -3,11 +3,10 @@ package src.handlers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.*;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.net.URI;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,10 +31,13 @@ public class MockPlacesHandler implements HttpHandler {
     String keyword = queryParams.get("keyword");
 
     // You can now use these parameters (lat, lng, radius, keyword) to load or filter mock data
-    String filePath = "server/src/test/TestingData/places_all_prov(radius=1000).json"; // Default mock data file path
+    String filePath =
+        "server/src/test/TestingData/places_all_prov(radius=1000).json"; // Default mock data file
+    // path
     System.out.println(filePath);
     if (keyword != null && !keyword.isEmpty()) {
-      // Modify file path based on the keyword, for example (this part can be customized based on your logic)
+      // Modify file path based on the keyword, for example (this part can be customized based on
+      // your logic)
       filePath = "server/src/test/TestingData/places_" + keyword + "(radius=" + radius + ").json";
       System.out.println(filePath);
     }

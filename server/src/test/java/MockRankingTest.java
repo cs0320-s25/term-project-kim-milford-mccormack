@@ -4,16 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.gson.*;
 import com.sun.net.httpserver.HttpServer;
-import models.Preference;
-import models.PreferencesRequest;
-import org.junit.jupiter.api.*;
-
-import src.handlers.MockRankingHandler;
-
 import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import models.Preference;
+import models.PreferencesRequest;
+import org.junit.jupiter.api.*;
+import src.handlers.MockRankingHandler;
 
 class MockRankingTest {
   private static HttpServer server;
@@ -44,9 +42,9 @@ class MockRankingTest {
 
     // build a minimal PreferencesRequest
     PreferencesRequest req = new PreferencesRequest();
-    req.lat = 41.0;     // ignored by mock
-    req.lng = -71.0;    // ignored by mock
-    req.radius = 1000;  // ignored by mock
+    req.lat = 41.0; // ignored by mock
+    req.lng = -71.0; // ignored by mock
+    req.radius = 1000; // ignored by mock
     req.preferences = prefs;
 
     String body = new Gson().toJson(req);
@@ -62,12 +60,11 @@ class MockRankingTest {
     try (InputStream is = conn.getInputStream();
         InputStreamReader rdr = new InputStreamReader(is, StandardCharsets.UTF_8)) {
 
-
-
       JsonObject root = JsonParser.parseReader(rdr).getAsJsonObject();
       // print JSON
-      System.out.println("MockRankingHandler returned:\n"
-          + new GsonBuilder().setPrettyPrinting().create().toJson(root));
+      System.out.println(
+          "MockRankingHandler returned:\n"
+              + new GsonBuilder().setPrettyPrinting().create().toJson(root));
       return root.getAsJsonArray("results");
     } finally {
       conn.disconnect();
@@ -80,23 +77,21 @@ class MockRankingTest {
 
     Preference p1 = new Preference();
     p1.keyword = "relaxed";
-    p1.weight  = 2;
+    p1.weight = 2;
     prefs.add(p1);
 
     Preference p2 = new Preference();
     p2.keyword = "specialty coffee";
-    p2.weight  = 4;
+    p2.weight = 4;
     prefs.add(p2);
 
     Preference p3 = new Preference();
     p3.keyword = "seafood";
-    p3.weight  = -5;
+    p3.weight = -5;
     prefs.add(p3);
 
-    JsonArray results = callMockRanking(
-        "src/test/TestingData/places_all_prov(radius=1000).json",
-        prefs
-    );
+    JsonArray results =
+        callMockRanking("src/test/TestingData/places_all_prov(radius=1000).json", prefs);
 
     assertTrue(results.size() >= 2, "Should rank at least two results");
 
@@ -117,28 +112,25 @@ class MockRankingTest {
 
     Preference p1 = new Preference();
     p1.keyword = "student";
-    p1.weight  = 2;
+    p1.weight = 2;
     prefs.add(p1);
 
     Preference p2 = new Preference();
     p2.keyword = "fountain";
-    p2.weight  = 2;
+    p2.weight = 2;
     prefs.add(p2);
 
     Preference p3 = new Preference();
     p3.keyword = "statue";
-    p3.weight  = 1;
+    p3.weight = 1;
     prefs.add(p3);
 
     Preference p4 = new Preference();
     p4.keyword = "bustling";
-    p4.weight  = -3;
+    p4.weight = -3;
     prefs.add(p4);
 
-    JsonArray results = callMockRanking(
-        "src/test/TestingData/places(park).json",
-        prefs
-    );
+    JsonArray results = callMockRanking("src/test/TestingData/places(park).json", prefs);
 
     assertTrue(results.size() >= 4, "Should rank at least four results");
 

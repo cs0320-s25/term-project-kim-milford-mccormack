@@ -1,19 +1,20 @@
 'use client'
 import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
-import {Dispatch, SetStateAction, useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 
 interface SearchBarProps {
-    onSearch?: () => void;
     onFilter?: () => void;
     onKeywordChange: (value: string) => void; //set query params
+    setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export default function SearchBar({ onFilter, onKeywordChange }: SearchBarProps) {
+export default function SearchBar({ onFilter, onKeywordChange, setRenderMarker }: SearchBarProps) {
     const [input, setInput] = useState<string>(''); // set text input
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             onKeywordChange(input);
+            setRenderMarker(true);
         }
     };
 

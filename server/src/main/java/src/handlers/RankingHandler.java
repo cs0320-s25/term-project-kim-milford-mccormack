@@ -1,17 +1,16 @@
 package src.handlers;
 
+import com.google.gson.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.google.gson.*;
-import models.Preference;
-import models.PreferencesRequest;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import models.Preference;
+import models.PreferencesRequest;
 
 public class RankingHandler implements HttpHandler {
   private final GooglePlacesClient client = new GooglePlacesClient();
@@ -31,45 +30,39 @@ public class RankingHandler implements HttpHandler {
     try {
       // 2) Fetch raw “nearby” results
       String rawNearby = client.searchNearbyAsJson(req.lat, req.lng, req.radius, null);
-      JsonArray nearby = JsonParser.parseString(rawNearby)
-          .getAsJsonObject()
-          .getAsJsonArray("results");
+      JsonArray nearby =
+          JsonParser.parseString(rawNearby).getAsJsonObject().getAsJsonArray("results");
 
       // 3) Enrich each place with details
       JsonArray enriched = new JsonArray();
       for (JsonElement elem : nearby) {
-        JsonObject base    = elem.getAsJsonObject();
-        String     placeId = base.get("place_id").getAsString();
+        JsonObject base = elem.getAsJsonObject();
+        String placeId = base.get("place_id").getAsString();
 
-        JsonObject details = JsonParser
-            .parseString(client.getPlaceDetailsAsJson(placeId))
-            .getAsJsonObject()
-            .getAsJsonObject("result");
+        JsonObject details =
+            JsonParser.parseString(client.getPlaceDetailsAsJson(placeId))
+                .getAsJsonObject()
+                .getAsJsonObject("result");
 
         JsonObject o = new JsonObject();
         o.addProperty("name", details.get("name").getAsString());
         if (details.has("vicinity")) {
           o.addProperty("address", details.get("vicinity").getAsString());
         }
-        o.add("location", details
-            .getAsJsonObject("geometry")
-            .getAsJsonObject("location")
-            .deepCopy());
-        o.addProperty("rating",
-            details.has("rating") ? details.get("rating").getAsDouble() : -1.0);
-        boolean openNow = details.has("opening_hours")
-            && details.getAsJsonObject("opening_hours").has("open_now")
-            && details.getAsJsonObject("opening_hours")
-            .get("open_now")
-            .getAsBoolean();
+        o.add(
+            "location", details.getAsJsonObject("geometry").getAsJsonObject("location").deepCopy());
+        o.addProperty("rating", details.has("rating") ? details.get("rating").getAsDouble() : -1.0);
+        boolean openNow =
+            details.has("opening_hours")
+                && details.getAsJsonObject("opening_hours").has("open_now")
+                && details.getAsJsonObject("opening_hours").get("open_now").getAsBoolean();
         o.addProperty("open_now", openNow);
 
-        String desc = details.has("editorial_summary")
-            && details.getAsJsonObject("editorial_summary").has("overview")
-            ? details.getAsJsonObject("editorial_summary")
-            .get("overview")
-            .getAsString()
-            : "No description available.";
+        String desc =
+            details.has("editorial_summary")
+                    && details.getAsJsonObject("editorial_summary").has("overview")
+                ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
+                : "No description available.";
         o.addProperty("description", desc);
 
         enriched.add(o);
@@ -102,19 +95,18 @@ public class RankingHandler implements HttpHandler {
   }
 
   /**
-   * Scores & sorts an already-enriched JSON string.
-   * Adds "score" to each place and orders by score desc, rating desc.
+   * Scores & sorts an already-enriched JSON string. Adds "score" to each place and orders by score
+   * desc, rating desc.
    */
   protected String rankEnriched(String enrichedJson, List<Preference> prefs) {
     JsonObject root = JsonParser.parseString(enrichedJson).getAsJsonObject();
-    JsonArray  input = root.getAsJsonArray("results");
+    JsonArray input = root.getAsJsonArray("results");
     List<JsonObject> scored = new ArrayList<>();
 
     for (JsonElement el : input) {
       JsonObject place = el.getAsJsonObject();
-      String desc = place.has("description")
-          ? place.get("description").getAsString().toLowerCase()
-          : "";
+      String desc =
+          place.has("description") ? place.get("description").getAsString().toLowerCase() : "";
       int score = 0;
       for (Preference p : prefs) {
         if (desc.contains(p.keyword.toLowerCase())) {
@@ -126,12 +118,13 @@ public class RankingHandler implements HttpHandler {
       scored.add(copy);
     }
 
-    scored.sort((a, b) -> {
-      int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
-      if (sA != sB) return Integer.compare(sB, sA);
-      double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
-      return Double.compare(rB, rA);
-    });
+    scored.sort(
+        (a, b) -> {
+          int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
+          if (sA != sB) return Integer.compare(sB, sA);
+          double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
+          return Double.compare(rB, rA);
+        });
 
     JsonArray outArr = new JsonArray();
     scored.forEach(outArr::add);

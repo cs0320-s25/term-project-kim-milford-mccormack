@@ -2,14 +2,32 @@ import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
+import render from "next/dist/compiled/@vercel/og/og";
+
+type PlacesType = {
+    name: string;
+    address: string;
+    location: {lat: number, lng: number};
+    rating: number;
+    open_now: boolean;
+    description: string;
+}
+
+type ResType = {
+    results: PlacesType[];
+}
 
 type mapProps = {
     setUserLocation: (lng: number, lat: number) => void;
+    renderMarker: boolean;
+    places: ResType | undefined;
 }
 
-const Map = ({setUserLocation} : mapProps) => {
+const Map = ({setUserLocation, renderMarker, places} : mapProps) => {
     const mapContainerRef = useRef<HTMLDivElement | null>(null);
     const map = useRef<mapboxgl.Map | null>(null);
+    const markersRef = useRef<mapboxgl.Marker[]>([]);
+    const [mapLoad, setMapLoad] = useState(false);
     
     // State to track if we are on the client (to prevent SSR hydration issues)
     const [isClient, setIsClient] = useState(false);
@@ -58,6 +76,7 @@ const Map = ({setUserLocation} : mapProps) => {
             map.current.on('load', () => {
                 if (!map.current) return;
                 
+                //get user's current location
                 geoLocateControl.trigger(); //trigger geoLocation by default
                 
                 map.current.flyTo({
@@ -66,24 +85,53 @@ const Map = ({setUserLocation} : mapProps) => {
                     zoom: 15,
                     essential: true, // Ensures animation isn't skipped
                 });
+                
+                const center = map.current.getCenter();
+                setUserLocation(center.lng, center.lat);
+                setMapLoad(true);
             });
 
             map.current.on('error', (e) => {
                 console.error('Mapbox error:', e);
                 setMapError('Error loading map');
+                setMapLoad(false);
             });
+            
+            // return () => {
+            //     if (map.current) {
+            //         map.current.remove();
+            //         // map.current = null;
+            //     }
+            // };
             
         } catch (error) {
             console.error('Error initializing map:', error);
             setMapError('Failed to initialize map');
+            setMapLoad(false);
         }
-        
-        return () => {
-            if (!map.current) return;
-            map.current.remove();
-        };
     }, [isClient, setUserLocation]);
     
+    useEffect(() => {
+    if (!mapLoad || !map.current || !renderMarker || !places?.results ) return;
+    
+    // Clear existing markers
+    markersRef.current.forEach(marker => marker.remove());
+    markersRef.current = [];
+    
+    //render marker
+    if (renderMarker) {
+        places?.results.forEach(place => {
+            if (!map.current) return;
+            
+            const marker = new mapboxgl.Marker()
+                .setLngLat([place.location.lng, place.location.lat])
+                .addTo(map.current)
+            
+            markersRef.current.push(marker)
+        })
+    }
+}, [mapLoad, renderMarker, places])
+
     if (!isClient) {
         return <div id="map" style={{ height: '100%' }}></div>;
     }

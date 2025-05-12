@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
 import Map from './components/Map';
 import SearchPanel from '@/app/components/panel/SearchPanel';
@@ -26,6 +26,7 @@ export default function Home() {
     const [userCenter, setUserCenter] = useState<{ lat: number, lng: number }>({lat: 0, lng: 0});
     const [radius, setRadius] = useState(1000);
     const [keyword, setKeyword] = useState('');
+    const [renderMarker, setRenderMarker] = useState(false);
     
     const setUserLocation = (lng: number, lat: number) => {
         setUserCenter({lng, lat});
@@ -40,12 +41,15 @@ export default function Home() {
                 lng: userCenter.lng.toString(),
                 radius: radius.toString(),
             });
-
-
+            
+            console.log(userCenter);
+            
             if (keyword) {
                 params.append('keyword', keyword);
             }
 
+            console.log(params.toString());
+            
             try {
                 const res = await fetch('/api/places?' + params.toString())
                 const data = await res.json();
@@ -58,9 +62,10 @@ export default function Home() {
         fetchPlaces();
     }, [userCenter, radius, keyword]);
     
-    useEffect(() => {
-        console.log(places);
-    }, [places]);
+    //debugging purpose
+    // useEffect(() => {
+    //     console.log(places);
+    // }, [places]);
 
     // Popup state
     const [showPopup, setShowPopup] = useState(false);
@@ -92,23 +97,31 @@ export default function Home() {
                             }}
                             onKeywordChange={onKeywordChange}
                             places={places}
+                            setRenderMarker={setRenderMarker}
                         />
                     </div>
 
             {/* Map */}
             <div className="w-2/3">
-                <Map setUserLocation={setUserLocation} />
+                <Map
+                    setUserLocation={setUserLocation}
+                    renderMarker={renderMarker}
+                    places={places}
+                />
             </div>
 
                 {/* Top-right buttons */}
-                <div className="absolute top-4 right-4 z-30 flex items-center gap-4">
+                <div
+                    className="group absolute top-4 right-4 z-30">
                     <Link
                         href="/profile"
-                        className="inline-block px-4 py-1 font-bold text-1xl bg-dark text-white rounded hover:bg-gray-700 transition"
+                        className="flex items-center bg-orange-light text-white
+                     font-bold text-1xl rounded justify-center gap-2 px-3 py-2 transition"
                     >
                         Profile
+                        <UserButton/>
                     </Link>
-                    <UserButton/>
+                    
                 </div>
 
                 {/* Popup floating on map */}
