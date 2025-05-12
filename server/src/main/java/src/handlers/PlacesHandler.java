@@ -98,7 +98,6 @@ public class PlacesHandler implements HttpHandler {
       JsonObject enrichedPlace = new JsonObject();
       enrichedPlace.addProperty("name", details.get("name").getAsString());
 
-
       if (details.has("price_level")) {
         enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
       } else {
@@ -130,9 +129,8 @@ public class PlacesHandler implements HttpHandler {
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
 
-      //enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
+      // enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
       enrichedPlace.addProperty("total_ratings", details.get("user_ratings_total").getAsInt());
-
 
       enrichedResults.add(enrichedPlace);
     }
