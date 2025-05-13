@@ -1,16 +1,15 @@
 'use client';
 
-import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
-import {useEffect, useState} from 'react';
+import { SignedIn, UserButton, useUser } from '@clerk/nextjs';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {doc, setDoc, getDoc, updateDoc} from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase/firebaseUtils';
-
-
 
 export default function ProfilePage() {
   const { user } = useUser();
   const [loading, setLoading] = useState(true);
+
   const [quiet, setNoiseLevel] = useState(3);
   const [indoorOutdoor, setIndoorOutdoor] = useState(3);
   const [cozy, setCozy] = useState(3);
@@ -23,16 +22,18 @@ export default function ProfilePage() {
   const [hasFood, setHasFood] = useState(3);
   const [hasDrinks, setHasDrinks] = useState(3);
   const [searchRadiusLevel, setSearchRadiusLevel] = useState(1);
+
   const radiusMap = {
     1: '0.5km',
     2: '1km',
     3: '1.5km',
     4: '2km'
   };
+
   const [optOutList, setOptOutList] = useState([
     'Example 1 hardcode',
     'Example 2 hardcode',
-      'Kevin'
+    'Kevin'
   ]);
   const [favoriteList, setFavoriteList] = useState([
     'Example 1 hardcode',
@@ -45,20 +46,20 @@ export default function ProfilePage() {
   } | null>(null);
 
   const removeItem = async (listType: string, item: string) => {
-    // Remove from list
     if (listType === 'favorite') {
-      setFavoriteList(favoriteList.filter(fav => fav !== item));
+      setFavoriteList((prev) => prev.filter(fav => fav !== item));
     } else {
-      setOptOutList(optOutList.filter(optOut => optOut !== item));
+      setOptOutList((prev) => prev.filter(optOut => optOut !== item));
     }
+    setLastRemoved({ type: listType as 'favorite' | 'optOut', location: item });
     await saveUserPreferences();
   };
 
-
   const saveUserPreferences = async () => {
     if (!user) return;
+
     const userDocRef = doc(db, 'users', user.id);
-    await updateDoc(userDocRef, {
+    const preferences = {
       quiet,
       indoorOutdoor,
       cozy,
@@ -73,13 +74,20 @@ export default function ProfilePage() {
       searchRadiusLevel,
       favoriteList,
       optOutList,
-    });
-    const docRef = doc(db, 'users', user.id);
-    const docSnap = await getDoc(docRef);
-    const data = docSnap.data();
-    console.log('Loaded data:', data);
-  };
+    };
 
+    try {
+      const docSnap = await getDoc(userDocRef);
+      if (docSnap.exists()) {
+        await updateDoc(userDocRef, preferences);
+      } else {
+        await setDoc(userDocRef, preferences);
+      }
+      console.log('Saved preferences for', user.id);
+    } catch (err) {
+      console.error('Error saving preferences:', err);
+    }
+  };
 
   useEffect(() => {
     if (!user) return;
@@ -90,9 +98,6 @@ export default function ProfilePage() {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const data = docSnap.data();
-          console.log('Loaded data:', data); // Check the loaded data
-
-          // Apply the defaults if any values are missing or null
           setNoiseLevel(data.quiet ?? 3);
           setIndoorOutdoor(data.indoorOutdoor ?? 3);
           setCozy(data.cozy ?? 3);
@@ -105,51 +110,34 @@ export default function ProfilePage() {
           setHasFood(data.hasFood ?? 3);
           setHasDrinks(data.hasDrinks ?? 3);
           setSearchRadiusLevel(data.searchRadiusLevel ?? 1);
-          setFavoriteList(data.favoriteList ?? ['hardcode ex']);
-          setOptOutList(data.optOutList ?? ['hardcode ex']);
+          setFavoriteList(data.favoriteList ?? []);
+          setOptOutList(data.optOutList ?? []);
+          console.log('Loaded data:', data);
         } else {
-          // Handle the case where no data exists
-          console.log('No preferences found for this user. Using default values.');
-
-          // Apply default values in case no data is found
-          setNoiseLevel(3);
-          setIndoorOutdoor(3);
-          setCozy(3);
-          setModern(3);
-          setLightAndAiry(3);
-          setAcademic(3);
-          setIndustrial(3);
-          setCowork(3);
-          setBusy(3);
-          setHasFood(3);
-          setHasDrinks(3);
-          setSearchRadiusLevel(1);
-          setFavoriteList([]);
-          setOptOutList([]);
+          console.log('No preferences yet — using defaults.');
         }
       } catch (error) {
         console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     loadData();
   }, [user]);
 
-
+  if (!user || loading) {
+    return <div className="text-center p-8">Loading your profile...</div>;
+  }
 
   return (
       <div className="p-8 max-w-xl mx-auto relative">
         <SignedIn>
           <div className="flex flex-col items-center">
             <h1 className="text-5xl font-extrabold text-center mb-6">LoFi Profile</h1>
-
             <UserButton
                 afterSignOutUrl="/"
-                appearance={{
-                  elements: {
-                    userButtonBox: "scale-150",
-                  },
-                }}
+                appearance={{ elements: { userButtonBox: 'scale-150' } }}
             />
           </div>
 
@@ -159,7 +147,6 @@ export default function ProfilePage() {
             </p>
           </div>
 
-          {/* Vibes */}
           <div className="mt-6">
             <p className="text-2xl font-bold mb-4">Set your preferences here!</p>
 
@@ -196,43 +183,34 @@ export default function ProfilePage() {
                   </div>
               ))}
 
-              <div className="space-y-6">
-                <div>
-                  <label className="block font-medium mb-1">Search radius</label>
-                  <input
-                      type="range"
-                      min={1}
-                      max={4}
-                      step={1}
-                      value={searchRadiusLevel}
-                      onChange={(e) => setSearchRadiusLevel(Number(e.target.value))}
-                      className="w-full accent-pink-500"
-                  />
-                  <div className="flex justify-between text-xs text-gray-500 mt-1">
-                    <span>.5km</span>
-                    <span>1km</span>
-                    <span>1.5km</span>
-                    <span>2km</span>
-                  </div>
-
+              <div>
+                <label className="block font-medium mb-1">Search radius</label>
+                <input
+                    type="range"
+                    min={1}
+                    max={4}
+                    step={1}
+                    value={searchRadiusLevel}
+                    onChange={(e) => setSearchRadiusLevel(Number(e.target.value))}
+                    className="w-full accent-gray-500"
+                />
+                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>.5km</span>
+                  <span>1km</span>
+                  <span>1.5km</span>
+                  <span>2km</span>
                 </div>
+              </div>
             </div>
-            </div>
-
           </div>
 
-
-          {/* Action Buttons */}
           <div className="flex flex-col items-center gap-2 mt-6">
-
             <button
                 onClick={() => setShowPopup(true)}
-                className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-700 transition"
+                className="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700 transition"
             >
               View Favorited / Opted-Out Locations
             </button>
-
-
 
             <button
                 onClick={() => {
@@ -244,36 +222,38 @@ export default function ProfilePage() {
                   setAcademic(3);
                   setIndustrial(3);
                   setBusy(3);
-                  setCowork(3)
+                  setCowork(3);
                   setHasDrinks(3);
                   setHasFood(3);
                   setSearchRadiusLevel(1);
                 }}
-                className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700 transition"
+                className="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700 transition"
             >
               Reset My Preferences to Default
             </button>
 
-            <button
+          </div>
+
+          <div className="flex flex-col items-center gap-5 mt-6">
+          <button
                 onClick={async () => {
                   await saveUserPreferences();
-                  // maybe redirect or notify
                 }}
-                className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-700 transition"
+                className="bg-teal-400 hover:bg-teal-700 text-white font-extrabold py-5 px-10 text-xl rounded-xl shadow-lg transition-all transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-teal-300"
             >
               Set My Preferences!
             </button>
+          </div>
 
-
+          <div className="flex flex-col items-center gap-2 mt-6">
             <Link
                 href="/"
-                className="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700 transition"
+                className="px-2 py-1 bg-indigo-500 text-sm text-white rounded hover:bg-indigo-700 transition"
             >
               ← Back to Map
             </Link>
           </div>
 
-          {/* Popup Modal */}
           {showPopup && (
               <div className="fixed inset-0 bg-gray bg-opacity-20 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded-lg w-[90%] max-w-md relative">
@@ -299,7 +279,7 @@ export default function ProfilePage() {
                         <p className="text-sm text-gray-500 italic">No favorites added.</p>
                     )}
 
-                    <h3 className="text-lg font-bold mt-4 mb-2">Opt-Out List</h3>
+                    <h3 className="text-lg font-bold mt-4 mb-2">Opt-Outs</h3>
                     {optOutList.length > 0 ? (
                         optOutList.map(item => (
                             <div key={item} className="flex justify-between items-center mb-1">
@@ -312,7 +292,6 @@ export default function ProfilePage() {
                     )}
                   </div>
 
-                  {/* Undo Section */}
                   {lastRemoved && (
                       <div className="mt-4 text-center">
                         <p className="mb-2 text-gray-700">
@@ -323,30 +302,21 @@ export default function ProfilePage() {
                             onClick={() => {
                               if (lastRemoved.type === 'favorite') {
                                 setFavoriteList([...favoriteList, lastRemoved.location]);
-                                setOptOutList(optOutList.filter(loc => loc !== lastRemoved.location));
                               } else {
                                 setOptOutList([...optOutList, lastRemoved.location]);
-                                setFavoriteList(favoriteList.filter(loc => loc !== lastRemoved.location));
                               }
                               setLastRemoved(null);
                             }}
-                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 transition"
                         >
                           Undo
                         </button>
                       </div>
                   )}
-
                 </div>
               </div>
           )}
         </SignedIn>
-
-        <SignedOut>
-          <div className="text-center mt-20">
-            <p>You must sign in to view your profile and access your preferences. Reload the page or restart the frontend/server.</p>
-          </div>
-        </SignedOut>
       </div>
   );
 }
