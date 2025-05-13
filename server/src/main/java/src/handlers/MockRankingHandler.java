@@ -46,7 +46,7 @@ public class MockRankingHandler implements HttpHandler {
       return;
     }
 
-    // Load the enriched JSON from disk
+    // Load the enriched JSON
     String enrichedJson;
     try {
       enrichedJson = Files.readString(Paths.get(filePath), StandardCharsets.UTF_8);
