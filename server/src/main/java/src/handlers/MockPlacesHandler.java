@@ -54,7 +54,7 @@ public class MockPlacesHandler implements HttpHandler {
         if (!kw.isBlank()) {
           Preference p = new Preference();
           p.keyword = kw;
-          p.weight  = 5;
+          p.weight = 5;
           prefs.add(p);
         }
       }
@@ -63,7 +63,6 @@ public class MockPlacesHandler implements HttpHandler {
     MockRankingHandler rankingHandler = new MockRankingHandler(filePath, keyword);
     String rankedJson = rankingHandler.rankEnriched(enrichedJson, prefs);
     byte[] resp = rankedJson.getBytes(StandardCharsets.UTF_8);
-
 
     // Send the JSON response
     exchange.getResponseHeaders().set("Content-Type", "application/json");

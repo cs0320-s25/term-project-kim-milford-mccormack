@@ -38,11 +38,12 @@ public class PlacesHandler implements HttpHandler {
 
     // 1) Parse query params: lat, lng, radius (default 500), keyword
     URI uri = exchange.getRequestURI();
-    Map<String,String> qp = parseQuery(uri.getRawQuery());
-    double lat    = Double.parseDouble(qp.getOrDefault("lat",    "41.8240"));
-    double lng    = Double.parseDouble(qp.getOrDefault("lng",    "-71.4128"));
-    int    radius = Integer.parseInt  (qp.getOrDefault("radius", "500"));    // ← default 500m :contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}
-    String keyword= qp.getOrDefault("keyword", "");
+    Map<String, String> qp = parseQuery(uri.getRawQuery());
+    double lat = Double.parseDouble(qp.getOrDefault("lat", "41.8240"));
+    double lng = Double.parseDouble(qp.getOrDefault("lng", "-71.4128"));
+    int radius = Integer.parseInt(qp.getOrDefault("radius", "500")); // ← default 500m
+    // :contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}
+    String keyword = qp.getOrDefault("keyword", "");
 
     try {
       // 2) ONE CALL: Nearby Search (filter by keyword if provided)
@@ -59,7 +60,7 @@ public class PlacesHandler implements HttpHandler {
         for (String kw : decoded.split("\\s+")) {
           Preference p = new Preference();
           p.keyword = kw;
-          p.weight  = 5;
+          p.weight = 5;
           req.preferences.add(p);
         }
       }
@@ -84,7 +85,6 @@ public class PlacesHandler implements HttpHandler {
       }
     }
   }
-
 
   private Map<String, String> parseQuery(String query) throws IOException {
     Map<String, String> params = new HashMap<>();
@@ -122,7 +122,6 @@ public class PlacesHandler implements HttpHandler {
       JsonObject enrichedPlace = new JsonObject();
       enrichedPlace.addProperty("name", details.get("name").getAsString());
 
-
       if (details.has("price_level")) {
         enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
       } else {
@@ -154,9 +153,8 @@ public class PlacesHandler implements HttpHandler {
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
 
-      //enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
+      // enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
       enrichedPlace.addProperty("total_ratings", details.get("user_ratings_total").getAsInt());
-
 
       enrichedResults.add(enrichedPlace);
     }

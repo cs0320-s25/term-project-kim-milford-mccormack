@@ -1,20 +1,19 @@
 package src.handlers;
 
+import com.google.gson.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.google.gson.*;
-import models.Preference;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import models.Preference;
 
 /**
- * A MockRankingHandler that scores & sorts a pre-enriched JSON file
- * using a fixed list of keywords (weight=5) provided at construction.
+ * A MockRankingHandler that scores & sorts a pre-enriched JSON file using a fixed list of keywords
+ * (weight=5) provided at construction.
  */
 public class MockRankingHandler implements HttpHandler {
   private final String filePath;
@@ -34,7 +33,7 @@ public class MockRankingHandler implements HttpHandler {
       for (String kw : keywords.split("\\s+")) {
         Preference p = new Preference();
         p.keyword = kw;
-        p.weight  = 5;
+        p.weight = 5;
         this.prefs.add(p);
       }
     }
@@ -75,19 +74,18 @@ public class MockRankingHandler implements HttpHandler {
   }
 
   /**
-   * Scores & sorts an already-enriched JSON string.
-   * Adds "score" to each entry and orders by score desc, then rating desc.
+   * Scores & sorts an already-enriched JSON string. Adds "score" to each entry and orders by score
+   * desc, then rating desc.
    */
   protected String rankEnriched(String enrichedJson, List<Preference> prefs) {
     JsonObject root = JsonParser.parseString(enrichedJson).getAsJsonObject();
-    JsonArray  input = root.getAsJsonArray("results");
+    JsonArray input = root.getAsJsonArray("results");
     List<JsonObject> scored = new ArrayList<>();
 
     for (JsonElement el : input) {
       JsonObject place = el.getAsJsonObject();
-      String desc = place.has("description")
-          ? place.get("description").getAsString().toLowerCase()
-          : "";
+      String desc =
+          place.has("description") ? place.get("description").getAsString().toLowerCase() : "";
       int score = 0;
       for (Preference p : prefs) {
         if (desc.contains(p.keyword.toLowerCase())) {
@@ -99,12 +97,13 @@ public class MockRankingHandler implements HttpHandler {
       scored.add(copy);
     }
 
-    scored.sort((a, b) -> {
-      int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
-      if (sA != sB) return Integer.compare(sB, sA);
-      double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
-      return Double.compare(rB, rA);
-    });
+    scored.sort(
+        (a, b) -> {
+          int sA = a.get("score").getAsInt(), sB = b.get("score").getAsInt();
+          if (sA != sB) return Integer.compare(sB, sA);
+          double rA = a.get("rating").getAsDouble(), rB = b.get("rating").getAsDouble();
+          return Double.compare(rB, rA);
+        });
 
     JsonArray outArr = new JsonArray();
     scored.forEach(outArr::add);

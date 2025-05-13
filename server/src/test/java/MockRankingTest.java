@@ -3,12 +3,12 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.gson.*;
-import org.junit.jupiter.api.Test;
-import java.nio.file.*;
-import java.nio.charset.StandardCharsets;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
 import java.util.*;
 import models.Preference;
+import org.junit.jupiter.api.Test;
 import src.handlers.MockRankingHandler;
 
 public class MockRankingTest {
@@ -19,35 +19,30 @@ public class MockRankingTest {
 
   @Test
   public void testRankingWithBreakfastKeyword() throws Exception {
-    String enrichedJson = loadTestData(
-        "src/test/TestingData/places_all_prov(radius=1000).json"
-    );
+    String enrichedJson = loadTestData("src/test/TestingData/places_all_prov(radius=1000).json");
 
     List<Preference> prefs = new ArrayList<>();
     Preference p1 = new Preference();
     p1.keyword = "relaxed";
-    p1.weight  = 2;
+    p1.weight = 2;
     Preference p2 = new Preference();
     p2.keyword = "specialty coffee";
-    p2.weight  = 4;
+    p2.weight = 4;
     Preference p3 = new Preference();
     p3.keyword = "seafood";
-    p3.weight  = -5;
+    p3.weight = -5;
     prefs.add(p1);
     prefs.add(p2);
     prefs.add(p3);
 
     // instantiate with dummy args so the constructor compiles
     MockRankingHandler handler = new MockRankingHandler("ignored.json", "");
-    Method m = MockRankingHandler.class
-        .getDeclaredMethod("rankEnriched", String.class, List.class);
+    Method m = MockRankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
 
     String resultJson = (String) m.invoke(handler, enrichedJson, prefs);
-    JsonArray results = JsonParser
-        .parseString(resultJson)
-        .getAsJsonObject()
-        .getAsJsonArray("results");
+    JsonArray results =
+        JsonParser.parseString(resultJson).getAsJsonObject().getAsJsonArray("results");
 
     assertTrue(results.size() >= 2, "Should rank at least two results");
 
@@ -59,50 +54,45 @@ public class MockRankingTest {
     assertEquals("Dune Brothers Seafood", last.get("name").getAsString());
     assertEquals(-5, last.get("score").getAsInt());
   }
-//
-//  @Test
-//  public void testParkRankingWithKeyword() throws Exception {
-//    String enrichedJson = loadTestData(
-//        "src/test/TestingData/places(park).json"
-//    );
-//
-//    List<Preference> prefs = new ArrayList<>();
-//    Preference p1 = new Preference();
-//    p1.keyword = "student";
-//    p1.weight  = 2;
-//    Preference p2 = new Preference();
-//    p2.keyword = "fountain";
-//    p2.weight  = 2;
-//    Preference p3 = new Preference();
-//    p3.keyword = "statue";
-//    p3.weight  = 1;
-//    Preference p4 = new Preference();
-//    p4.keyword = "Bustling";
-//    p4.weight  = -3;
-//    prefs.add(p1);
-//    prefs.add(p2);
-//    prefs.add(p3);
-//    prefs.add(p4);
-//
-//    MockRankingHandler handler = new MockRankingHandler("ignored.json", "");
-//    Method m = MockRankingHandler.class
-//        .getDeclaredMethod("rankEnriched", String.class, List.class);
-//    m.setAccessible(true);
-//
-//    String resultJson = (String) m.invoke(handler, enrichedJson, prefs);
-//    JsonArray results = JsonParser
-//        .parseString(resultJson)
-//        .getAsJsonObject()
-//        .getAsJsonArray("results");
-//
-//    assertTrue(results.size() >= 4, "Should rank at least four results");
-//
-//    JsonObject first = results.get(0).getAsJsonObject();
-//    assertEquals("Burnside Park", first.get("name").getAsString());
-//    assertEquals(3, first.get("score").getAsInt());
-//
-//    JsonObject last = results.get(results.size() - 1).getAsJsonObject();
-//    assertEquals("Main Green", last.get("name").getAsString());
-//    assertEquals(-1, last.get("score").getAsInt());
-//  }
+
+  @Test
+  public void testParkRankingWithKeyword() throws Exception {
+    String enrichedJson = loadTestData("src/test/TestingData/places_park(radius=1000).json");
+
+    List<Preference> prefs = new ArrayList<>();
+    Preference p1 = new Preference();
+    p1.keyword = "relax";
+    p1.weight = 2;
+    Preference p2 = new Preference();
+    p2.keyword = " walk";
+    p2.weight = 2;
+    Preference p3 = new Preference();
+    p3.keyword = "view";
+    p3.weight = 1;
+    Preference p4 = new Preference();
+    p4.keyword = "playground";
+    p4.weight = -5;
+    prefs.add(p1);
+    prefs.add(p2);
+    prefs.add(p3);
+    prefs.add(p4);
+
+    MockRankingHandler handler = new MockRankingHandler("ignored.json", "");
+    Method m = MockRankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
+    m.setAccessible(true);
+
+    String resultJson = (String) m.invoke(handler, enrichedJson, prefs);
+    JsonArray results =
+        JsonParser.parseString(resultJson).getAsJsonObject().getAsJsonArray("results");
+
+    assertTrue(results.size() >= 4, "Should rank at least four results");
+
+    JsonObject first = results.get(0).getAsJsonObject();
+    assertEquals("Michael S. Van Leesten Memorial Bridge", first.get("name").getAsString());
+    assertEquals(3, first.get("score").getAsInt());
+
+    JsonObject last = results.get(results.size() - 1).getAsJsonObject();
+    assertEquals("Brandon's Beach", last.get("name").getAsString());
+    assertEquals(-5, last.get("score").getAsInt());
+  }
 }
