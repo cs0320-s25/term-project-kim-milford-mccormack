@@ -125,8 +125,29 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
     );
   };
 
-  
-  
+  // Function to filter and sort places based on selected categories
+  const getFilteredAndSortedPlaces = () => {
+    if (!places?.results) return [];
+    
+    let filteredPlaces = [...places.results];
+    
+    // Filter by selected categories if any are selected
+    if (selectedPlaces.length > 0) {
+      filteredPlaces = filteredPlaces.filter(place => {
+        // Check if the place name or description contains any of the selected category keywords
+        const placeText = (place.name + ' ' + place.description).toLowerCase();
+        return selectedPlaces.some(category => {
+          // Remove emoji and convert to lowercase for comparison
+          const categoryKeyword = category.replace(/[^\w\s]/g, '').toLowerCase();
+          return placeText.includes(categoryKeyword);
+        });
+      });
+    }
+    
+    // Sort by rating (highest first)
+    return filteredPlaces.sort((a, b) => b.rating - a.rating);
+  };
+
   return (
       <div className="flex flex-col h-full w-full overflow-auto bg-default">
         <AnimatePresence mode="sync">
@@ -152,7 +173,7 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
 
                 {/* recommendation */}
                 <div className="flex flex-col gap-3 p-4">
-                  <p className="font-semibold">Places</p>
+                  <p className="font-semibold">Do you want..?</p>
                   <div className="flex flex-wrap gap-2">
                     {randomFivePlaces.map((place) => (
                         <ToggleButton
@@ -190,7 +211,7 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
                 
                 <div className={"flex flex-col"}>
                 {/*Card*/}
-                    {places?.results.map((place, index) => (
+                    {getFilteredAndSortedPlaces().map((place, index) => (
                       <div key={place.name + place.address} className="relative w-full max-w-md">
                         <div
                             onClick={() => togglePopup(place.name + place.address)}

@@ -1,7 +1,7 @@
 'use client'
 import {ArrowLeftIcon} from '@heroicons/react/24/outline'
 import {Button, ButtonGroup, ToggleButton, ToggleButtonGroup} from "@mui/material";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {CheckIcon} from "@heroicons/react/16/solid";
 import {placesCategories} from "@/lib/constants"
 
@@ -9,19 +9,35 @@ const ratings = ['1.0', '2.0', '3.0', '4.0', '5.0'];
 
 interface FilterPanelProps {
     setShowFilterPanel: (value: boolean) => void;
+    onFilterChange: (filters: {
+        price: string;
+        ratings: string[];
+        hours: string;
+        places: string[];
+    }) => void;
 }
 
-export default function FilterPanel({ setShowFilterPanel }: FilterPanelProps) {
+export default function FilterPanel({ setShowFilterPanel, onFilterChange }: FilterPanelProps) {
     const [price, setPrice] = useState('');
     const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
     const [hours, setHours] = useState('');
     const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
 
+    // Update parent whenever any filter changes
+    useEffect(() => {
+        onFilterChange({
+            price,
+            ratings: selectedRatings,
+            hours,
+            places: selectedPlaces
+        });
+    }, [price, selectedRatings, hours, selectedPlaces, onFilterChange]);
 
     const handleClear = () => {
         setPrice('');
         setSelectedRatings([]);
         setHours('');
+        setSelectedPlaces([]);
     }
 
     const handlePriceChange = (
