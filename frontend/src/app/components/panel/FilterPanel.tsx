@@ -9,7 +9,7 @@ const ratings = ['1.0', '2.0', '3.0', '4.0', '5.0'];
 
 interface FilterPanelProps {
     setShowFilterPanel: (value: boolean) => void;
-    onFilterChange: (filters: {
+    onFilterChange?: (filters: {
         price: string;
         ratings: string[];
         hours: string;
@@ -25,12 +25,14 @@ export default function FilterPanel({ setShowFilterPanel, onFilterChange }: Filt
 
     // Update parent whenever any filter changes
     useEffect(() => {
-        onFilterChange({
-            price,
-            ratings: selectedRatings,
-            hours,
-            places: selectedPlaces
-        });
+        if (onFilterChange) {
+            onFilterChange({
+                price,
+                ratings: selectedRatings,
+                hours,
+                places: selectedPlaces
+            });
+        }
     }, [price, selectedRatings, hours, selectedPlaces, onFilterChange]);
 
     const handleClear = () => {
