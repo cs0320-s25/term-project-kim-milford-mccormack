@@ -27,7 +27,10 @@ const StarRating = ({ rating }: { rating: number }) => {
   const fullStars = Math.floor(roundedRating); // Full stars (integer part)
   const hasHalfStar = roundedRating % 1 >= 0.5; // Check if there's a half star
   const emptyStars = 5 - Math.ceil(roundedRating); // Empty stars to complete the 5 stars
-  
+
+
+
+
   return (
       <div className="flex items-center gap-1">
         {/* Full stars */}
@@ -81,6 +84,7 @@ type SearchPanelProps = {
   setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
 };
 
+
 const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, renderMarker, setRenderMarker }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
@@ -128,9 +132,9 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
   // Function to filter and sort places based on selected categories
   const getFilteredAndSortedPlaces = () => {
     if (!places?.results) return [];
-    
+
     let filteredPlaces = [...places.results];
-    
+
     // Filter by selected categories if any are selected
     if (selectedPlaces.length > 0) {
       filteredPlaces = filteredPlaces.filter(place => {
@@ -143,7 +147,7 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
         });
       });
     }
-    
+
     // Sort by rating (highest first)
     return filteredPlaces.sort((a, b) => b.rating - a.rating);
   };
@@ -173,7 +177,7 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
 
                 {/* recommendation */}
                 <div className="flex flex-col gap-3 p-4">
-                  <p className="font-semibold">Do you want..?</p>
+                  <p className="font-semibold">What kind of space would you like today?</p>
                   <div className="flex flex-wrap gap-2">
                     {randomFivePlaces.map((place) => (
                         <ToggleButton
@@ -231,23 +235,23 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
                         >
                           {/* Image Placeholder */}
                           {/*<div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>*/}
-                          
+
                           {/* Content */}
                           <div className="flex flex-col justify-between">
                             <div>
                               <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
-                              
+
                               <div className="flex items-center gap-1 mt-1">
                                 <p className="text-sm">{place.rating}</p>
                                 <StarRating rating={place.rating} />
                                 <p className="text-sm text-secondary">(36)</p>
                               </div>
-                              
+
                               <p className="text-sm mt-1 text-secondary">
                                 {place.address}
                               </p>
                             </div>
-                            
+
                             <div className="flex items-center gap-2 text-sm mt-2">
                               <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
                               <span>·</span>

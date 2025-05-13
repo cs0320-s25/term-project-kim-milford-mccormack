@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase/firebaseUtils';
+import SearchPanel from "@/app/components/panel/SearchPanel";
 
 export default function ProfilePage() {
   const { user } = useUser();
   const [loading, setLoading] = useState(true);
-
   const [quiet, setNoiseLevel] = useState(3);
   const [indoorOutdoor, setIndoorOutdoor] = useState(3);
   const [cozy, setCozy] = useState(3);
@@ -22,6 +22,8 @@ export default function ProfilePage() {
   const [hasFood, setHasFood] = useState(3);
   const [hasDrinks, setHasDrinks] = useState(3);
   const [searchRadiusLevel, setSearchRadiusLevel] = useState(1);
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [optOuts, setOptOuts] = useState<string[]>([]);
 
   const radiusMap = {
     1: '0.5km',
@@ -54,6 +56,7 @@ export default function ProfilePage() {
     setLastRemoved({ type: listType as 'favorite' | 'optOut', location: item });
     await saveUserPreferences();
   };
+
 
   const saveUserPreferences = async () => {
     if (!user) return;
@@ -316,6 +319,7 @@ export default function ProfilePage() {
                 </div>
               </div>
           )}
+
         </SignedIn>
       </div>
   );

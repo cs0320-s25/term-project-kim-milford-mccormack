@@ -9,6 +9,7 @@ import {UserButton} from "@clerk/nextjs";
 import Link from "next/link";
 import PopupContent from "@/app/components/panel/ui-components/PopupContent";
 
+
 type PlacesType = {
     name: string;
     address: string;
@@ -93,6 +94,7 @@ export default function Home() {
                             places={places}
                             renderMarker={renderMarker}
                             setRenderMarker={setRenderMarker}
+
                         />
                     </div>
 
