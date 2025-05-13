@@ -7,6 +7,7 @@ import SearchPanel from '@/app/components/panel/SearchPanel';
 import {func} from "prop-types";
 import {UserButton} from "@clerk/nextjs";
 import Link from "next/link";
+import PopupContent from "@/app/components/panel/ui-components/PopupContent";
 
 type PlacesType = {
     name: string;
@@ -122,10 +123,9 @@ export default function Home() {
                 {showPopup && popupId && (
                     <div
                         className="absolute top-10 left-1/3 ml-6 w-64 p-4 bg-default rounded-lg shadow-lg z-20">
-                        <h3 className="font-semibold text-primary">Details</h3>
                         <p className="text-sm text-secondary">{places?.results.map((place) => (
                             (place.name + place.address) == popupId
-                                ? <span key={place.name}>{place.description}</span>
+                                ? <PopupContent places={places} popupId={popupId} />
                                 : null
                         ))}</p>
                     </div>

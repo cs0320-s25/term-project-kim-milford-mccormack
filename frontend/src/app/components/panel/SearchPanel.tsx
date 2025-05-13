@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useMemo, useEffect, Dispatch, SetStateAction} from "react";
+import React, {useState, useEffect, Dispatch, SetStateAction} from "react";
 import SearchBar from "@/app/components/panel/ui-components/SearchBar";
 import FilterPanel from "@/app/components/panel/FilterPanel";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,8 +8,6 @@ import {placesCategories} from "@/lib/constants";
 import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { StarIcon } from '@heroicons/react/20/solid';
-import { StarIcon as StarOutlineIcon} from '@heroicons/react/24/outline';
-import PopupContent from "@/app/components/panel/ui-components/PopupContent";
 
 const phrases = [
   "Top study spots coming right up 📚✨",
