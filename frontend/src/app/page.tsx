@@ -100,24 +100,21 @@ export default function Home() {
         loadUserPreferences();
     }, [user]);
 
-    // Save favorites and opt-outs to Firestore
-    const saveUserPreferences = async () => {
+    const saveUserPreferences = async (newFavorites: string[], newOptOuts: string[]) => {
         if (!user) return;
 
         const userDocRef = doc(db, 'users', user.id);
         try {
             const docSnap = await getDoc(userDocRef);
             if (docSnap.exists()) {
-                // Update existing document
                 await updateDoc(userDocRef, {
-                    favoriteList: favorites,
-                    optOutList: optOuts
+                    favoriteList: newFavorites,
+                    optOutList: newOptOuts
                 });
             } else {
-                // Create new document
                 await setDoc(userDocRef, {
-                    favoriteList: favorites,
-                    optOutList: optOuts
+                    favoriteList: newFavorites,
+                    optOutList: newOptOuts
                 });
             }
             console.log('Saved user preferences');
@@ -126,39 +123,44 @@ export default function Home() {
         }
     };
 
+
     const handleToggleFavorite = (placeId: string) => {
-        setFavorites(prevFavorites => {
-            const isFavorite = prevFavorites.includes(placeId);
-            const newFavorites = isFavorite
-                ? prevFavorites.filter(id => id !== placeId)
-                : [...prevFavorites, placeId];
+        let newFavorites: string[] = [];
+        let newOptOuts = [...optOuts];
 
-            if (!isFavorite) {
-                setOptOuts(prev => prev.filter(id => id !== placeId));
-            }
+        const isFavorite = favorites.includes(placeId);
 
-            setTimeout(() => saveUserPreferences(), 0);
-            return newFavorites;
-        });
+        if (isFavorite) {
+            newFavorites = favorites.filter(id => id !== placeId);
+        } else {
+            newFavorites = [...favorites, placeId];
+            newOptOuts = optOuts.filter(id => id !== placeId);
+        }
+
+        setFavorites(newFavorites);
+        setOptOuts(newOptOuts);
+        saveUserPreferences(newFavorites, newOptOuts);
     };
 
 
     const handleToggleOptOut = (placeId: string) => {
-        setOptOuts(prevOptOuts => {
-            const isOptedOut = prevOptOuts.includes(placeId);
-            const newOptOuts = isOptedOut
-                ? prevOptOuts.filter(id => id !== placeId)
-                : [...prevOptOuts, placeId];
+        let newOptOuts: string[] = [];
+        let newFavorites = [...favorites];
 
-            // Remove from favorites if opted out
-            if (!isOptedOut) {
-                setFavorites(prev => prev.filter(id => id !== placeId));
-            }
+        const isOptedOut = optOuts.includes(placeId);
 
-            setTimeout(() => saveUserPreferences(), 0);
-            return newOptOuts;
-        });
+        if (isOptedOut) {
+            newOptOuts = optOuts.filter(id => id !== placeId);
+        } else {
+            newOptOuts = [...optOuts, placeId];
+            newFavorites = favorites.filter(id => id !== placeId);
+        }
+
+        setOptOuts(newOptOuts);
+        setFavorites(newFavorites);
+        saveUserPreferences(newFavorites, newOptOuts);
     };
+
 
 
     function onKeywordChange(value: string) {

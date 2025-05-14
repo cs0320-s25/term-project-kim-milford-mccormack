@@ -8,6 +8,9 @@ import {placesCategories} from "@/lib/constants";
 import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { StarIcon, HeartIcon, EyeSlashIcon } from '@heroicons/react/20/solid';
+import {onSnapshot} from "@firebase/firestore";
+import {doc} from "firebase/firestore";
+import {db} from "@/app/profile/firebase/firebaseUtils";
 
 const phrases = [
   "Top study spots coming right up 📚✨",
@@ -139,6 +142,7 @@ const SearchPanel = ({
     );
   };
 
+
   // Function to filter and sort places based on selected categories
   const getFilteredAndSortedPlaces = () => {
     if (!places?.results) return [];
@@ -160,15 +164,15 @@ const SearchPanel = ({
 
     // Filter out any opted-out places
     filteredPlaces = filteredPlaces.filter(place => {
-      const placeId = place.name + place.address;
-      return !optOuts.includes(placeId);
+      //const placeId = place.name + place.address;
+      return !optOuts.includes(place.name);
     });
 
     // Sort by rating (highest first)
     return filteredPlaces.sort((a, b) => b.rating - a.rating);
   };
 
-  const handleFavoriteClick = (e: React.MouseEvent, placeId: string) => {
+  const handleFavoriteClick = (e: React.MouseEvent, placeId: string, ) => {
     e.stopPropagation();
     onToggleFavorite(placeId);
   };
@@ -208,7 +212,7 @@ const SearchPanel = ({
 
                 {/* recommendation */}
                 <div className="flex flex-col gap-3 p-4">
-                  <p className="font-semibold">What kind of space would you like today?</p>
+                  <p className="font-semibold">What kind of study/work space would you like today?</p>
                   <div className="flex flex-wrap gap-2">
                     {randomFivePlaces.map((place) => (
                         <ToggleButton
@@ -247,8 +251,7 @@ const SearchPanel = ({
                 <div className={"flex flex-col"}>
                   {/*Card*/}
                   {getFilteredAndSortedPlaces().map((place, index) => {
-                    const placeId = place.name;
-                    const placeName: string = place.name;
+                    const placeId = place.name + ', '+ place.address;
                     const isFavorite = favorites.includes(placeId);
                     const isOptOut: boolean = optOuts.includes(placeId);
 
@@ -281,7 +284,7 @@ const SearchPanel = ({
                                   <div className="flex space-x-2">
                                     {/* Favorite button */}
                                     <button
-                                        onClick={(e) => handleFavoriteClick(e, placeName)}
+                                        onClick={(e) => handleFavoriteClick(e, placeId)}
                                         className="p-1 rounded-full hover:bg-gray-200 transition-colors"
                                     >
                                       <HeartIcon
@@ -291,7 +294,7 @@ const SearchPanel = ({
 
                                     {/* Opt-out button */}
                                     <button
-                                        onClick={(e) => handleOptOutClick(e, placeName)}
+                                        onClick={(e) => handleOptOutClick(e, placeId)}
                                         className="p-1 rounded-full hover:bg-gray-200 transition-colors"
                                     >
                                       <EyeSlashIcon

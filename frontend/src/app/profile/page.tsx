@@ -76,20 +76,17 @@ export default function ProfilePage() {
       favoriteList,
       optOutList,
     };
-
     try {
       const docSnap = await getDoc(userDocRef);
       if (docSnap.exists()) {
-        // Update existing document
         await updateDoc(userDocRef, {
-          favoriteList: favorites,
-          optOutList: optOuts
+          favoriteList: favoriteList,
+          optOutList: optOutList
         });
       } else {
-        // Create new document
         await setDoc(userDocRef, {
-          favoriteList: favorites,
-          optOutList: optOuts
+          favoriteList: favoriteList,
+          optOutList: optOutList
         });
       }
       console.log('Saved user preferences');
@@ -97,6 +94,7 @@ export default function ProfilePage() {
       console.error('Error saving user preferences:', error);
     }
   };
+
 
   useEffect(() => {
     if (!user) return;
@@ -157,7 +155,8 @@ export default function ProfilePage() {
           </div>
 
           <div className="mt-6">
-            <p className="text-2xl font-bold mb-4">Set your preferences here!</p>
+            <p className="text-2xl font-bold mb-4">Set your preferences here! </p>
+            <p className={"text1xl mb-4 text-pink-700"}>Click <span className="font-bold">Set My Preferences</span> at the bottom when you're done!</p>
 
             <div className="space-y-6">
               {[
