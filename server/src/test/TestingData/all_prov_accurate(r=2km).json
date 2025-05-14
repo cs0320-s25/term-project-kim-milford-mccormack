@@ -1320,20 +1320,7 @@
       "total_ratings": 368,
       "score": 0
     },
-    {
-      "name": "Caffè Nero",
-      "price_level": 1,
-      "address": "75 Fountain Street, Providence",
-      "location": {
-        "lat": 41.8246763,
-        "lng": -71.4151374
-      },
-      "rating": 4.2,
-      "open_now": true,
-      "description": "Casual coffee shop with a menu of light dishes & specially blended hot & cold drinks.",
-      "total_ratings": 121,
-      "score": 0
-    },
+
     {
       "name": "Starbucks",
       "price_level": 2,
@@ -1614,20 +1601,7 @@
       "total_ratings": 505,
       "score": 0
     },
-    {
-      "name": "Tea In Sahara",
-      "price_level": 1,
-      "address": "69 Governor Street, Providence",
-      "location": {
-        "lat": 41.8224985,
-        "lng": -71.39379
-      },
-      "rating": 4.3,
-      "open_now": true,
-      "description": "Cozy, Moroccan-inspired cafe offering tea, coffee & homemade fare, including tajines & paninis.",
-      "total_ratings": 490,
-      "score": 0
-    },
+
     {
       "name": "Jahunger Providence",
       "price_level": 2,
