@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {placesCategories} from "@/lib/constants";
 import { ToggleButton } from "@mui/material";
 import { CheckIcon } from "@heroicons/react/16/solid";
-import { StarIcon } from '@heroicons/react/20/solid';
+import { StarIcon, HeartIcon, EyeSlashIcon } from '@heroicons/react/20/solid';
 
 const phrases = [
   "Top study spots coming right up 📚✨",
@@ -23,13 +23,10 @@ const phrases = [
 const StarRating = ({ rating }: { rating: number }) => {
   // Round to nearest half star
   const roundedRating = Math.round(rating * 2) / 2; // This rounds the rating to the nearest 0.5
-  
+
   const fullStars = Math.floor(roundedRating); // Full stars (integer part)
   const hasHalfStar = roundedRating % 1 >= 0.5; // Check if there's a half star
   const emptyStars = 5 - Math.ceil(roundedRating); // Empty stars to complete the 5 stars
-
-
-
 
   return (
       <div className="flex items-center gap-1">
@@ -37,13 +34,13 @@ const StarRating = ({ rating }: { rating: number }) => {
         {[...Array(fullStars)].map((_, index) => (
             <StarIcon key={`full-${index}`} className="h-5 w-5 icon-orange-main" />
         ))}
-        
+
         {/* Half star */}
         {hasHalfStar && (
             <div className="relative w-5 h-5">
               {/* Base: Gray star */}
               <StarIcon className="h-5 w-5 icon-grey-400 absolute left-0 top-0" />
-              
+
               {/* Overlay: Yellow left half */}
               <div
                   className="absolute left-0 top-0 overflow-hidden"
@@ -53,7 +50,7 @@ const StarRating = ({ rating }: { rating: number }) => {
               </div>
             </div>
         )}
-        
+
         {/* Empty stars */}
         {[...Array(emptyStars)].map((_, index) => (
             <StarIcon key={`empty-${index}`} className="h-5 w-5 icon-grey-400" />
@@ -62,7 +59,7 @@ const StarRating = ({ rating }: { rating: number }) => {
   );
 };
 
-type PlacesType = {
+export type PlacesType = {
   name: string;
   address: string;
   location: {lat: number, lng: number};
@@ -82,23 +79,36 @@ type SearchPanelProps = {
   places: ResType | undefined;
   renderMarker: boolean;
   setRenderMarker: React.Dispatch<SetStateAction<boolean>>;
+  favorites: string[];
+  optOuts: string[];
+  onToggleFavorite: (placeId: string) => void;
+  onToggleOptOut: (placeId: string) => void;
 };
 
 
-const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, renderMarker, setRenderMarker }: SearchPanelProps) => {
+const SearchPanel = ({
+                       setShowPopup,
+                       setPopupId,
+                       onKeywordChange,
+                       places,
+                       renderMarker,
+                       setRenderMarker,
+                       favorites,
+                       optOuts,
+                       onToggleFavorite,
+                       onToggleOptOut
+                     }: SearchPanelProps) => {
   const [message, setMessage] = useState("");
   const [showFilterPanel, setShowFilterPanel] = useState(false);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
   const [randomFivePlaces, setRandomFivePlaces] = useState<string[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
-  // const [showPopup, setShowPopup] = useState(false);
-  // const [popupId, setPopupId] = useState<string | null>(null);
-  
+
   const togglePopup = (cardId: string) => {
     if (selected == null) {
       setShowPopup(false);
     }
-    
+
     if (selected == cardId) {
       setShowPopup(true);
       setPopupId(cardId);
@@ -108,7 +118,7 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
       setPopupId(cardId);
     }
   }
-  
+
   useEffect(() => {
     const shuffled = [...placesCategories].sort(() => 0.5 - Math.random());
     setRandomFivePlaces(shuffled.slice(0, 5));
@@ -148,8 +158,24 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
       });
     }
 
+    // Filter out any opted-out places
+    filteredPlaces = filteredPlaces.filter(place => {
+      const placeId = place.name + place.address;
+      return !optOuts.includes(placeId);
+    });
+
     // Sort by rating (highest first)
     return filteredPlaces.sort((a, b) => b.rating - a.rating);
+  };
+
+  const handleFavoriteClick = (e: React.MouseEvent, placeId: string) => {
+    e.stopPropagation();
+    onToggleFavorite(placeId);
+  };
+
+  const handleOptOutClick = (e: React.MouseEvent, placeId: string) => {
+    e.stopPropagation();
+    onToggleOptOut(placeId);
   };
 
   return (
@@ -212,55 +238,85 @@ const SearchPanel = ({ setShowPopup, setPopupId, onKeywordChange, places, render
                     ))}
                   </div>
                 </div>
-                
+
                 <div className={"flex flex-col"}>
-                {/*Card*/}
-                    {getFilteredAndSortedPlaces().map((place, index) => (
-                      <div key={place.name + place.address} className="relative w-full max-w-md">
-                        <div
-                            onClick={() => togglePopup(place.name + place.address)}
-                            className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 border-b border-grey ${
-                                renderMarker
-                                    ? index < 3
-                                        ? selected == (place.name + place.address)
-                                            ? 'bg-orange-main'
-                                            : 'bg-orange-light'
-                                        : selected == (place.name + place.address)
-                                            ? 'bg-secondary'
-                                            : 'bg-default'
-                                    : selected == (place.name + place.address)
-                                        ? 'bg-secondary'
-                                        : 'bg-default'
-                            }`}
-                        >
-                          {/* Image Placeholder */}
-                          {/*<div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>*/}
+                  {/*Card*/}
+                  {getFilteredAndSortedPlaces().map((place, index) => {
+                    const placeId = place.name;
+                    const placeName: string = place.name;
+                    const isFavorite = favorites.includes(placeId);
+                    const isOptOut: boolean = optOuts.includes(placeId);
 
-                          {/* Content */}
-                          <div className="flex flex-col justify-between">
-                            <div>
-                              <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                    return (
+                        <div key={placeId} className="relative w-full max-w-md">
+                          <div
+                              onClick={() => togglePopup(placeId)}
+                              className={`cursor-pointer transition-colors duration-300 p-4 flex gap-4 border-b border-grey ${
+                                  renderMarker
+                                      ? index < 3
+                                          ? selected == placeId
+                                              ? 'bg-orange-main'
+                                              : 'bg-orange-light'
+                                          : selected == placeId
+                                              ? 'bg-secondary'
+                                              : 'bg-default'
+                                      : selected == placeId
+                                          ? 'bg-secondary'
+                                          : 'bg-default'
+                              }`}
+                          >
+                            {/* Image Placeholder */}
+                            {/*<div className="w-20 h-20 rounded-md bg-secondary flex-shrink-0"/>*/}
 
-                              <div className="flex items-center gap-1 mt-1">
-                                <p className="text-sm">{place.rating}</p>
-                                <StarRating rating={place.rating} />
-                                <p className="text-sm text-secondary">(36)</p>
+                            {/* Content */}
+                            <div className="flex flex-col justify-between w-full">
+                              <div>
+                                <div className="flex justify-between items-start">
+                                  <h2 className={`text-lg ${selected ? 'font-medium' : 'font-bold'}`}>{place.name}</h2>
+                                  <div className="flex space-x-2">
+                                    {/* Favorite button */}
+                                    <button
+                                        onClick={(e) => handleFavoriteClick(e, placeName)}
+                                        className="p-1 rounded-full hover:bg-gray-200 transition-colors"
+                                    >
+                                      <HeartIcon
+                                          className={`h-5 w-5 ${isFavorite ? 'text-red-500 fill-red-500' : 'text-gray-500'}`}
+                                      />
+                                    </button>
+
+                                    {/* Opt-out button */}
+                                    <button
+                                        onClick={(e) => handleOptOutClick(e, placeName)}
+                                        className="p-1 rounded-full hover:bg-gray-200 transition-colors"
+                                    >
+                                      <EyeSlashIcon
+                                          className={`h-5 w-5 ${isOptOut ? 'text-blue-500' : 'text-gray-500'}`}
+                                      />
+                                    </button>
+                                  </div>
+                                </div>
+
+                                <div className="flex items-center gap-1 mt-1">
+                                  <p className="text-sm">{place.rating}</p>
+                                  <StarRating rating={place.rating} />
+                                  <p className="text-sm text-secondary">(36)</p>
+                                </div>
+
+                                <p className="text-sm mt-1 text-secondary">
+                                  {place.address}
+                                </p>
                               </div>
 
-                              <p className="text-sm mt-1 text-secondary">
-                                {place.address}
-                              </p>
-                            </div>
-
-                            <div className="flex items-center gap-2 text-sm mt-2">
-                              <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
-                              <span>·</span>
-                              <span>Closes 10PM</span>
+                              <div className="flex items-center gap-2 text-sm mt-2">
+                                <span className="text-success font-medium">{place.open_now ? "Open" : "Closed"}</span>
+                                <span>·</span>
+                                <span>Closes 10PM</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </motion.div>
           ) : (

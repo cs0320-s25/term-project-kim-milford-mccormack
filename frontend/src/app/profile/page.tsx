@@ -24,14 +24,12 @@ export default function ProfilePage() {
   const [searchRadiusLevel, setSearchRadiusLevel] = useState(1);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [optOuts, setOptOuts] = useState<string[]>([]);
-
   const radiusMap = {
     1: '0.5km',
     2: '1km',
     3: '1.5km',
     4: '2km'
   };
-
   const [optOutList, setOptOutList] = useState([
     'Example 1 hardcode',
     'Example 2 hardcode',
@@ -82,13 +80,21 @@ export default function ProfilePage() {
     try {
       const docSnap = await getDoc(userDocRef);
       if (docSnap.exists()) {
-        await updateDoc(userDocRef, preferences);
+        // Update existing document
+        await updateDoc(userDocRef, {
+          favoriteList: favorites,
+          optOutList: optOuts
+        });
       } else {
-        await setDoc(userDocRef, preferences);
+        // Create new document
+        await setDoc(userDocRef, {
+          favoriteList: favorites,
+          optOutList: optOuts
+        });
       }
-      console.log('Saved preferences for', user.id);
-    } catch (err) {
-      console.error('Error saving preferences:', err);
+      console.log('Saved user preferences');
+    } catch (error) {
+      console.error('Error saving user preferences:', error);
     }
   };
 
@@ -274,7 +280,7 @@ export default function ProfilePage() {
                     {favoriteList.length > 0 ? (
                         favoriteList.map(item => (
                             <div key={item} className="flex justify-between items-center mb-1">
-                              <span>{item}</span>
+                              <span>{item.split(',')[0]}</span>
                               <button onClick={() => removeItem('favorite', item)} className="text-red-500">Remove</button>
                             </div>
                         ))
@@ -286,7 +292,7 @@ export default function ProfilePage() {
                     {optOutList.length > 0 ? (
                         optOutList.map(item => (
                             <div key={item} className="flex justify-between items-center mb-1">
-                              <span>{item}</span>
+                              <span>{item.split(',')[0]}</span>
                               <button onClick={() => removeItem('optOut', item)} className="text-red-500">Remove</button>
                             </div>
                         ))
