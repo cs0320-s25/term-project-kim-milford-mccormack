@@ -1,33 +1,50 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+"use client";
+
+import React, { useRef, useEffect } from "react";
 import "./components/globals.css";
-import {ClerkProvider, SignedIn} from '@clerk/nextjs';
-import { ReactNode } from 'react';
+import { ClerkProvider } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 import ThemeProviderWrapper from "./components/ThemeProviderWrapper";
 
-const inter = Inter({
-    weight: ["400", "500", "700"],
-    subsets: ["latin"],
-    variable: "--font-inter",
-});
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // 1️⃣ grab a ref to the main content
+  const mainRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
-export const metadata: Metadata = {
-    title: "Lo-Fi",
-    description: "Study Places Finder",
-};
+  useEffect(() => {
+    // 2️⃣ when route changes, move focus into <main>
+    if (mainRef.current) {
+      mainRef.current.focus();
+    }
+  }, [pathname]);
 
-export default function RootLayout({children,}: Readonly<{
-    children: React.ReactNode;
-}>) {
-    return (
-        <ClerkProvider>
-        <html lang="en">
-        <body className={`${inter.variable} antialiased`}>
-        <ThemeProviderWrapper>
-            {children}
-        </ThemeProviderWrapper>
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          {/* Skip-to-main link — hidden until focused */}
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+
+          <ThemeProviderWrapper>
+            {/* Make main programmatically focusable with tabIndex */}
+            <main
+              id="main-content"
+              ref={mainRef}
+              tabIndex={1}
+              role="region"
+              aria-label="Main content"
+            >
+              {children}
+            </main>
+          </ThemeProviderWrapper>
         </body>
-        </html>
-        </ClerkProvider>
-    );
+      </html>
+    </ClerkProvider>
+  );
 }
