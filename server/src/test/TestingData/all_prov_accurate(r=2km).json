@@ -1319,6 +1319,440 @@
       "description": "No description available.",
       "total_ratings": 2,
       "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "468 Angell Street, Providence",
+      "location": {
+        "lat": 41.830107,
+        "lng": -71.389082
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 368,
+      "score": 0
+    },
+    {
+      "name": "Caffè Nero",
+      "price_level": 1,
+      "address": "75 Fountain Street, Providence",
+      "location": {
+        "lat": 41.8246763,
+        "lng": -71.4151374
+      },
+      "rating": 4.2,
+      "open_now": true,
+      "description": "Casual coffee shop with a menu of light dishes & specially blended hot & cold drinks.",
+      "total_ratings": 121,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "635 North Main Street, Providence",
+      "location": {
+        "lat": 41.836507,
+        "lng": -71.409148
+      },
+      "rating": 4.1,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 776,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "59 Chestnut Street, Providence",
+      "location": {
+        "lat": 41.819297,
+        "lng": -71.4128984
+      },
+      "rating": 4.1,
+      "open_now": false,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 151,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "218 Thayer Street, Providence",
+      "location": {
+        "lat": 41.827537,
+        "lng": -71.400727
+      },
+      "rating": 4,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 370,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "1 Financial Plaza, Providence",
+      "location": {
+        "lat": 41.825365,
+        "lng": -71.4099758
+      },
+      "rating": 4,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 198,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "21 Atwells Avenue, Providence",
+      "location": {
+        "lat": 41.822834,
+        "lng": -71.418136
+      },
+      "rating": 3.9,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 154,
+      "score": 0
+    },
+    {
+      "name": "Dunkin'",
+      "price_level": 1,
+      "address": "14 Pleasant Valley Parkway, Providence",
+      "location": {
+        "lat": 41.8297084,
+        "lng": -71.4274515
+      },
+      "rating": 3.9,
+      "open_now": true,
+      "description": "Long-running chain serving signature breakfast items & a variety of coffee drinks.",
+      "total_ratings": 349,
+      "score": 0
+    },
+    {
+      "name": "Dunkin'",
+      "price_level": 1,
+      "address": "81 Washington Street, Providence",
+      "location": {
+        "lat": 41.8236656,
+        "lng": -71.4141969
+      },
+      "rating": 3.8,
+      "open_now": true,
+      "description": "Long-running chain serving signature breakfast items & a variety of coffee drinks.",
+      "total_ratings": 166,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "1 Providence Place, Providence",
+      "location": {
+        "lat": 41.8279969,
+        "lng": -71.4164211
+      },
+      "rating": 3.7,
+      "open_now": false,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 179,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": "price level unavailable",
+      "address": "5 Memorial Boulevard, Providence",
+      "location": {
+        "lat": 41.825782,
+        "lng": -71.4145974
+      },
+      "rating": 3.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 6,
+      "score": 0
+    },
+    {
+      "name": "Noodle Joy",
+      "price_level": "price level unavailable",
+      "address": "65 Bath Street, Providence",
+      "location": {
+        "lat": 41.8319312,
+        "lng": -71.4241075
+      },
+      "rating": 5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 2,
+      "score": 0
+    },
+    {
+      "name": "Daily stop mart",
+      "price_level": "price level unavailable",
+      "address": "163 Broadway, Providence",
+      "location": {
+        "lat": 41.8215091,
+        "lng": -71.422803
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 70,
+      "score": 0
+    },
+    {
+      "name": "Asian Bakery & Fast Food",
+      "price_level": 1,
+      "address": "310 Broad Street, Providence",
+      "location": {
+        "lat": 41.8145659,
+        "lng": -71.420931
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 305,
+      "score": 0
+    },
+    {
+      "name": "Golden Dessert & Cafe & Ice Cream",
+      "price_level": 1,
+      "address": "369 Douglas Avenue, Providence",
+      "location": {
+        "lat": 41.8406163,
+        "lng": -71.4268277
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 223,
+      "score": 0
+    },
+    {
+      "name": "Bubble Tea House",
+      "price_level": 1,
+      "address": "849 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8175445,
+        "lng": -71.4222036
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 608,
+      "score": 0
+    },
+    {
+      "name": "Rainbow Water",
+      "price_level": "price level unavailable",
+      "address": "328 Broad Street, Providence",
+      "location": {
+        "lat": 41.8141708,
+        "lng": -71.4211454
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 35,
+      "score": 0
+    },
+    {
+      "name": "Trader Joe's",
+      "price_level": "price level unavailable",
+      "address": "425 South Main Street, Providence",
+      "location": {
+        "lat": 41.8182514,
+        "lng": -71.4004822
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 716,
+      "score": 0
+    },
+    {
+      "name": "Y Maru Maru",
+      "price_level": "price level unavailable",
+      "address": "267 Broadway, Providence",
+      "location": {
+        "lat": 41.8206976,
+        "lng": -71.4264772
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 45,
+      "score": 0
+    },
+    {
+      "name": "Charuma Tea Bar",
+      "price_level": 1,
+      "address": "45 Weybosset Street, Providence",
+      "location": {
+        "lat": 41.8240363,
+        "lng": -71.4099403
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 124,
+      "score": 0
+    },
+    {
+      "name": "Ten One Tea House",
+      "price_level": 1,
+      "address": "216 Thayer Street, Providence",
+      "location": {
+        "lat": 41.8274743,
+        "lng": -71.4007519
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 169,
+      "score": 0
+    },
+    {
+      "name": "Kung Fu Tea",
+      "price_level": 1,
+      "address": "110 Waterman Street, Providence",
+      "location": {
+        "lat": 41.8275131,
+        "lng": -71.400002
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Bubble tea specialist with a selection of other hot & cold drinks, including coffee & slushes.",
+      "total_ratings": 505,
+      "score": 0
+    },
+    {
+      "name": "Tea In Sahara",
+      "price_level": 1,
+      "address": "69 Governor Street, Providence",
+      "location": {
+        "lat": 41.8224985,
+        "lng": -71.39379
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Cozy, Moroccan-inspired cafe offering tea, coffee & homemade fare, including tajines & paninis.",
+      "total_ratings": 490,
+      "score": 0
+    },
+    {
+      "name": "Jahunger Providence",
+      "price_level": 2,
+      "address": "333 Wickenden Street, Providence",
+      "location": {
+        "lat": 41.8194556,
+        "lng": -71.3964929
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Modest Chinese eatery preparing a straightforward menu of dumplings, noodles & stir-fries.",
+      "total_ratings": 423,
+      "score": 0
+    },
+    {
+      "name": "Vivi Bubble Tea",
+      "price_level": 1,
+      "address": "224 Thayer St Lower Level A2, Providence",
+      "location": {
+        "lat": 41.8277876,
+        "lng": -71.4007446
+      },
+      "rating": 4.1,
+      "open_now": true,
+      "description": "Bubble tea shop offering hot & cold versions, plus a variety of flavors & a simple snack menu.",
+      "total_ratings": 232,
+      "score": 0
+    },
+    {
+      "name": "Gong cha",
+      "price_level": 1,
+      "address": "35 Providence Place Unit 5400, Providence",
+      "location": {
+        "lat": 41.8268389,
+        "lng": -71.4162736
+      },
+      "rating": 3.9,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 44,
+      "score": 0
+    },
+    {
+      "name": "Tiger Sugar",
+      "price_level": 1,
+      "address": "288 Thayer Street, Providence",
+      "location": {
+        "lat": 41.8297886,
+        "lng": -71.4010736
+      },
+      "rating": 3.9,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 71,
+      "score": 0
+    },
+    {
+      "name": "Jade Tree Asian Bistro",
+      "price_level": 2,
+      "address": "220 Atwells Avenue, Providence",
+      "location": {
+        "lat": 41.8233826,
+        "lng": -71.4252892
+      },
+      "rating": 3.8,
+      "open_now": true,
+      "description": "Relaxed, contemporary bistro & bar serving sushi, dim sum, pad Thai & Chinese favorites.",
+      "total_ratings": 271,
+      "score": 0
+    },
+    {
+      "name": "Mocha",
+      "price_level": 2,
+      "address": "220A Atwells Avenue, Providence",
+      "location": {
+        "lat": 41.8233219,
+        "lng": -71.4253213
+      },
+      "rating": 3.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 25,
+      "score": 0
+    },
+    {
+      "name": "Oishi (Formerly Jade Tree)",
+      "price_level": 2,
+      "address": "220 Atwells Avenue, Providence",
+      "location": {
+        "lat": 41.8233219,
+        "lng": -71.4253213
+      },
+      "rating": 3.4,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 27,
+      "score": 0
+    },
+    {
+      "name": "Providence Kongdog",
+      "price_level": 2,
+      "address": "Providence Place, Providence",
+      "location": {
+        "lat": 41.8280854,
+        "lng": -71.4172268
+      },
+      "rating": 2.9,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 71,
+      "score": 0
     }
   ]
 }
