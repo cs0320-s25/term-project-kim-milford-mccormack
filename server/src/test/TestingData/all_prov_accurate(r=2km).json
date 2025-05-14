@@ -1,0 +1,1404 @@
+{
+  "results": [
+    {
+      "name": "Coffee Exchange",
+      "price_level": 2,
+      "address": "207 Wickenden Street, Providence",
+      "location": {
+        "lat": 41.819287,
+        "lng": -71.3990847
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Busy cafe roasting & serving fair trade, organic coffee on-site, plus herbal teas & outdoor seating.",
+      "total_ratings": 1225,
+      "score": 5
+    },
+    {
+      "name": "Den Den Café Asiana",
+      "price_level": 2,
+      "address": "161 Benefit Street, Providence",
+      "location": {
+        "lat": 41.8287699,
+        "lng": -71.4081182
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "A casual cafe counter serving Korean & Japanese favorites in roomy digs, plus wine & soju.",
+      "total_ratings": 1310,
+      "score": 5
+    },
+    {
+      "name": "L'Artisan Cafe & Bakery",
+      "price_level": 2,
+      "address": "9 Wayland Avenue, Providence",
+      "location": {
+        "lat": 41.8301217,
+        "lng": -71.3875015
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Roomy cafe offering an ample menu of panini, baked goods & espresso-based drinks.",
+      "total_ratings": 456,
+      "score": 5
+    },
+    {
+      "name": "Tea In Sahara",
+      "price_level": 1,
+      "address": "69 Governor Street, Providence",
+      "location": {
+        "lat": 41.8224985,
+        "lng": -71.39379
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Cozy, Moroccan-inspired cafe offering tea, coffee & homemade fare, including tajines & paninis.",
+      "total_ratings": 490,
+      "score": 5
+    },
+    {
+      "name": "The Coffee Cup",
+      "price_level": 1,
+      "address": "133 Providence Place Level 1, Providence",
+      "location": {
+        "lat": 41.8271857,
+        "lng": -71.4163826
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 127,
+      "score": 0
+    },
+    {
+      "name": "Aleppo Sweets",
+      "price_level": 1,
+      "address": "107 Ives Street, Providence",
+      "location": {
+        "lat": 41.821233,
+        "lng": -71.3917267
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 734,
+      "score": 0
+    },
+    {
+      "name": "Maxenita Café",
+      "price_level": "price level unavailable",
+      "address": "520 Cranston Street, Providence",
+      "location": {
+        "lat": 41.8091022,
+        "lng": -71.4337803
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 19,
+      "score": 0
+    },
+    {
+      "name": "The Landing Providence",
+      "price_level": "price level unavailable",
+      "address": "101 Dyer Street, Providence",
+      "location": {
+        "lat": 41.823711,
+        "lng": -71.4086437
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 41,
+      "score": 0
+    },
+    {
+      "name": "Zinneken's Belgian waffles | Providence",
+      "price_level": 1,
+      "address": "194 Angell Street, Providence",
+      "location": {
+        "lat": 41.8283586,
+        "lng": -71.400011
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 170,
+      "score": 0
+    },
+    {
+      "name": "Ellie's",
+      "price_level": 2,
+      "address": "250 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8227623,
+        "lng": -71.4127059
+      },
+      "rating": 4.6,
+      "open_now": false,
+      "description": "This snug, charming spot with patio seats offers French pastries, light fare & espresso drinks.",
+      "total_ratings": 634,
+      "score": 0
+    },
+    {
+      "name": "Plant City",
+      "price_level": 2,
+      "address": "334 South Water Street, Providence",
+      "location": {
+        "lat": 41.8207841,
+        "lng": -71.4041747
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Vegan food market featuring restaurants, bars, a bakery & a coffee shop, plus a grocery store.",
+      "total_ratings": 2655,
+      "score": 0
+    },
+    {
+      "name": "Bolt Coffee",
+      "price_level": 2,
+      "address": "61 Washington Street, Providence",
+      "location": {
+        "lat": 41.8239611,
+        "lng": -71.4137092
+      },
+      "rating": 4.5,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 198,
+      "score": 0
+    },
+    {
+      "name": "Sydney Providence",
+      "price_level": 2,
+      "address": "400 Exchange Street, Providence",
+      "location": {
+        "lat": 41.8278942,
+        "lng": -71.4130303
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Airy spot for breakfast & light lunches, plus a few to-go options, alongside espresso & tea drinks.",
+      "total_ratings": 470,
+      "score": 0
+    },
+    {
+      "name": "Starbucks",
+      "price_level": 2,
+      "address": "468 Angell Street, Providence",
+      "location": {
+        "lat": 41.830107,
+        "lng": -71.389082
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability.",
+      "total_ratings": 368,
+      "score": 0
+    },
+    {
+      "name": "Small Point Café",
+      "price_level": 2,
+      "address": "230 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8229526,
+        "lng": -71.4124369
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "Funky, eco-friendly stop for pastries & organic sandwiches, plus espresso drinks & cold brew coffee.",
+      "total_ratings": 696,
+      "score": 0
+    },
+    {
+      "name": "Cafe Italia",
+      "price_level": 2,
+      "address": "228 Atwells Avenue, Providence",
+      "location": {
+        "lat": 41.823379,
+        "lng": -71.4256083
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 185,
+      "score": 0
+    },
+    {
+      "name": "Bolt Coffee",
+      "price_level": 1,
+      "address": "224 Benefit St RISD Museum, Providence",
+      "location": {
+        "lat": 41.8268556,
+        "lng": -71.407608
+      },
+      "rating": 4.3,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 93,
+      "score": 0
+    },
+    {
+      "name": "Caffè Nero",
+      "price_level": 1,
+      "address": "75 Fountain Street, Providence",
+      "location": {
+        "lat": 41.8246763,
+        "lng": -71.4151374
+      },
+      "rating": 4.2,
+      "open_now": true,
+      "description": "Casual coffee shop with a menu of light dishes & specially blended hot & cold drinks.",
+      "total_ratings": 121,
+      "score": 0
+    },
+    {
+      "name": "Dunkin'",
+      "price_level": 1,
+      "address": "50 Admiral Street, North Providence",
+      "location": {
+        "lat": 41.8404964,
+        "lng": -71.419615
+      },
+      "rating": 4.1,
+      "open_now": true,
+      "description": "Long-running chain serving signature breakfast items & a variety of coffee drinks.",
+      "total_ratings": 863,
+      "score": 0
+    },
+    {
+      "name": "Terra Luna Providence",
+      "price_level": 2,
+      "address": "57 De Pasquale Avenue, Providence",
+      "location": {
+        "lat": 41.8242508,
+        "lng": -71.4270847
+      },
+      "rating": 3.9,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 818,
+      "score": 0
+    },
+    {
+      "name": "The Providence Athenaeum",
+      "price_level": "price level unavailable",
+      "address": "251 Benefit Street, Providence",
+      "location": {
+        "lat": 41.825788,
+        "lng": -71.406378
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "An 1838 Greek Revival building houses this historic lending library with rare books & local artwork.",
+      "total_ratings": 180,
+      "score": 5
+    },
+    {
+      "name": "Fleet Library at RISD",
+      "price_level": "price level unavailable",
+      "address": "15 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8253463,
+        "lng": -71.4094656
+      },
+      "rating": 5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 17,
+      "score": 0
+    },
+    {
+      "name": "Brown University Orwig Music Library",
+      "price_level": "price level unavailable",
+      "address": "1 Young Orchard Avenue, Providence",
+      "location": {
+        "lat": 41.8245827,
+        "lng": -71.3966864
+      },
+      "rating": 5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 6,
+      "score": 0
+    },
+    {
+      "name": "Johnson & Wales University Downcity Library",
+      "price_level": "price level unavailable",
+      "address": "111 Dorrance Street #2807, Providence",
+      "location": {
+        "lat": 41.8226394,
+        "lng": -71.4108276
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 9,
+      "score": 0
+    },
+    {
+      "name": "John Hay Library",
+      "price_level": "price level unavailable",
+      "address": "20 Prospect Street, Providence",
+      "location": {
+        "lat": 41.8264146,
+        "lng": -71.4049793
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 14,
+      "score": 0
+    },
+    {
+      "name": "John D. Rockefeller, Jr. Library",
+      "price_level": "price level unavailable",
+      "address": "10 Prospect Street, Providence",
+      "location": {
+        "lat": 41.8257007,
+        "lng": -71.4051436
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 40,
+      "score": 0
+    },
+    {
+      "name": "Community Libraries of Providence: Fox Point Library",
+      "price_level": "price level unavailable",
+      "address": "90 Ives Street, Providence",
+      "location": {
+        "lat": 41.8206648,
+        "lng": -71.3924792
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 18,
+      "score": 0
+    },
+    {
+      "name": "Rhode Island State Library",
+      "price_level": "price level unavailable",
+      "address": "82 Smith Street, Providence",
+      "location": {
+        "lat": 41.8310574,
+        "lng": -71.4149556
+      },
+      "rating": 4.6,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 5,
+      "score": 0
+    },
+    {
+      "name": "Providence Public Library",
+      "price_level": "price level unavailable",
+      "address": "150 Empire Street, Providence",
+      "location": {
+        "lat": 41.8218603,
+        "lng": -71.4171144
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 159,
+      "score": 0
+    },
+    {
+      "name": "Community Libraries of Providence: Knight Memorial Library",
+      "price_level": "price level unavailable",
+      "address": "275 Elmwood Avenue, Providence",
+      "location": {
+        "lat": 41.8050557,
+        "lng": -71.425958
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 57,
+      "score": 0
+    },
+    {
+      "name": "Brown University Sciences Library",
+      "price_level": "price level unavailable",
+      "address": "201 Thayer Street, Providence",
+      "location": {
+        "lat": 41.8269655,
+        "lng": -71.400167
+      },
+      "rating": 4.5,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 26,
+      "score": 0
+    },
+    {
+      "name": "Community Libraries of Providence: Smith Hill Library",
+      "price_level": "price level unavailable",
+      "address": "31 Candace Street, Providence",
+      "location": {
+        "lat": 41.8353701,
+        "lng": -71.4221938
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 24,
+      "score": 0
+    },
+    {
+      "name": "Red Ink Community Library",
+      "price_level": "price level unavailable",
+      "address": "130 Cypress Street, Providence",
+      "location": {
+        "lat": 41.8422611,
+        "lng": -71.4025863
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 25,
+      "score": 0
+    },
+    {
+      "name": "Phillips Memorial Library",
+      "price_level": "price level unavailable",
+      "address": "1 Cunningham Square, Providence",
+      "location": {
+        "lat": 41.8426722,
+        "lng": -71.4372782
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 7,
+      "score": 0
+    },
+    {
+      "name": "John Carter Brown Library",
+      "price_level": "price level unavailable",
+      "address": "94 George Street, Providence",
+      "location": {
+        "lat": 41.8255898,
+        "lng": -71.4023979
+      },
+      "rating": 4.3,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 7,
+      "score": 0
+    },
+    {
+      "name": "State Law Library",
+      "price_level": "price level unavailable",
+      "address": "250 Benefit Street, Providence",
+      "location": {
+        "lat": 41.8254908,
+        "lng": -71.4070873
+      },
+      "rating": 3.7,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 3,
+      "score": 0
+    },
+    {
+      "name": "The Yena Center",
+      "price_level": "price level unavailable",
+      "address": "95 Dorrance Street, Providence",
+      "location": {
+        "lat": 41.822563,
+        "lng": -71.4107299
+      },
+      "rating": 3.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 5,
+      "score": 0
+    },
+    {
+      "name": "Brown University Champlin Memorial Medical Private Library",
+      "price_level": "price level unavailable",
+      "address": "222 Richmond Street, Providence",
+      "location": {
+        "lat": 41.8188047,
+        "lng": -71.4085069
+      },
+      "rating": 1,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 1,
+      "score": 0
+    },
+    {
+      "name": "Mary Elizabeth Robinson Research Center",
+      "price_level": "price level unavailable",
+      "address": "121 Hope Street, Providence",
+      "location": {
+        "lat": 41.8230767,
+        "lng": -71.3966038
+      },
+      "rating": -1,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": -1,
+      "score": 0
+    },
+    {
+      "name": "Walter Jones Library",
+      "price_level": "price level unavailable",
+      "address": "62 Alumni Avenue, Providence",
+      "location": {
+        "lat": 41.8352483,
+        "lng": -71.3986766
+      },
+      "rating": -1,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": -1,
+      "score": 0
+    },
+    {
+      "name": "Prospect Terrace",
+      "price_level": "price level unavailable",
+      "address": "60 Congdon Street, Providence",
+      "location": {
+        "lat": 41.8298915,
+        "lng": -71.4072831
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Small, hilltop park has a monument to Roger Williams & choice views of the city skyline at dusk.",
+      "total_ratings": 1342,
+      "score": 5
+    },
+    {
+      "name": "Burnside Park",
+      "price_level": "price level unavailable",
+      "address": "40 Kennedy Plaza, Providence",
+      "location": {
+        "lat": 41.8254332,
+        "lng": -71.412141
+      },
+      "rating": 4.1,
+      "open_now": true,
+      "description": "Local park with a fountain & a statue of namesake Civil War general Ambrose Burnside atop a horse.",
+      "total_ratings": 518,
+      "score": 5
+    },
+    {
+      "name": "India Point Park",
+      "price_level": "price level unavailable",
+      "address": "225 India Street, Providence",
+      "location": {
+        "lat": 41.8182171,
+        "lng": -71.3938534
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 659,
+      "score": 0
+    },
+    {
+      "name": "Gladys Potter Park (Humboldt Park)",
+      "price_level": "price level unavailable",
+      "address": "92 Elton Street, Providence",
+      "location": {
+        "lat": 41.8326851,
+        "lng": -71.387107
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 133,
+      "score": 0
+    },
+    {
+      "name": "India Point Park",
+      "price_level": "price level unavailable",
+      "address": "201 India Street, Providence",
+      "location": {
+        "lat": 41.8174476,
+        "lng": -71.3903767
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Rolling hills, soccer fields & water views in this small green space accessible by pedestrian walk.",
+      "total_ratings": 2157,
+      "score": 0
+    },
+    {
+      "name": "Brown Street Park & Playground",
+      "price_level": "price level unavailable",
+      "address": "236 Brown Street, Providence",
+      "location": {
+        "lat": 41.8341888,
+        "lng": -71.4048888
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 150,
+      "score": 0
+    },
+    {
+      "name": "195 District Park",
+      "price_level": "price level unavailable",
+      "address": "195 District Park, Providence",
+      "location": {
+        "lat": 41.8203221,
+        "lng": -71.4071819
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 24,
+      "score": 0
+    },
+    {
+      "name": "Waterplace Park",
+      "price_level": "price level unavailable",
+      "address": "Memorial Boulevard, Providence",
+      "location": {
+        "lat": 41.8274486,
+        "lng": -71.4139414
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "A site for art installations & concerts, this riverside locale also adjoins downtown walking paths.",
+      "total_ratings": 1824,
+      "score": 0
+    },
+    {
+      "name": "Memorial Park",
+      "price_level": "price level unavailable",
+      "address": "South Main Street, Providence",
+      "location": {
+        "lat": 41.8247222,
+        "lng": -71.4075
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 565,
+      "score": 0
+    },
+    {
+      "name": "Gano Park",
+      "price_level": "price level unavailable",
+      "address": "87 Fremont Street, Providence",
+      "location": {
+        "lat": 41.8238018,
+        "lng": -71.3890538
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 90,
+      "score": 0
+    },
+    {
+      "name": "Peace & Plenty Park",
+      "price_level": "price level unavailable",
+      "address": "98 Peace Street, Providence",
+      "location": {
+        "lat": 41.8064273,
+        "lng": -71.4228956
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 84,
+      "score": 0
+    },
+    {
+      "name": "Billy Taylor Park",
+      "price_level": "price level unavailable",
+      "address": "124-144 Camp Street, Providence",
+      "location": {
+        "lat": 41.8420976,
+        "lng": -71.4029901
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 107,
+      "score": 0
+    },
+    {
+      "name": "Bucklin Park",
+      "price_level": "price level unavailable",
+      "address": "404 Dexter Street #378, Providence",
+      "location": {
+        "lat": 41.8048238,
+        "lng": -71.4294367
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 121,
+      "score": 0
+    },
+    {
+      "name": "Dexter Training Ground",
+      "price_level": "price level unavailable",
+      "address": "Parade St & Willow St, Providence",
+      "location": {
+        "lat": 41.814529,
+        "lng": -71.432159
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 448,
+      "score": 0
+    },
+    {
+      "name": "Pearl Street Park",
+      "price_level": "price level unavailable",
+      "address": "161 Pearl Street, Providence",
+      "location": {
+        "lat": 41.8126725,
+        "lng": -71.4166914
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 27,
+      "score": 0
+    },
+    {
+      "name": "Sessions Street Park",
+      "price_level": "price level unavailable",
+      "address": "154 Sessions Street, Providence",
+      "location": {
+        "lat": 41.8415716,
+        "lng": -71.3912694
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 24,
+      "score": 0
+    },
+    {
+      "name": "Father Lennon Park",
+      "price_level": "price level unavailable",
+      "address": "64 Camden Avenue, Providence",
+      "location": {
+        "lat": 41.8379273,
+        "lng": -71.4265187
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 22,
+      "score": 0
+    },
+    {
+      "name": "Conlan Junior Memorial Park",
+      "price_level": "price level unavailable",
+      "address": "225 Waverly Street, Providence",
+      "location": {
+        "lat": 41.809458,
+        "lng": -71.435367
+      },
+      "rating": 4.1,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 66,
+      "score": 0
+    },
+    {
+      "name": "Bold Point Park",
+      "price_level": "price level unavailable",
+      "address": "Private Road, East Providence",
+      "location": {
+        "lat": 41.8152276,
+        "lng": -71.3905163
+      },
+      "rating": 4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 69,
+      "score": 0
+    },
+    {
+      "name": "Major Park",
+      "price_level": "price level unavailable",
+      "address": "75 Ellery Street, Providence",
+      "location": {
+        "lat": 41.810886,
+        "lng": -71.438558
+      },
+      "rating": 3.7,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 20,
+      "score": 0
+    },
+    {
+      "name": "The Beatrice",
+      "price_level": "price level unavailable",
+      "address": "90 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8247943,
+        "lng": -71.4102758
+      },
+      "rating": 4.6,
+      "open_now": false,
+      "description": "Upscale hotel in a 19th-century bank building offering refined quarters, plus an Italian restaurant.",
+      "total_ratings": 89,
+      "score": 5
+    },
+    {
+      "name": "Hampton Inn & Suites Providence Downtown",
+      "price_level": "price level unavailable",
+      "address": "58 Weybosset Street, Providence",
+      "location": {
+        "lat": 41.8239122,
+        "lng": -71.40969
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "Refined hotel built in 1920 offering simple quarters, plus free hot breakfast & a local shuttle.",
+      "total_ratings": 853,
+      "score": 5
+    },
+    {
+      "name": "Hotel Providence",
+      "price_level": "price level unavailable",
+      "address": "139 Mathewson Street, Providence",
+      "location": {
+        "lat": 41.8224335,
+        "lng": -71.4140912
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Sophisticated hotel offering complimentary Wi-Fi, plus an upscale restaurant & bar.",
+      "total_ratings": 941,
+      "score": 5
+    },
+    {
+      "name": "Homewood Suites by Hilton Providence Downtown",
+      "price_level": "price level unavailable",
+      "address": "5 Exchange Street, Providence",
+      "location": {
+        "lat": 41.8265134,
+        "lng": -71.4114802
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "Relaxed hotel offering casual studios & suites with kitchens, plus a gym, a patio & free breakfast.",
+      "total_ratings": 515,
+      "score": 5
+    },
+    {
+      "name": "Aloft Providence Downtown",
+      "price_level": "price level unavailable",
+      "address": "191 Dorrance Street, Providence",
+      "location": {
+        "lat": 41.821456,
+        "lng": -71.408781
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "Modern rooms & suites in a casual hotel featuring 2 bars (1 rooftop), plus a fitness center.",
+      "total_ratings": 283,
+      "score": 5
+    },
+    {
+      "name": "Renaissance Providence Downtown Hotel",
+      "price_level": "price level unavailable",
+      "address": "5 Avenue of the Arts, Providence",
+      "location": {
+        "lat": 41.8299291,
+        "lng": -71.4166152
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "Refined hotel featuring a chic restaurant & a bar, plus a fitness center & meeting space.",
+      "total_ratings": 1158,
+      "score": 5
+    },
+    {
+      "name": "Graduate by Hilton Providence",
+      "price_level": "price level unavailable",
+      "address": "11 Dorrance Street, Providence",
+      "location": {
+        "lat": 41.8244264,
+        "lng": -71.4134618
+      },
+      "rating": 4.2,
+      "open_now": false,
+      "description": "This landmark 1920s hotel with a dramatic art deco lobby has stylish rooms, a spa & free WiFi.",
+      "total_ratings": 2212,
+      "score": 5
+    },
+    {
+      "name": "Omni Providence Hotel",
+      "price_level": "price level unavailable",
+      "address": "1 West Exchange Street, Providence",
+      "location": {
+        "lat": 41.8253235,
+        "lng": -71.415817
+      },
+      "rating": 4.2,
+      "open_now": true,
+      "description": "Upmarket hotel with an indoor pool & a gym, plus an Italian restaurant, a steakhouse & a cafe.",
+      "total_ratings": 3591,
+      "score": 5
+    },
+    {
+      "name": "Residence Inn Providence Downtown",
+      "price_level": "price level unavailable",
+      "address": "100 Sabin Street, Providence",
+      "location": {
+        "lat": 41.8236724,
+        "lng": -71.4165113
+      },
+      "rating": 4.2,
+      "open_now": false,
+      "description": "Simply decorated quarters in a relaxed hotel offering a restaurant & complimentary breakfast.",
+      "total_ratings": 343,
+      "score": 5
+    },
+    {
+      "name": "Courtyard Providence Downtown",
+      "price_level": "price level unavailable",
+      "address": "32 Exchange Terrace at, Memorial Boulevard, Providence",
+      "location": {
+        "lat": 41.8256647,
+        "lng": -71.4143736
+      },
+      "rating": 4.1,
+      "open_now": false,
+      "description": "Modern hotel with an exercise room & a casual American restaurant, plus free WiFi.",
+      "total_ratings": 1117,
+      "score": 5
+    },
+    {
+      "name": "Hotel Dolce Villa",
+      "price_level": "price level unavailable",
+      "address": "14 Crout Street, Providence",
+      "location": {
+        "lat": 41.8239063,
+        "lng": -71.4275639
+      },
+      "rating": 3.4,
+      "open_now": true,
+      "description": "Bright hotel offering suites with full kitchens & whirlpool tubs, plus free Wi-Fi & snacks.",
+      "total_ratings": 236,
+      "score": 5
+    },
+    {
+      "name": "The Underwood-Hale House",
+      "price_level": "price level unavailable",
+      "address": "137 Power Street, Providence",
+      "location": {
+        "lat": 41.8230583,
+        "lng": -71.3972333
+      },
+      "rating": 5,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 2,
+      "score": 0
+    },
+    {
+      "name": "Wedding Cake House",
+      "price_level": "price level unavailable",
+      "address": "514 Broadway, Providence",
+      "location": {
+        "lat": 41.8181524,
+        "lng": -71.4353121
+      },
+      "rating": 4.8,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 38,
+      "score": 0
+    },
+    {
+      "name": "The Dean Hotel",
+      "price_level": "price level unavailable",
+      "address": "122 Fountain Street, Providence",
+      "location": {
+        "lat": 41.8232508,
+        "lng": -71.4158891
+      },
+      "rating": 4.1,
+      "open_now": true,
+      "description": "Vintage-chic quarters with eclectic artwork, plus an eatery, a karaoke lounge & a cocktail bar.",
+      "total_ratings": 618,
+      "score": 0
+    },
+    {
+      "name": "Hilton Garden Inn Providence",
+      "price_level": "price level unavailable",
+      "address": "220 India Street, Providence",
+      "location": {
+        "lat": 41.8186492,
+        "lng": -71.3911279
+      },
+      "rating": 4.1,
+      "open_now": false,
+      "description": "Relaxed rooms & suites, some with river views, in an informal lodging with a restaurant/bar & a gym.",
+      "total_ratings": 980,
+      "score": 0
+    },
+    {
+      "name": "Providence Marriott Downtown",
+      "price_level": "price level unavailable",
+      "address": "1 Orms Street, Providence",
+      "location": {
+        "lat": 41.8355892,
+        "lng": -71.4129701
+      },
+      "rating": 4,
+      "open_now": false,
+      "description": "Downtown lodging with a spa & an indoor/outdoor pool, plus an American eatery & a laid-back lounge.",
+      "total_ratings": 1918,
+      "score": 0
+    },
+    {
+      "name": "Michie Hostel",
+      "price_level": "price level unavailable",
+      "address": "41 Central Street, Providence",
+      "location": {
+        "lat": 41.8143326,
+        "lng": -71.4223981
+      },
+      "rating": 3.8,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 114,
+      "score": 0
+    },
+    {
+      "name": "Hilton Providence",
+      "price_level": "price level unavailable",
+      "address": "21 Atwells Avenue, Providence",
+      "location": {
+        "lat": 41.8229307,
+        "lng": -71.4185491
+      },
+      "rating": 3.6,
+      "open_now": false,
+      "description": "Modern lodging with a bar & grill restaurant, a lounge & an indoor pool, plus free Wi-Fi.",
+      "total_ratings": 1829,
+      "score": 0
+    },
+    {
+      "name": "Extended Stay America - Providence",
+      "price_level": "price level unavailable",
+      "address": "181 Corliss Street, Providence",
+      "location": {
+        "lat": 41.8435668,
+        "lng": -71.4120997
+      },
+      "rating": 2.4,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 148,
+      "score": 0
+    },
+    {
+      "name": "Michie House in College Hill - Hostel",
+      "price_level": "price level unavailable",
+      "address": "230 Thayer Street, Providence",
+      "location": {
+        "lat": 41.827848,
+        "lng": -71.400754
+      },
+      "rating": -1,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": -1,
+      "score": 0
+    },
+    {
+      "name": "Rhode Island for Community & Justice",
+      "price_level": "price level unavailable",
+      "address": "271 North Main Street, Providence",
+      "location": {
+        "lat": 41.8310827,
+        "lng": -71.4100194
+      },
+      "rating": 5,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 1,
+      "score": 0
+    },
+    {
+      "name": "West End Community Center",
+      "price_level": "price level unavailable",
+      "address": "109 Bucklin Street, Providence",
+      "location": {
+        "lat": 41.8044376,
+        "lng": -71.4285383
+      },
+      "rating": 5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 2,
+      "score": 0
+    },
+    {
+      "name": "Rhode Island Community Foundation",
+      "price_level": "price level unavailable",
+      "address": "1 Union Station, Providence",
+      "location": {
+        "lat": 41.8257574,
+        "lng": -71.4132921
+      },
+      "rating": 4.7,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 19,
+      "score": 0
+    },
+    {
+      "name": "Southside Community Land Trust",
+      "price_level": "price level unavailable",
+      "address": "404 Broad Street, Providence",
+      "location": {
+        "lat": 41.8124606,
+        "lng": -71.4214542
+      },
+      "rating": 4.7,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 27,
+      "score": 0
+    },
+    {
+      "name": "Community Libraries of Providence: Fox Point Library",
+      "price_level": "price level unavailable",
+      "address": "90 Ives Street, Providence",
+      "location": {
+        "lat": 41.8206648,
+        "lng": -71.3924792
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 18,
+      "score": 0
+    },
+    {
+      "name": "Dwares JCC",
+      "price_level": "price level unavailable",
+      "address": "401 Elmgrove Avenue, Providence",
+      "location": {
+        "lat": 41.8418471,
+        "lng": -71.3923304
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 42,
+      "score": 0
+    },
+    {
+      "name": "Liston Campus - Community College of Rhode Island (CCRI)",
+      "price_level": "price level unavailable",
+      "address": "1 Hilton Street, Providence",
+      "location": {
+        "lat": 41.8075068,
+        "lng": -71.4132382
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 80,
+      "score": 0
+    },
+    {
+      "name": "Community Libraries of Providence: Knight Memorial Library",
+      "price_level": "price level unavailable",
+      "address": "275 Elmwood Avenue, Providence",
+      "location": {
+        "lat": 41.8050557,
+        "lng": -71.425958
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 57,
+      "score": 0
+    },
+    {
+      "name": "Providence Community Acupuncture",
+      "price_level": "price level unavailable",
+      "address": "1055 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8173484,
+        "lng": -71.4259679
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 33,
+      "score": 0
+    },
+    {
+      "name": "Community Libraries of Providence: Smith Hill Library",
+      "price_level": "price level unavailable",
+      "address": "31 Candace Street, Providence",
+      "location": {
+        "lat": 41.8353701,
+        "lng": -71.4221938
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 24,
+      "score": 0
+    },
+    {
+      "name": "Red Ink Community Library",
+      "price_level": "price level unavailable",
+      "address": "130 Cypress Street, Providence",
+      "location": {
+        "lat": 41.8422611,
+        "lng": -71.4025863
+      },
+      "rating": 4.4,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 25,
+      "score": 0
+    },
+    {
+      "name": "Mt. Hope Community Center and WIC Program",
+      "price_level": "price level unavailable",
+      "address": "199 Camp Street, Providence",
+      "location": {
+        "lat": 41.84377,
+        "lng": -71.4020441
+      },
+      "rating": 4.2,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 30,
+      "score": 0
+    },
+    {
+      "name": "Walgreens Pharmacy at Providence Community Health Center",
+      "price_level": 2,
+      "address": "335 Prairie Avenue, Providence",
+      "location": {
+        "lat": 41.8050078,
+        "lng": -71.4147968
+      },
+      "rating": 4.2,
+      "open_now": true,
+      "description": "Department of the Walgreens chain providing prescription medications & other health-related items.",
+      "total_ratings": 61,
+      "score": 0
+    },
+    {
+      "name": "Community Church of Providence",
+      "price_level": "price level unavailable",
+      "address": "372 Wayland Avenue, Providence",
+      "location": {
+        "lat": 41.8347946,
+        "lng": -71.3897143
+      },
+      "rating": 4.1,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 19,
+      "score": 0
+    },
+    {
+      "name": "Providence Community Health Centers",
+      "price_level": "price level unavailable",
+      "address": "160 Broad Street, Providence",
+      "location": {
+        "lat": 41.8170737,
+        "lng": -71.416931
+      },
+      "rating": 3.9,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 10,
+      "score": 0
+    },
+    {
+      "name": "Providence Community Health Centers: Capitol Hill",
+      "price_level": "price level unavailable",
+      "address": "40 Candace Street, Providence",
+      "location": {
+        "lat": 41.8357444,
+        "lng": -71.4228568
+      },
+      "rating": 3.3,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 42,
+      "score": 0
+    },
+    {
+      "name": "Community Boating Center",
+      "price_level": "price level unavailable",
+      "address": "109 India Street, Providence",
+      "location": {
+        "lat": 41.8170397,
+        "lng": -71.3972832
+      },
+      "rating": 3.3,
+      "open_now": true,
+      "description": "No description available.",
+      "total_ratings": 14,
+      "score": 0
+    },
+    {
+      "name": "Providence Community Health Centers",
+      "price_level": "price level unavailable",
+      "address": "239 Cranston Street, Providence",
+      "location": {
+        "lat": 41.8140401,
+        "lng": -71.4275565
+      },
+      "rating": 3.2,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 49,
+      "score": 0
+    },
+    {
+      "name": "Providence Community Health Centers",
+      "price_level": "price level unavailable",
+      "address": "1 Randall Square # 205, Providence",
+      "location": {
+        "lat": 41.8371168,
+        "lng": -71.41055
+      },
+      "rating": 3,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 31,
+      "score": 0
+    },
+    {
+      "name": "Brown University Health Community Health Institute",
+      "price_level": "price level unavailable",
+      "address": "335R Prairie Avenue #2b, Providence",
+      "location": {
+        "lat": 41.8048107,
+        "lng": -71.4153546
+      },
+      "rating": 3,
+      "open_now": false,
+      "description": "No description available.",
+      "total_ratings": 2,
+      "score": 0
+    }
+  ]
+}

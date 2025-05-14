@@ -112,7 +112,6 @@ public class PlacesHandler implements HttpHandler {
       JsonObject place = results.get(i).getAsJsonObject();
       String placeId = place.get("place_id").getAsString();
 
-      // Skip duplicate place IDs
       if (!seenPlaceIds.add(placeId)) continue;
 
       String detailsJson = client.getPlaceDetailsAsJson(placeId);
@@ -153,8 +152,11 @@ public class PlacesHandler implements HttpHandler {
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
 
-      // enrichedPlace.addProperty("price_level", details.get("price_level").getAsInt());
-      enrichedPlace.addProperty("total_ratings", details.get("user_ratings_total").getAsInt());
+      if (details.has("user_ratings_total")) {
+        enrichedPlace.addProperty("total_ratings", details.get("user_ratings_total").getAsInt());
+      } else {
+        enrichedPlace.addProperty("total_ratings", -1.0);
+      }
 
       enrichedResults.add(enrichedPlace);
     }
