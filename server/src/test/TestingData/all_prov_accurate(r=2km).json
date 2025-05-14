@@ -448,20 +448,7 @@
       "total_ratings": 24,
       "score": 0
     },
-    {
-      "name": "Red Ink Community Library",
-      "price_level": "price level unavailable",
-      "address": "130 Cypress Street, Providence",
-      "location": {
-        "lat": 41.8422611,
-        "lng": -71.4025863
-      },
-      "rating": 4.4,
-      "open_now": false,
-      "description": "No description available.",
-      "total_ratings": 25,
-      "score": 0
-    },
+
     {
       "name": "Phillips Memorial Library",
       "price_level": "price level unavailable",
@@ -540,7 +527,7 @@
         "lat": 41.8230767,
         "lng": -71.3966038
       },
-      "rating": -1,
+      "rating": 0,
       "open_now": true,
       "description": "No description available.",
       "total_ratings": -1,
@@ -554,7 +541,7 @@
         "lat": 41.8352483,
         "lng": -71.3986766
       },
-      "rating": -1,
+      "rating": 0,
       "open_now": false,
       "description": "No description available.",
       "total_ratings": -1,
@@ -1114,7 +1101,7 @@
         "lat": 41.827848,
         "lng": -71.400754
       },
-      "rating": -1,
+      "rating": 0,
       "open_now": false,
       "description": "No description available.",
       "total_ratings": -1,
@@ -1177,20 +1164,6 @@
       "score": 0
     },
     {
-      "name": "Community Libraries of Providence: Fox Point Library",
-      "price_level": "price level unavailable",
-      "address": "90 Ives Street, Providence",
-      "location": {
-        "lat": 41.8206648,
-        "lng": -71.3924792
-      },
-      "rating": 4.6,
-      "open_now": true,
-      "description": "No description available.",
-      "total_ratings": 18,
-      "score": 0
-    },
-    {
       "name": "Dwares JCC",
       "price_level": "price level unavailable",
       "address": "401 Elmgrove Avenue, Providence",
@@ -1218,20 +1191,7 @@
       "total_ratings": 80,
       "score": 0
     },
-    {
-      "name": "Community Libraries of Providence: Knight Memorial Library",
-      "price_level": "price level unavailable",
-      "address": "275 Elmwood Avenue, Providence",
-      "location": {
-        "lat": 41.8050557,
-        "lng": -71.425958
-      },
-      "rating": 4.5,
-      "open_now": true,
-      "description": "No description available.",
-      "total_ratings": 57,
-      "score": 0
-    },
+
     {
       "name": "Providence Community Acupuncture",
       "price_level": "price level unavailable",
@@ -1246,20 +1206,7 @@
       "total_ratings": 33,
       "score": 0
     },
-    {
-      "name": "Community Libraries of Providence: Smith Hill Library",
-      "price_level": "price level unavailable",
-      "address": "31 Candace Street, Providence",
-      "location": {
-        "lat": 41.8353701,
-        "lng": -71.4221938
-      },
-      "rating": 4.4,
-      "open_now": true,
-      "description": "No description available.",
-      "total_ratings": 24,
-      "score": 0
-    },
+
     {
       "name": "Red Ink Community Library",
       "price_level": "price level unavailable",
@@ -1316,20 +1263,7 @@
       "total_ratings": 19,
       "score": 0
     },
-    {
-      "name": "Providence Community Health Centers",
-      "price_level": "price level unavailable",
-      "address": "160 Broad Street, Providence",
-      "location": {
-        "lat": 41.8170737,
-        "lng": -71.416931
-      },
-      "rating": 3.9,
-      "open_now": false,
-      "description": "No description available.",
-      "total_ratings": 10,
-      "score": 0
-    },
+
     {
       "name": "Providence Community Health Centers: Capitol Hill",
       "price_level": "price level unavailable",
@@ -1370,20 +1304,6 @@
       "open_now": false,
       "description": "No description available.",
       "total_ratings": 49,
-      "score": 0
-    },
-    {
-      "name": "Providence Community Health Centers",
-      "price_level": "price level unavailable",
-      "address": "1 Randall Square # 205, Providence",
-      "location": {
-        "lat": 41.8371168,
-        "lng": -71.41055
-      },
-      "rating": 3,
-      "open_now": false,
-      "description": "No description available.",
-      "total_ratings": 31,
       "score": 0
     },
     {

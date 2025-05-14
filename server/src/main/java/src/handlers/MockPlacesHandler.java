@@ -35,7 +35,7 @@ public class MockPlacesHandler implements HttpHandler {
 
     // You can now use these parameters (lat, lng, radius, keyword) to load or filter mock data
     String filePath =
-        "server/src/test/TestingData/places_all_prov(radius=1000).json"; // Default mock data file
+        "server/src/test/TestingData/all_prov_accurate(r=2km).json"; // Default mock data file
     // path
     System.out.println(filePath);
     if (keyword != null && !keyword.isEmpty()) {

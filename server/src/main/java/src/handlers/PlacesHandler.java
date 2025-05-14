@@ -137,7 +137,7 @@ public class PlacesHandler implements HttpHandler {
       }
 
       enrichedPlace.addProperty(
-          "rating", details.has("rating") ? details.get("rating").getAsDouble() : -1.0);
+          "rating", details.has("rating") ? details.get("rating").getAsDouble() : 0);
 
       enrichedPlace.addProperty(
           "open_now",
