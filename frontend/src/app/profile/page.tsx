@@ -264,8 +264,8 @@ export default function ProfilePage() {
 
           {showPopup && (
               <div className="fixed inset-0 bg-gray bg-opacity-20 flex items-center justify-center z-50">
-                <div className="bg-white p-6 rounded-lg w-[90%] max-w-md relative">
-                  <button
+                <div className="bg-white p-6 rounded-lg w-[90%] max-w-md relative max-h-[90vh] overflow-y-auto">
+                <button
                       onClick={() => setShowPopup(false)}
                       className="absolute top-2 right-2 text-gray-500 hover:text-black"
                   >
