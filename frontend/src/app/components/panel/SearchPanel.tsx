@@ -180,6 +180,11 @@ const SearchPanel = ({
 
   return (
       <div className="flex flex-col h-full w-full overflow-auto bg-default">
+        <div>
+            <h1 className="text-5xl font-bold text-gray-900 flex flex-col items-center gap-1 p-4">
+            LoFi</h1>
+        <h2 className="text-1xl font-bold text-gray-900 flex flex-col items-center gap-3 p-1">Map, Search, and Filter</h2>
+        </div>
         <AnimatePresence mode="sync">
           {!showFilterPanel ? (
               <motion.div
@@ -280,7 +285,7 @@ const SearchPanel = ({
                                         className="p-1 rounded-full hover:bg-gray-200 transition-colors"
                                     >
                                       <HeartIcon
-                                          className={`h-5 w-5 ${isFavorite ? 'text-red-500 fill-red-500' : 'text-gray-500'}`}
+                                          className={`h-5 w-5 ${isFavorite ? 'text-red-600 fill-red-600' : 'text-gray-400'}`}
                                       />
                                     </button>
 
@@ -290,7 +295,7 @@ const SearchPanel = ({
                                         className="p-1 rounded-full hover:bg-gray-200 transition-colors"
                                     >
                                       <EyeSlashIcon
-                                          className={`h-5 w-5 ${isOptOut ? 'text-blue-500' : 'text-gray-500'}`}
+                                          className={`h-5 w-5 ${isOptOut ? 'text-blue-600' : 'text-gray-400'}`}
                                       />
                                     </button>
                                   </div>
