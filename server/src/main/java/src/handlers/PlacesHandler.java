@@ -148,7 +148,7 @@ public class PlacesHandler implements HttpHandler {
       enrichedPlace.addProperty(
           "description",
           details.has("editorial_summary")
-                  && details.getAsJsonObject("editorial_summary").has("overview")
+              && details.getAsJsonObject("editorial_summary").has("overview")
               ? details.getAsJsonObject("editorial_summary").get("overview").getAsString()
               : "No description available.");
 
