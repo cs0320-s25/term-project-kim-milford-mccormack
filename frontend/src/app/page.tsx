@@ -31,7 +31,7 @@ export default function Home() {
     const [places, setPlaces] = useState<ResType | undefined>(undefined);
     const [userCenter, setUserCenter] = useState<{ lat: number, lng: number }>({lat: 0, lng: 0});
     const [radius, setRadius] = useState(500);
-    const [keyword, setKeyword] = useState('cafe');
+    const [keyword, setKeyword] = useState('');
     const [renderMarker, setRenderMarker] = useState(false);
     // Popup state
     const [showPopup, setShowPopup] = useState(false);
