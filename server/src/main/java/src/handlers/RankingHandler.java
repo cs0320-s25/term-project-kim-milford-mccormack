@@ -47,6 +47,7 @@ public class RankingHandler {
     scored.forEach(outArr::add);
     JsonObject out = new JsonObject();
     out.add("results", outArr);
+    System.out.println(gson.toJson((out)));
     return gson.toJson(out);
   }
 }
