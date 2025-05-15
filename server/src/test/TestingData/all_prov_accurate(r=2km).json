@@ -225,20 +225,6 @@
       "score": 0
     },
     {
-      "name": "Caffè Nero",
-      "price_level": 1,
-      "address": "75 Fountain Street, Providence",
-      "location": {
-        "lat": 41.8246763,
-        "lng": -71.4151374
-      },
-      "rating": 4.2,
-      "open_now": true,
-      "description": "Casual coffee shop with a menu of light dishes & specially blended hot & cold drinks.",
-      "total_ratings": 121,
-      "score": 0
-    },
-    {
       "name": "Dunkin'",
       "price_level": 1,
       "address": "50 Admiral Street, North Providence",
