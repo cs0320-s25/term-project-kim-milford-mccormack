@@ -25,8 +25,8 @@ public class RankingHandler {
           place.has("description") ? place.get("description").getAsString().toLowerCase() : "";
       int score = 0;
       for (Preference p : prefs) {
-        if (desc.contains(p.keyword.toLowerCase())) {
-          score += p.weight;
+        if (desc.contains(p.getKeyword().toLowerCase())) {
+          score += p.getWeight();
         }
       }
       JsonObject copy = place.deepCopy();

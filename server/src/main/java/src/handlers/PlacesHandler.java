@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
@@ -35,6 +36,13 @@ public class PlacesHandler implements HttpHandler {
       exchange.sendResponseHeaders(405, -1);
       return;
     }
+    // inside your PlacesHandler.handle(...) (and similarly in RankingHandler, MockPlacesHandler,
+    // etc.)
+    Headers respHdrs = exchange.getResponseHeaders();
+    respHdrs.add("Content-Type", "application/json");
+    respHdrs.add("Access-Control-Allow-Origin", "*");
+    respHdrs.add("Access-Control-Allow-Methods", "GET, OPTIONS");
+    respHdrs.add("Access-Control-Allow-Headers", "Content-Type");
 
     // 1) Parse query params: lat, lng, radius (default 500), keyword
     URI uri = exchange.getRequestURI();
@@ -54,19 +62,19 @@ public class PlacesHandler implements HttpHandler {
 
       // 4) Build PreferencesRequest from keyword (weight=5)
       PreferencesRequest req = new PreferencesRequest();
-      req.preferences = new ArrayList<>();
+      req.setPreferences(new ArrayList<>());
       if (!keyword.isBlank()) {
         String decoded = URLDecoder.decode(keyword, StandardCharsets.UTF_8);
         for (String kw : decoded.split("\\s+")) {
           Preference p = new Preference();
-          p.keyword = kw;
-          p.weight = 5;
-          req.preferences.add(p);
+          p.setKeyword(kw);
+          p.setWeight(5);
+          req.getPreferences().add(p);
         }
       }
 
       // 5) Delegate scoring & sorting (no more API calls)
-      String rankedJson = ranking.rankEnriched(enrichedJson, req.preferences);
+      String rankedJson = ranking.rankEnriched(enrichedJson, req.getPreferences());
 
       // 6) Send response
       byte[] resp = rankedJson.getBytes(StandardCharsets.UTF_8);

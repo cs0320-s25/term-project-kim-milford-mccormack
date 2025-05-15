@@ -1,91 +1,106 @@
 package src.handlers;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import java.io.*;
-import java.net.URLDecoder;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import models.Preference;
 
+/**
+ * Mock handler for places: reads a JSON file with an object containing an array under "results",
+ * parses that array into List<Place>, and returns it.
+ */
 public class MockPlacesHandler implements HttpHandler {
+  private final Gson gson = new Gson();
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
-    // Only allow GET method
-    if (!"GET".equals(exchange.getRequestMethod())) {
-      exchange.sendResponseHeaders(405, -1); // 405 Method Not Allowed
+    System.out.println("[MockPlacesHandler] ENTER handle()");
+
+    // CORS preflight
+    if ("OPTIONS".equals(exchange.getRequestMethod())) {
+      System.out.println("[MockPlacesHandler] OPTIONS preflight");
+      exchange.sendResponseHeaders(204, -1);
       return;
     }
 
-    // Parse query parameters from the URL
-    String queryString = exchange.getRequestURI().getQuery();
-    Map<String, String> queryParams = parseQueryParams(queryString);
+    // Log request URI
+    URI requestUri = exchange.getRequestURI();
+    System.out.println("[MockPlacesHandler] Request URI: " + requestUri);
 
-    // Extract parameters
-    String lat = queryParams.get("lat");
-    String lng = queryParams.get("lng");
-    String radius = queryParams.get("radius");
-    String keyword = queryParams.get("keyword");
+    // Load mock-data file
+    Path jsonPath = Paths.get("src", "test", "TestingData", "all_prov_accurate(r=2km).json");
+    System.out.println("[MockPlacesHandler] Trying to read file at: " + jsonPath.toAbsolutePath());
 
-    // You can now use these parameters (lat, lng, radius, keyword) to load or filter mock data
-    String filePath =
-        "server/src/test/TestingData/all_prov_accurate(r=2km).json"; // Default mock data file
-    // path
-    System.out.println(filePath);
-    if (keyword != null && !keyword.isEmpty()) {
-      // Modify file path based on the keyword, for example (this part can be customized based on
-      // your logic)
-
-      filePath = "server/src/test/TestingData/places_" + keyword + "(radius=" + radius + ").json";
-
-      System.out.println(filePath);
-    }
-    String enrichedJson = Files.readString(Paths.get(filePath), StandardCharsets.UTF_8);
-    List<Preference> prefs = new ArrayList<>();
-    if (keyword != null && !keyword.isBlank()) {
-      String decoded = URLDecoder.decode(keyword, StandardCharsets.UTF_8);
-      for (String kw : decoded.split("\\s+")) {
-        if (!kw.isBlank()) {
-          Preference p = new Preference();
-          p.keyword = kw;
-          p.weight = 5;
-          prefs.add(p);
-        }
-      }
+    String rawJson;
+    try {
+      rawJson = Files.readString(jsonPath, StandardCharsets.UTF_8);
+      System.out.println("[MockPlacesHandler] Loaded JSON length=" + rawJson.length());
+    } catch (IOException e) {
+      System.err.println("[MockPlacesHandler] Failed to load mock-data:");
+      e.printStackTrace();
+      exchange.sendResponseHeaders(500, -1);
+      return;
     }
 
-    MockRankingHandler rankingHandler = new MockRankingHandler(filePath, keyword);
-    String rankedJson = rankingHandler.rankEnriched(enrichedJson, prefs);
-    byte[] resp = rankedJson.getBytes(StandardCharsets.UTF_8);
+    // Parse top-level object, extract "results" array
+    JsonObject root;
+    JsonArray resultsArray;
+    try {
+      root = JsonParser.parseString(rawJson).getAsJsonObject();
+      resultsArray = root.getAsJsonArray("results");
+      System.out.println(
+          "[MockPlacesHandler] Found results array of length=" + resultsArray.size());
+    } catch (Exception e) {
+      System.err.println("[MockPlacesHandler] JSON structure error:");
+      e.printStackTrace();
+      exchange.sendResponseHeaders(500, -1);
+      return;
+    }
 
-    // Send the JSON response
-    exchange.getResponseHeaders().set("Content-Type", "application/json");
-    exchange.sendResponseHeaders(200, resp.length);
+    // Deserialize array into List<Place>
+    List<Place> places;
+    try {
+      places = gson.fromJson(resultsArray, new TypeToken<List<Place>>() {}.getType());
+      System.out.println("[MockPlacesHandler] Parsed places count: " + places.size());
+    } catch (Exception e) {
+      System.err.println("[MockPlacesHandler] JSON parse error:");
+      e.printStackTrace();
+      exchange.sendResponseHeaders(500, -1);
+      return;
+    }
+
+    // Serialize response
+    String responseJson = gson.toJson(places);
+    System.out.println(
+        "[MockPlacesHandler] Response JSON snippet:\n"
+            + responseJson.substring(0, Math.min(200, responseJson.length()))
+            + "…");
+
+    byte[] bytes = responseJson.getBytes(StandardCharsets.UTF_8);
+    Headers headers = exchange.getResponseHeaders();
+    headers.add("Content-Type", "application/json");
+    headers.add("Access-Control-Allow-Origin", "*");
+    headers.add("Access-Control-Allow-Methods", "GET, OPTIONS");
+    headers.add("Access-Control-Allow-Headers", "Content-Type");
+
+    exchange.sendResponseHeaders(200, bytes.length);
     try (OutputStream os = exchange.getResponseBody()) {
-      os.write(resp);
+      System.out.println("[MockPlacesHandler] Writing response body of length " + bytes.length);
+      os.write(bytes);
     }
-  }
 
-  // Utility method to parse query parameters
-  private Map<String, String> parseQueryParams(String query) {
-    Map<String, String> queryParams = new HashMap<>();
-    if (query != null) {
-      String[] pairs = query.split("&");
-      for (String pair : pairs) {
-        String[] keyValue = pair.split("=");
-        if (keyValue.length == 2) {
-          String key = URLDecoder.decode(keyValue[0], StandardCharsets.UTF_8);
-          String value = URLDecoder.decode(keyValue[1], StandardCharsets.UTF_8);
-          queryParams.put(key, value);
-        }
-      }
-    }
-    return queryParams;
+    System.out.println("[MockPlacesHandler] EXIT handle()");
   }
 }

@@ -21,20 +21,20 @@ public class MockRankingTest {
 
     List<Preference> prefs = new ArrayList<>();
     Preference p1 = new Preference();
-    p1.keyword = "relaxed";
-    p1.weight = 2;
+    p1.setKeyword("relaxed");
+    p1.setWeight(2);
     Preference p2 = new Preference();
-    p2.keyword = "specialty coffee";
-    p2.weight = 4;
+    p2.setKeyword("specialty coffee");
+    p2.setWeight(4);
     Preference p3 = new Preference();
-    p3.keyword = "seafood";
-    p3.weight = -5;
+    p3.setKeyword("seafood");
+    p3.setWeight(-5);
     prefs.add(p1);
     prefs.add(p2);
     prefs.add(p3);
 
     // instantiate with dummy args so the constructor compiles
-    MockRankingHandler handler = new MockRankingHandler("ignored.json", "");
+    MockRankingHandler handler = new MockRankingHandler();
     Method m = MockRankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
 
@@ -59,23 +59,23 @@ public class MockRankingTest {
 
     List<Preference> prefs = new ArrayList<>();
     Preference p1 = new Preference();
-    p1.keyword = "relax";
-    p1.weight = 2;
+    p1.setKeyword("relax");
+    p1.setWeight(2);
     Preference p2 = new Preference();
-    p2.keyword = " walk";
-    p2.weight = 2;
+    p2.setKeyword(" walk");
+    p2.setWeight(2);
     Preference p3 = new Preference();
-    p3.keyword = "view";
-    p3.weight = 1;
+    p3.setKeyword("view");
+    p3.setWeight(1);
     Preference p4 = new Preference();
-    p4.keyword = "playground";
-    p4.weight = -5;
+    p4.setKeyword("playground");
+    p4.setWeight(-5);
     prefs.add(p1);
     prefs.add(p2);
     prefs.add(p3);
     prefs.add(p4);
 
-    MockRankingHandler handler = new MockRankingHandler("ignored.json", "");
+    MockRankingHandler handler = new MockRankingHandler();
     Method m = MockRankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
 
@@ -100,23 +100,23 @@ public class MockRankingTest {
 
     List<Preference> prefs = new ArrayList<>();
     Preference p1 = new Preference();
-    p1.keyword = "cafe";
-    p1.weight = 2;
+    p1.setKeyword("cafe");
+    p1.setWeight(2);
     Preference p2 = new Preference();
-    p2.keyword = " japanese";
-    p2.weight = 2;
+    p2.setKeyword(" japanese");
+    p2.setWeight(2);
     Preference p3 = new Preference();
-    p3.keyword = "korean";
-    p3.weight = 3;
+    p3.setKeyword("korean");
+    p3.setWeight(3);
     Preference p4 = new Preference();
-    p4.keyword = "soju";
-    p4.weight = 5;
+    p4.setKeyword("soju");
+    p4.setWeight(5);
     prefs.add(p1);
     prefs.add(p2);
     prefs.add(p3);
     prefs.add(p4);
 
-    MockRankingHandler handler = new MockRankingHandler("ignored.json", "");
+    MockRankingHandler handler = new MockRankingHandler();
     Method m = MockRankingHandler.class.getDeclaredMethod("rankEnriched", String.class, List.class);
     m.setAccessible(true);
 
