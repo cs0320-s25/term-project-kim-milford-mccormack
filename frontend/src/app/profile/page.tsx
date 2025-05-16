@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase/firebaseUtils';
-import SearchPanel from "@/app/components/panel/SearchPanel";
 
 export default function ProfilePage() {
   const { user } = useUser();
@@ -83,11 +82,14 @@ export default function ProfilePage() {
           favoriteList: favoriteList,
           optOutList: optOutList
         });
+        await updateDoc(userDocRef, preferences);
       } else {
         await setDoc(userDocRef, {
           favoriteList: favoriteList,
           optOutList: optOutList
         });
+        await updateDoc(userDocRef, preferences);
+        
       }
       console.log('Saved user preferences');
     } catch (error) {

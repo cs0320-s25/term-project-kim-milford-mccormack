@@ -1601,20 +1601,6 @@
       "score": 0
     },
     {
-      "name": "Tea In Sahara",
-      "price_level": 1,
-      "address": "69 Governor Street, Providence",
-      "location": {
-        "lat": 41.8224985,
-        "lng": -71.39379
-      },
-      "rating": 4.3,
-      "open_now": true,
-      "description": "Cozy, Moroccan-inspired cafe offering tea, coffee & homemade fare, including tajines & paninis.",
-      "total_ratings": 490,
-      "score": 0
-    },
-    {
       "name": "Jahunger Providence",
       "price_level": 2,
       "address": "333 Wickenden Street, Providence",
