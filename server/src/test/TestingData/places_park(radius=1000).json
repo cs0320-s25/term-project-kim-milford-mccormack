@@ -1,0 +1,114 @@
+{
+  "results": [
+    {
+      "name": "Burnside Park",
+      "address": "40 Kennedy Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8255,
+        "lng": -71.4110
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Urban park offering green spaces and seating areas for outdoor work or relaxation."
+    },
+    {
+      "name": "Waterplace Park",
+      "address": "Memorial Boulevard, Providence, RI 02903",
+      "location": {
+        "lat": 41.8270,
+        "lng": -71.4100
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Scenic urban park with a riverwalk, amphitheater, and seasonal events."
+    },
+    {
+      "name": "Kennedy Plaza",
+      "address": "Kennedy Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8255,
+        "lng": -71.4115
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Central transit hub with adjacent public spaces suitable for meetings or outdoor work."
+    },
+    {
+      "name": "Grant's Block",
+      "address": "260 Westminster Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8235,
+        "lng": -71.4120
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Public space hosting events and providing seating areas for casual gatherings or work."
+    },
+    {
+      "name": "Biltmore Park",
+      "address": "2 Kennedy Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8250,
+        "lng": -71.4110
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Charming green space just steps from the historic Graduate Hotel."
+    },
+    {
+      "name": "Brandon's Beach",
+      "address": "2 Kennedy Plaza, Providence, RI 02903",
+      "location": {
+        "lat": 41.8250,
+        "lng": -71.4110
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Children's playground located within the Greater Kennedy Plaza area."
+    },
+    {
+      "name": "Market Square",
+      "address": "North Main Street & College Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8275,
+        "lng": -71.4045
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Historic public square near the Rhode Island School of Design."
+    },
+    {
+      "name": "Memorial Park",
+      "address": "South Main Street & College Street, Providence, RI 02903",
+      "location": {
+        "lat": 41.8260,
+        "lng": -71.4040
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "Park featuring memorials and open spaces along the riverfront."
+    },
+    {
+      "name": "Michael S. Van Leesten Memorial Bridge",
+      "address": "Providence River, Providence, RI 02903",
+      "location": {
+        "lat": 41.8230,
+        "lng": -71.4035
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Pedestrian bridge offering scenic views and seating areas, ideal for outdoor work or relaxation."
+    },
+    {
+      "name": "Riverwalk",
+      "address": "Along the Woonasquatucket River, Providence, RI 02903",
+      "location": {
+        "lat": 41.8260,
+        "lng": -71.4090
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Cobblestone-paved pedestrian walkways along the waterfront, connected to Waterplace Park."
+    }
+  ]
+}

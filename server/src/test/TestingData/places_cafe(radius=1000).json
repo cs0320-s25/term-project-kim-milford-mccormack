@@ -1,0 +1,224 @@
+{
+  "results": [
+    {
+      "name": "Sydney Providence",
+      "address": "400 Exchange Street, Providence",
+      "location": {
+        "lat": 41.8278942,
+        "lng": -71.4130303
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Airy spot for breakfast & light lunches, plus a few to-go options, alongside espresso & tea drinks."
+    },
+    {
+      "name": "Zinneken's Belgian waffles | Providence",
+      "address": "194 Angell Street, Providence",
+      "location": {
+        "lat": 41.8283586,
+        "lng": -71.400011
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Coffee Exchange",
+      "address": "207 Wickenden Street, Providence",
+      "location": {
+        "lat": 41.819287,
+        "lng": -71.3990847
+      },
+      "rating": 4.7,
+      "open_now": true,
+      "description": "Busy cafe roasting & serving fair trade, organic coffee on-site, plus herbal teas & outdoor seating."
+    },
+    {
+      "name": "Den Den Café Asiana",
+      "address": "161 Benefit Street, Providence",
+      "location": {
+        "lat": 41.8287699,
+        "lng": -71.4081182
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "A casual cafe counter serving Korean & Japanese favorites in roomy digs, plus wine & soju."
+    },
+    {
+      "name": "Dave's Coffee",
+      "address": "341 South Main Street, Providence",
+      "location": {
+        "lat": 41.8214176,
+        "lng": -71.4044755
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "A laid-back cafe serving java drinks, snacks & an upscale version of classic RI coffee milk."
+    },
+    {
+      "name": "The Coffee Cup",
+      "address": "133 Providence Place Level 1, Providence",
+      "location": {
+        "lat": 41.8271857,
+        "lng": -71.4163826
+      },
+      "rating": 4.8,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Carr Haus Café",
+      "address": "210 Benefit Street, Providence",
+      "location": {
+        "lat": 41.8271172,
+        "lng": -71.4075834
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Cafe La France",
+      "address": "100 Gaspee Street, Providence",
+      "location": {
+        "lat": 41.8292199,
+        "lng": -71.413331
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Small Point Café",
+      "address": "230 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8229526,
+        "lng": -71.4124369
+      },
+      "rating": 4.4,
+      "open_now": true,
+      "description": "Funky, eco-friendly stop for pastries & organic sandwiches, plus espresso drinks & cold brew coffee."
+    },
+    {
+      "name": "Tea In Sahara",
+      "address": "69 Governor Street, Providence",
+      "location": {
+        "lat": 41.8224985,
+        "lng": -71.39379
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "Cozy, Moroccan-inspired cafe offering tea, coffee & homemade fare, including tajines & paninis."
+    },
+    {
+      "name": "Ellie's",
+      "address": "250 Westminster Street, Providence",
+      "location": {
+        "lat": 41.8227623,
+        "lng": -71.4127059
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "This snug, charming spot with patio seats offers French pastries, light fare & espresso drinks."
+    },
+    {
+      "name": "Ceremony South Main",
+      "address": "121 South Main Street, Providence",
+      "location": {
+        "lat": 41.8239618,
+        "lng": -71.4070226
+      },
+      "rating": 4.6,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Plant City",
+      "address": "334 South Water Street, Providence",
+      "location": {
+        "lat": 41.8207841,
+        "lng": -71.4041747
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "Vegan food market featuring restaurants, bars, a bakery & a coffee shop, plus a grocery store."
+    },
+    {
+      "name": "Watermark Café",
+      "address": "30 North Main Street, Providence",
+      "location": {
+        "lat": 41.8263593,
+        "lng": -71.4086257
+      },
+      "rating": 4,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Sushi Cafe",
+      "address": "214 Providence Place #5620, Providence",
+      "location": {
+        "lat": 41.8274661,
+        "lng": -71.4167055
+      },
+      "rating": 4.2,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Bolt Coffee",
+      "address": "61 Washington Street, Providence",
+      "location": {
+        "lat": 41.8239611,
+        "lng": -71.4137092
+      },
+      "rating": 4.5,
+      "open_now": true,
+      "description": "No description available."
+    },
+    {
+      "name": "Starbucks",
+      "address": "1 Financial Plaza, Providence",
+      "location": {
+        "lat": 41.825365,
+        "lng": -71.4099758
+      },
+      "rating": 4,
+      "open_now": true,
+      "description": "Seattle-based coffeehouse chain known for its signature roasts, light bites and WiFi availability."
+    },
+    {
+      "name": "Panera Bread",
+      "address": "43 Providence Place, Providence",
+      "location": {
+        "lat": 41.828414,
+        "lng": -71.41566
+      },
+      "rating": 3.8,
+      "open_now": true,
+      "description": "Counter-serve bakery/cafe chain serving sandwiches, salads & more, known for its bread & free WiFi."
+    },
+    {
+      "name": "Caffè Nero",
+      "address": "75 Fountain Street, Providence",
+      "location": {
+        "lat": 41.8246763,
+        "lng": -71.4151374
+      },
+      "rating": 4.2,
+      "open_now": true,
+      "description": "Casual coffee shop with a menu of light dishes & specially blended hot & cold drinks."
+    },
+    {
+      "name": "Bolt Coffee",
+      "address": "224 Benefit St RISD Museum, Providence",
+      "location": {
+        "lat": 41.8268556,
+        "lng": -71.407608
+      },
+      "rating": 4.3,
+      "open_now": true,
+      "description": "No description available."
+    }
+  ]
+}

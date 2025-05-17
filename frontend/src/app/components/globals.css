@@ -1,0 +1,140 @@
+@import "../../../node_modules/tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --background: #f0f0f0;
+  --paper: #ffffff;
+
+  /* Text colors */
+  --text-primary: #191919;
+  --text-secondary: #6c7178;
+
+  /* Primary palette */
+  --primary-main: #204ec8;
+  --primary-light: #2e52b2;
+  --primary-dark: #163787;
+
+  /* Secondary palette */
+  --secondary-main: #fb7021;
+  --secondary-light: #ff8e4f;
+  --secondary-dark: #e25903;
+
+  /* Success palette */
+  --success-main: #3eac2c;
+  --success-light: #6cc25e;
+  --success-dark: #1d880f;
+  --success-contrast: #f0f0f0;
+
+  /* Grey palette */
+  --grey-200: #d1d5dc;
+  --grey-400: #b5bac2;
+  --grey-600: #6c7178;
+
+  /* Neutral palette */
+  --neutral-main: #b5bac2;
+  --neutral-contrast: #6c7178;
+}
+
+/* Base styles */
+body {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+/* Utility classes */
+.bg-default {
+  background-color: var(--background);
+}
+
+.bg-secondary {
+  background-color: var(--grey-400);
+}
+
+.bg-dark {
+  background-color: var(--grey-600);
+}
+
+.bg-paper {
+  background-color: var(--paper);
+}
+
+.bg-orange-main {
+  background-color: var(--secondary-main);
+}
+
+.bg-orange-main:hover {
+  background-color: var(--secondary-dark);
+}
+
+.bg-orange-light {
+  background-color: #ffccaf;
+}
+
+.bg-orange-dark {
+  background-color: var(--secondary-dark);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-neutral {
+  color: var(--neutral-main);
+}
+
+.icon-black {
+  color: var(--text-primary);
+}
+
+.icon-grey {
+  color: var(--neutral-main);
+}
+
+.icon-grey-400 {
+  color: var(--grey-400);
+}
+
+.icon-grey-600 {
+  color: var(--neutral-contrast);
+}
+
+.icon-orange-main {
+  color: var(--secondary-main);
+}
+
+.icon-orange-light {
+  color: var(--secondary-light);
+}
+
+.icon-orange-dark {
+  color: var(--secondary-dark);
+}
+
+.border-grey {
+  border-color: var(--grey-200);
+}
+
+/* Success colors */
+.bg-success {
+  background-color: var(--success-main);
+}
+
+.bg-success-light {
+  background-color: var(--success-light);
+}
+
+.bg-success-dark {
+  background-color: var(--success-dark);
+}
+
+.text-success {
+  color: var(--success-main);
+}
+
+.text-success-contrast {
+  color: var(--success-contrast);
+}

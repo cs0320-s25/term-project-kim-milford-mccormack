@@ -1,0 +1,911 @@
+[
+  {
+    "name": "Kin Southern Table + Bar",
+    "address": "71 Washington Street, Providence, RI 02903",
+    "location": { "lat": 41.8238, "lng": -71.4112 },
+    "rating": 4.6,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Comfort food restaurant with a welcoming atmosphere, suitable for informal meetings and work sessions."
+  },
+  {
+    "name": "The Arcade Providence",
+    "address": "65 Weybosset St, Providence, RI 02903",
+    "location": { "lat": 41.8239, "lng": -71.4115 },
+    "rating": 4.6,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Historic indoor shopping center housing boutique shops, eateries, and micro-loft apartments."
+  },
+  {
+    "name": "Shell Gas Station",
+    "address": "95 Point St, Providence, RI 02903",
+    "location": { "lat": 41.8172, "lng": -71.4085 },
+    "rating": 4.0,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Convenient gas station offering fuel, snacks, and automotive services near downtown."
+  },
+  {
+    "name": "Sunoco Gas Station",
+    "address": "761 Hope St, Providence, RI 02906",
+    "location": { "lat": 41.8380, "lng": -71.3975 },
+    "rating": 4.2,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Full-service gas station providing fuel, car maintenance, and convenience items."
+  },
+  {
+    "name": "Harkins Hall - Providence College",
+    "address": "1 Cunningham Square, Providence, RI 02918",
+    "location": { "lat": 41.8420, "lng": -71.4370 },
+    "rating": 4.7,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Flagship academic building housing classrooms and administrative offices at Providence College."
+  },
+  {
+    "name": "Feinstein Academic Center - Providence College",
+    "address": "1 Cunningham Square, Providence, RI 02918",
+    "location": { "lat": 41.8425, "lng": -71.4375 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Academic facility featuring modern classrooms and lecture halls for various disciplines."
+  },
+  {
+    "name": "Accinno Hall - Providence College",
+    "address": "1 Cunningham Square, Providence, RI 02918",
+    "location": { "lat": 41.8422, "lng": -71.4372 },
+    "rating": 4.5,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Building equipped with state-of-the-art classrooms and collaborative learning spaces."
+  },
+  {
+    "name": "Smith Center for the Arts - Providence College",
+    "address": "1 Cunningham Square, Providence, RI 02918",
+    "location": { "lat": 41.8423, "lng": -71.4373 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Center dedicated to performing arts, featuring theaters, studios, and exhibition spaces."
+  },
+  {
+    "name": "Xavier Hall - Johnson & Wales University",
+    "address": "8 Abbott Park Pl, Providence, RI 02903",
+    "location": { "lat": 41.8205, "lng": -71.4120 },
+    "rating": 4.4,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Residence hall with integrated chapel and student services at JWU's downtown campus."
+  },
+  {
+    "name": "Yena Center - Johnson & Wales University",
+    "address": "111 Dorrance St, Providence, RI 02903",
+    "location": { "lat": 41.8240, "lng": -71.4110 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Academic building housing the main library, career services, and administrative offices."
+  },
+  {
+    "name": "Trader Joe's",
+    "address": "425 S Main St, Providence, RI 02903",
+    "location": { "lat": 41.8135, "lng": -71.4030 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Popular grocery store offering a variety of organic and specialty food items."
+  },
+  {
+    "name": "Tony's Colonial Food",
+    "address": "311 Atwells Ave, Providence, RI 02903",
+    "location": { "lat": 41.8230, "lng": -71.4180 },
+    "rating": 4.8,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Family-owned Italian market specializing in imported goods and homemade specialties."
+  },
+  {
+    "name": "The Den Wine & Spirits",
+    "address": "108 N Main St, Providence, RI 02903",
+    "location": { "lat": 41.8280, "lng": -71.4050 },
+    "rating": 4.5,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Local liquor store offering a curated selection of wines, spirits, and craft beers."
+  },
+  {
+    "name": "Queen of Hearts / Modern Love",
+    "address": "220 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8235, "lng": -71.4118 },
+    "rating": 4.6,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Boutique shop featuring women's fashion, accessories, and unique gifts."
+  },
+  {
+    "name": "Craftland",
+    "address": "212 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8234, "lng": -71.4117 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Store showcasing handmade goods, local art, and quirky gifts from independent artists."
+  },
+  {
+    "name": "Providence Place Mall",
+    "address": "1 Providence Pl, Providence, RI 02903",
+    "location": { "lat": 41.8275, "lng": -71.4152 },
+    "rating": 4.5,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Large shopping mall featuring over 160 stores, restaurants, and entertainment venues, including Macy's and Boscov's."
+  },
+  {
+    "name": "Shell Gas Station",
+    "address": "95 Point St, Providence, RI 02903",
+    "location": { "lat": 41.8172, "lng": -71.4085 },
+    "rating": 4.0,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Convenient gas station offering fuel, snacks, and automotive services near downtown."
+  },
+  {
+    "name": "Sunoco Gas Station",
+    "address": "761 Hope St, Providence, RI 02906",
+    "location": { "lat": 41.8380, "lng": -71.3975 },
+    "rating": 4.2,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Full-service gas station providing fuel, car maintenance, and convenience items."
+  },
+  {
+    "name": "Harkins Hall - Providence College",
+    "address": "1 Cunningham Square, Providence, RI 02918",
+    "location": { "lat": 41.8420, "lng": -71.4370 },
+    "rating": 4.7,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Flagship academic building housing classrooms and administrative offices at Providence College."
+  },
+  {
+    "name": "Feinstein Academic Center - Providence College",
+    "address": "1 Cunningham Square, Providence, RI 02918",
+    "location": { "lat": 41.8425, "lng": -71.4375 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Academic facility featuring modern classrooms and lecture halls for various disciplines."
+  },
+  {
+    "name": "Bolt Coffee",
+    "address": "122 Fountain St, Providence, RI 02903",
+    "location": { "lat": 41.8257, "lng": -71.4162 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Trendy café known for craft coffee, work-friendly vibes, and minimalist interior."
+  },
+  {
+    "name": "RISD Library",
+    "address": "15 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8240, "lng": -71.4072 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Art and design-focused academic library serving RISD students and the public."
+  },
+  {
+    "name": "Blue State Coffee",
+    "address": "300 Thayer St, Providence, RI 02906",
+    "location": { "lat": 41.8275, "lng": -71.4012 },
+    "rating": 4.5,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Lively coffeehouse popular with Brown students, offering espresso drinks and snacks."
+  },
+  {
+    "name": "India Point Park",
+    "address": "201 India St, Providence, RI 02903",
+    "location": { "lat": 41.8112, "lng": -71.3919 },
+    "rating": 4.7,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Scenic riverside park with walking paths, grassy lawns, and views of the harbor."
+  },
+  {
+    "name": "The Graduate Providence",
+    "address": "11 Dorrance St, Providence, RI 02903",
+    "location": { "lat": 41.8245, "lng": -71.4123 },
+    "rating": 4.4,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Historic hotel near Kennedy Plaza featuring elegant meeting spaces and rooftop bar."
+  },
+  {
+    "name": "Providence Public Library",
+    "address": "150 Empire St, Providence, RI 02903",
+    "location": { "lat": 41.8222, "lng": -71.4160 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Main city library with reading rooms, archives, community events, and study areas."
+  },
+  {
+    "name": "Brown University Lecture Hall - Salomon Center",
+    "address": "79 Waterman St, Providence, RI 02912",
+    "location": { "lat": 41.8266, "lng": -71.4025 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Large lecture venue at Brown University used for classes, panels, and public talks."
+  },
+  {
+    "name": "Arcade Bookstore",
+    "address": "65 Weybosset St, Providence, RI 02903",
+    "location": { "lat": 41.8238, "lng": -71.4117 },
+    "rating": 4.3,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Independent bookstore inside the Arcade offering curated reads and local titles."
+  },
+  {
+    "name": "White Electric Coffee",
+    "address": "711 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8182, "lng": -71.4233 },
+    "rating": 4.6,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Quirky neighborhood café known for its chill vibe, strong coffee, and breakfast plates."
+  },
+  {
+    "name": "Wayland Square CVS Pharmacy",
+    "address": "400 Angell St, Providence, RI 02906",
+    "location": { "lat": 41.8314, "lng": -71.3932 },
+    "rating": 4.1,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Neighborhood CVS offering pharmacy services, personal care, and groceries."
+  },
+  {
+    "name": "AS220",
+    "address": "115 Empire St, Providence, RI 02903",
+    "location": { "lat": 41.8221, "lng": -71.4165 },
+    "rating": 4.9,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Community arts organization with gallery space, studios, performance venues, and coworking."
+  },
+  {
+    "name": "Providence Pedestrian Bridge",
+    "address": "195 District, Providence, RI 02903",
+    "location": { "lat": 41.8144, "lng": -71.4011 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Modern bridge connecting east and west sides of Providence, ideal for walking and views."
+  },
+  {
+    "name": "Davol Square",
+    "address": "Davol Square, Providence, RI 02903",
+    "location": { "lat": 41.8148, "lng": -71.4099 },
+    "rating": 4.4,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Mixed-use development with restaurants, shops, and coworking spaces in historic buildings."
+  },
+  {
+    "name": "Paper Nautilus Books",
+    "address": "19 S Angell St, Providence, RI 02906",
+    "location": { "lat": 41.8296, "lng": -71.3960 },
+    "rating": 4.9,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Charming secondhand bookstore filled with vintage finds and literary treasures."
+  },
+  {
+    "name": "Brown Bookstore",
+    "address": "244 Thayer St, Providence, RI 02912",
+    "location": { "lat": 41.8271, "lng": -71.4021 },
+    "rating": 4.5,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Official Brown University store offering textbooks, tech, and campus gear."
+  },
+  {
+    "name": "Café Choklad",
+    "address": "2 Thomas St, Providence, RI 02903",
+    "location": { "lat": 41.8291, "lng": -71.4065 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Hidden gem café with Euro-style pastries, outdoor seating, and relaxed ambiance."
+  },
+  {
+    "name": "Providence Co-Working Center",
+    "address": "166 Valley St BLDG 6M, Providence, RI 02909",
+    "location": { "lat": 41.8282, "lng": -71.4385 },
+    "rating": 4.6,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Flexible coworking space with private offices, hot desks, and creative community."
+  },
+  {
+    "name": "Fleet Library at RISD",
+    "address": "15 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8240, "lng": -71.4071 },
+    "rating": 4.9,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Architecturally stunning library supporting art and design research at RISD."
+  },
+  {
+    "name": "Swan Point Cemetery & Arboretum",
+    "address": "585 Blackstone Blvd, Providence, RI 02906",
+    "location": { "lat": 41.8500, "lng": -71.3785 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Historic cemetery and arboretum offering peaceful walking paths and lush landscaping."
+  },
+  {
+    "name": "Union Station Brewery",
+    "address": "36 Exchange Terrace, Providence, RI 02903",
+    "location": { "lat": 41.8267, "lng": -71.4126 },
+    "rating": 4.2,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Rustic brewpub serving house beers and hearty meals in a former train station."
+  },
+  {
+    "name": "The Capital Grille",
+    "address": "One Union Station, Providence, RI 02903",
+    "location": { "lat": 41.8270, "lng": -71.4130 },
+    "rating": 4.6,
+    "price_level": 4,
+    "open_now": true,
+    "description": "Upscale chain steakhouse known for elegant ambiance, dry-aged steaks, and fine wines."
+  },
+  {
+    "name": "Brown University Sciences Library",
+    "address": "201 Thayer St, Providence, RI 02912",
+    "location": { "lat": 41.8285, "lng": -71.4018 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Modern university library with quiet study floors, research support, and a café."
+  },
+  {
+    "name": "7-Eleven Convenience Store",
+    "address": "257 Thayer St, Providence, RI 02906",
+    "location": { "lat": 41.8270, "lng": -71.4023 },
+    "rating": 4.2,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Popular convenience store chain offering snacks, drinks, and quick essentials."
+  },
+  {
+    "name": "Whole Foods Market",
+    "address": "261 Waterman St, Providence, RI 02906",
+    "location": { "lat": 41.8310, "lng": -71.3920 },
+    "rating": 4.3,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Upscale grocery store offering organic produce, prepared meals, and natural goods."
+  },
+  {
+    "name": "Hope High School Track & Field",
+    "address": "324 Hope St, Providence, RI 02906",
+    "location": { "lat": 41.8350, "lng": -71.3929 },
+    "rating": 4.5,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Outdoor athletic space with a running track and soccer field open to the public."
+  },
+  {
+    "name": "RISD Museum",
+    "address": "20 N Main St, Providence, RI 02903",
+    "location": { "lat": 41.8280, "lng": -71.4063 },
+    "rating": 4.8,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Renowned museum featuring global art, textiles, and rotating exhibitions."
+  },
+  {
+    "name": "Providence Amtrak Station",
+    "address": "100 Gaspee St, Providence, RI 02903",
+    "location": { "lat": 41.8291, "lng": -71.4138 },
+    "rating": 4.4,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Major transit hub with regional and intercity rail service, centrally located downtown."
+  },
+  {
+    "name": "Starbucks - Thayer Street",
+    "address": "316 Thayer St, Providence, RI 02906",
+    "location": { "lat": 41.8278, "lng": -71.4010 },
+    "rating": 4.1,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Popular coffee chain serving espresso drinks, pastries, and free Wi-Fi."
+  },
+  {
+    "name": "Shell Gas Station",
+    "address": "125 Benefit St, Providence, RI 02903",
+    "location": { "lat": 41.8260, "lng": -71.4052 },
+    "rating": 4.0,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Convenient gas station offering fuel, snacks, and a small convenience store."
+  },
+  {
+    "name": "Urban Outfitters",
+    "address": "285 Thayer St, Providence, RI 02906",
+    "location": { "lat": 41.8273, "lng": -71.4016 },
+    "rating": 4.2,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Trendy retail store offering clothing, home décor, and lifestyle products."
+  },
+  {
+    "name": "Brown University Watson Institute",
+    "address": "111 Thayer St, Providence, RI 02912",
+    "location": { "lat": 41.8279, "lng": -71.4027 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "International affairs center hosting lectures, research, and policy programs."
+  },
+  {
+    "name": "Angell Street Starbucks",
+    "address": "471 Angell St, Providence, RI 02906",
+    "location": { "lat": 41.8307, "lng": -71.3916 },
+    "rating": 4.0,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Suburban-style Starbucks location with seating, outlets, and a student crowd."
+  },
+  {
+    "name": "Kennedy Plaza Bus Hub",
+    "address": "Kennedy Plaza, Providence, RI 02903",
+    "location": { "lat": 41.8261, "lng": -71.4111 },
+    "rating": 4.0,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Central transportation hub for RIPTA buses and regional connections."
+  },
+  {
+    "name": "The Dean Hotel",
+    "address": "122 Fountain St, Providence, RI 02903",
+    "location": { "lat": 41.8258, "lng": -71.4161 },
+    "rating": 4.3,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Boutique hotel in downtown Providence with eclectic design and rooftop bar."
+  },
+  {
+    "name": "Providence River Greenway",
+    "address": "Waterfront Park, Providence, RI 02903",
+    "location": { "lat": 41.8199, "lng": -71.4030 },
+    "rating": 4.7,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Linear park and walking trail along the Providence River with sculptures and benches."
+  },
+  {
+    "name": "Providence Place Mall",
+    "address": "1 Providence Pl, Providence, RI 02903",
+    "location": { "lat": 41.8286, "lng": -71.4151 },
+    "rating": 4.4,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Large indoor shopping mall with major retail stores, dining, and movie theater."
+  },
+  {
+    "name": "Panera Bread",
+    "address": "400 Angell St, Providence, RI 02906",
+    "location": { "lat": 41.8314, "lng": -71.3933 },
+    "rating": 4.2,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Fast-casual chain serving soups, salads, sandwiches, and coffee with ample seating."
+  },
+  {
+    "name": "CVS Pharmacy – Downtown",
+    "address": "100 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8239, "lng": -71.4114 },
+    "rating": 4.0,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Downtown CVS location with pharmacy, snacks, cosmetics, and photo services."
+  },
+  {
+    "name": "Basil & Bunny Vegan Food Truck",
+    "address": "Rotates near downtown, Providence, RI",
+    "location": { "lat": 41.8234, "lng": -71.4102 },
+    "rating": 4.9,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Plant-based food truck known for creative burgers, comfort food, and local ingredients."
+  },
+  {
+    "name": "Brown University List Art Center",
+    "address": "64 College St, Providence, RI 02912",
+    "location": { "lat": 41.8264, "lng": -71.4050 },
+    "rating": 4.5,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Brown's visual arts hub featuring galleries, studios, and rotating exhibitions."
+  },
+  {
+    "name": "Glocester Street Playground",
+    "address": "Glocester St & Atwells Ave, Providence, RI 02903",
+    "location": { "lat": 41.8207, "lng": -71.4254 },
+    "rating": 4.2,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Neighborhood park with basketball courts, play structures, and open green space."
+  },
+  {
+    "name": "AS220",
+    "address": "115 Empire St, Providence, RI 02903",
+    "location": { "lat": 41.8203, "lng": -71.4163 },
+    "rating": 4.7,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Non-profit community arts center with galleries, studios, live events, and a bar."
+  },
+  {
+    "name": "Federal Hill Fountain Plaza",
+    "address": "DePasquale Ave, Providence, RI 02903",
+    "location": { "lat": 41.8208, "lng": -71.4252 },
+    "rating": 4.5,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Charming outdoor plaza with central fountain and surrounding Italian restaurants."
+  },
+  {
+    "name": "Crossroads Rhode Island",
+    "address": "160 Broad St, Providence, RI 02903",
+    "location": { "lat": 41.8174, "lng": -71.4132 },
+    "rating": 4.2,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Homeless services organization and shelter providing support to those in need."
+  },
+  {
+    "name": "Providence Public Safety Complex",
+    "address": "325 Washington St, Providence, RI 02903",
+    "location": { "lat": 41.8210, "lng": -71.4183 },
+    "rating": 4.1,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Central location for police, fire, and emergency operations in the city."
+  },
+  {
+    "name": "Olneyville New York System",
+    "address": "18 Plainfield St, Providence, RI 02909",
+    "location": { "lat": 41.8181, "lng": -71.4377 },
+    "rating": 4.6,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Legendary local hot wiener spot known for classic Rhode Island comfort food."
+  },
+  {
+    "name": "Riffraff Bookstore and Bar",
+    "address": "60 Valley St #107A, Providence, RI 02909",
+    "location": { "lat": 41.8214, "lng": -71.4341 },
+    "rating": 4.8,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Indie bookstore with a curated selection of titles and a sleek wine bar."
+  },
+  {
+    "name": "Farm Fresh RI Market Hall",
+    "address": "10 Sims Ave, Providence, RI 02909",
+    "location": { "lat": 41.8233, "lng": -71.4335 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Indoor farmers market with local produce, food vendors, and sustainable goods."
+  },
+  {
+    "name": "Rochambeau Library",
+    "address": "708 Hope St, Providence, RI 02906",
+    "location": { "lat": 41.8422, "lng": -71.3971 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Branch of the public library system with children’s programs and quiet reading areas."
+  },
+  {
+    "name": "St. Joseph’s Hospital – Fatima Campus",
+    "address": "200 High Service Ave, North Providence, RI 02904",
+    "location": { "lat": 41.8541, "lng": -71.4412 },
+    "rating": 4.0,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Community hospital offering medical services, ER, and outpatient care."
+  },
+  {
+    "name": "The Steel Yard",
+    "address": "27 Sims Ave, Providence, RI 02909",
+    "location": { "lat": 41.8231, "lng": -71.4345 },
+    "rating": 4.7,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Industrial arts center with metalworking classes, public art, and sculptures."
+  },
+  {
+    "name": "Waterplace Park",
+    "address": "Memorial Blvd, Providence, RI 02903",
+    "location": { "lat": 41.8289, "lng": -71.4116 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Scenic park with amphitheater seating and views of WaterFire events on the river."
+  },
+  {
+    "name": "Blue State Coffee",
+    "address": "300 Thayer St, Providence, RI 02906",
+    "location": { "lat": 41.8275, "lng": -71.4013 },
+    "rating": 4.3,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Student-favorite café with locally roasted coffee and social justice mission."
+  },
+  {
+    "name": "Wayland Square",
+    "address": "Wayland Ave & Angell St, Providence, RI 02906",
+    "location": { "lat": 41.8305, "lng": -71.3929 },
+    "rating": 4.6,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Shopping and dining district with upscale boutiques, cafés, and salons."
+  },
+  {
+    "name": "Providence Children's Museum",
+    "address": "100 South St, Providence, RI 02903",
+    "location": { "lat": 41.8145, "lng": -71.4123 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Interactive museum for kids with hands-on exhibits and play spaces."
+  },
+  {
+    "name": "The Arcade Providence",
+    "address": "65 Weybosset St, Providence, RI 02903",
+    "location": { "lat": 41.8230, "lng": -71.4115 },
+    "rating": 4.5,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Historic shopping arcade with micro-lofts, shops, and eateries inside a 19th-century building."
+  },
+  {
+    "name": "Public Kitchen & Bar",
+    "address": "120 Francis St, Providence, RI 02903",
+    "location": { "lat": 41.8295, "lng": -71.4153 },
+    "rating": 4.4,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Upscale restaurant with locally sourced American cuisine and stylish atmosphere."
+  },
+  {
+    "name": "Roger Williams National Memorial",
+    "address": "282 N Main St, Providence, RI 02903",
+    "location": { "lat": 41.8301, "lng": -71.4085 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Urban green space and historical site commemorating the founder of Rhode Island."
+  },
+  {
+    "name": "Biltmore Garage",
+    "address": "51 Washington St, Providence, RI 02903",
+    "location": { "lat": 41.8239, "lng": -71.4127 },
+    "rating": 4.2,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Downtown parking garage near major hotels, event venues, and offices."
+  },
+  {
+    "name": "Providence Performing Arts Center",
+    "address": "220 Weybosset St, Providence, RI 02903",
+    "location": { "lat": 41.8218, "lng": -71.4129 },
+    "rating": 4.8,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Elegant theater hosting Broadway tours, concerts, and local performances."
+  },
+  {
+    "name": "Brown University Biomedical Center",
+    "address": "171 Meeting St, Providence, RI 02912",
+    "location": { "lat": 41.8256, "lng": -71.4015 },
+    "rating": 4.5,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Academic facility for medical research, faculty offices, and graduate studies."
+  },
+  {
+    "name": "Craftland",
+    "address": "212 Westminster St, Providence, RI 02903",
+    "location": { "lat": 41.8235, "lng": -71.4114 },
+    "rating": 4.8,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Vibrant local shop featuring handmade art, crafts, and gifts by regional artists."
+  },
+  {
+    "name": "Bannister Gallery",
+    "address": "600 Mt Pleasant Ave, Providence, RI 02908",
+    "location": { "lat": 41.8412, "lng": -71.4496 },
+    "rating": 4.4,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Rhode Island College’s campus gallery exhibiting contemporary art and student work."
+  },
+  {
+    "name": "CAV Restaurant",
+    "address": "14 Imperial Pl, Providence, RI 02903",
+    "location": { "lat": 41.8149, "lng": -71.4117 },
+    "rating": 4.7,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Upscale bistro with eclectic decor serving globally inspired American fare."
+  },
+  {
+    "name": "Rhode Island Foundation",
+    "address": "1 Union Station, Providence, RI 02903",
+    "location": { "lat": 41.8297, "lng": -71.4129 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Local philanthropy hub supporting nonprofit initiatives across Rhode Island."
+  },
+  {
+    "name": "Nick-A-Nee’s",
+    "address": "75 South St, Providence, RI 02903",
+    "location": { "lat": 41.8138, "lng": -71.4121 },
+    "rating": 4.7,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Unpretentious dive bar known for live music, dogs on the patio, and pool."
+  },
+  {
+    "name": "Bagel Gourmet Ole",
+    "address": "127 Weybosset St, Providence, RI 02903",
+    "location": { "lat": 41.8231, "lng": -71.4117 },
+    "rating": 4.5,
+    "price_level": 1,
+    "open_now": true,
+    "description": "Popular student bagel joint with Tex-Mex inspired menu and breakfast all day."
+  },
+  {
+    "name": "John Hay Library",
+    "address": "20 Prospect St, Providence, RI 02906",
+    "location": { "lat": 41.8261, "lng": -71.4031 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Brown University’s special collections library with archives and rare manuscripts."
+  },
+  {
+    "name": "South Street Landing",
+    "address": "350 Eddy St, Providence, RI 02903",
+    "location": { "lat": 41.8133, "lng": -71.4035 },
+    "rating": 4.4,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Mixed-use academic and office complex housing Brown and URI medical offices."
+  },
+  {
+    "name": "Providence River Boat Company",
+    "address": "101 Dyer St, Providence, RI 02903",
+    "location": { "lat": 41.8186, "lng": -71.4077 },
+    "rating": 4.9,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Scenic river tours of downtown Providence aboard open-air passenger boats."
+  },
+  {
+    "name": "Dorcas International Institute",
+    "address": "220 Elmwood Ave, Providence, RI 02907",
+    "location": { "lat": 41.8057, "lng": -71.4144 },
+    "rating": 4.7,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Community resource center offering refugee services, language classes, and legal help."
+  },
+  {
+    "name": "RISD Museum Café",
+    "address": "20 N Main St, Providence, RI 02903",
+    "location": { "lat": 41.8286, "lng": -71.4079 },
+    "rating": 4.5,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Chic café inside the RISD Museum serving artisanal snacks and drinks."
+  },
+  {
+    "name": "CVS Health Headquarters",
+    "address": "1 CVS Dr, Providence, RI 02903",
+    "location": { "lat": 41.8192, "lng": -71.4099 },
+    "rating": 4.0,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Corporate offices of the national pharmacy chain based in Rhode Island."
+  },
+  {
+    "name": "India Point Park Pedestrian Bridge",
+    "address": "India St, Providence, RI 02903",
+    "location": { "lat": 41.8119, "lng": -71.3922 },
+    "rating": 4.6,
+    "price_level": 0,
+    "open_now": true,
+    "description": "New riverfront pedestrian bridge offering views of the Seekonk and city skyline."
+  },
+  {
+    "name": "Urban Greens Co-Op Market",
+    "address": "93 Cranston St, Providence, RI 02907",
+    "location": { "lat": 41.8111, "lng": -71.4221 },
+    "rating": 4.7,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Community-owned grocery store focused on organic, local, and sustainable products."
+  },
+  {
+    "name": "Brown University Watson Institute",
+    "address": "111 Thayer St, Providence, RI 02912",
+    "location": { "lat": 41.8269, "lng": -71.4021 },
+    "rating": 4.8,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Center for international and public affairs with lecture halls and student programs."
+  },
+  {
+    "name": "Plant City X",
+    "address": "334 S Water St, Providence, RI 02903",
+    "location": { "lat": 41.8128, "lng": -71.3995 },
+    "rating": 4.5,
+    "price_level": 2,
+    "open_now": true,
+    "description": "Fast-casual vegan spot serving plant-based burgers, bowls, and smoothies."
+  },
+  {
+    "name": "The Dean Hotel",
+    "address": "122 Fountain St, Providence, RI 02903",
+    "location": { "lat": 41.8241, "lng": -71.4156 },
+    "rating": 4.4,
+    "price_level": 3,
+    "open_now": true,
+    "description": "Trendy boutique hotel with stylish rooms and hip amenities including karaoke bar."
+  },
+  {
+    "name": "Prospect Terrace Park",
+    "address": "60 Congdon St, Providence, RI 02906",
+    "location": { "lat": 41.8312, "lng": -71.4053 },
+    "rating": 4.7,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Hilltop park offering panoramic views of downtown and Roger Williams statue."
+  },
+  {
+    "name": "Bourbon Street Providence",
+    "address": "37 Richmond St, Providence, RI 02903",
+    "location": { "lat": 41.8215, "lng": -71.4158 },
+    "rating": 4.3,
+    "price_level": 2,
+    "open_now": true,
+    "description": "New Orleans–inspired bar with live DJs, dancing, and specialty cocktails."
+  },
+  {
+    "name": "Kennedy Plaza Bus Terminal",
+    "address": "Kennedy Plaza, Providence, RI 02903",
+    "location": { "lat": 41.8270, "lng": -71.4145 },
+    "rating": 4.0,
+    "price_level": 0,
+    "open_now": true,
+    "description": "Central public transit hub with connections to RIPTA bus lines across the state."
+  }
+]
